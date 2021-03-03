@@ -1,5 +1,6 @@
 from .db import db
 from .user_course import User_Course
+# from .user import User
 
 
 class Course(db.Model):
