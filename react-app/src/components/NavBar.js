@@ -1,35 +1,31 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import './NavBar.css'
 
 const NavBar = ({ setAuthenticated, authenticated, setDisplay }) => {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="navBarContainer">
+        <div className="leftFraction">
+          {!authenticated &&
           <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
+            Logo
+          </NavLink>}
+        </div>
+        {!authenticated ? (
+        <div className="rightFraction">
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
           </NavLink>
-        </li>
-        <li>
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
+          </div>
+          ) : (
+         <div className="rightFractionAuth">
           <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
+        </div>
+          )}
     </nav>
   );
 }
