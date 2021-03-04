@@ -7,11 +7,12 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [is_instructor, setIsInstructor] = useState(false);
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
+      const user = await signUp(username, email, password, is_instructor);
       if (!user.errors) {
         setAuthenticated(true);
       }
@@ -33,6 +34,10 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  const updateUserType = (e) => {
+    setIsInstructor(e.target.value)
+  }
 
   if (authenticated) {
     return <Redirect to="/" />;
@@ -77,6 +82,29 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           required={true}
         ></input>
       </div>
+      <div>
+        <label>
+           <input
+              type="radio"
+              value={true}
+              name="instructor"
+              checked={is_instructor === true}
+              onChange={updateUserType}
+            />
+          Instructor
+        </label>
+        <label>
+          <input
+            type="radio"
+            value={false}
+            name="instructor"
+            checked={is_instructor === false}
+            onChange={updateUserType}
+          />
+          Student
+        </label>
+      </div>
+
       <button type="submit">Sign Up</button>
     </form>
   );
