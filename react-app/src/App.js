@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
-import NavBar from "./components/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
+import { LoginForm,
+         SignUpForm,
+         ProtectedRoute,
+         NavBar} from "./components";
+
+import User from "./components/User"
 import UsersList from "./components/UsersList";
-import User from "./components/User";
-i
-import { authenticate } from "./services/auth";
-import { setUser } from "./store/session"
+import {restoreUser} from "./store/reducers/user"
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      const user = await authenticate();
+      const user = await dispatch(restoreUser());
       if (!user.errors) {
-        dispatch(setUser(user));
         setAuthenticated(true);
       }
       setLoaded(true);
@@ -35,9 +34,9 @@ function App() {
     <BrowserRouter>
       <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
-        <Route path="/">
+        {/* <Route path="/">
           <LandingPage />
-        </Route>
+        </Route> */}
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
@@ -53,7 +52,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
