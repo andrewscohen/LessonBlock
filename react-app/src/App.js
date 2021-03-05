@@ -11,11 +11,6 @@ import User from "./components/User"
 import UsersList from "./components/UsersList";
 import {restoreUser} from "./store/reducers/user";
 
-const Test = () => {
-  return (
-    <h1>Test</h1>
-  )
-}
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -39,11 +34,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar authenticated={authenticated} setAuthenticated={setAuthenticated} />
       <Switch>
-        <Route path="/test">
-          <Test />
-        </Route>
         <Route path="/" exact={true}>
           <LandingPage />
         </Route>
