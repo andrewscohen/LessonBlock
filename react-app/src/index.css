@@ -1,4 +1,8 @@
 /* TODO Add site wide styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
 	margin: 0;
 	padding: 0;
