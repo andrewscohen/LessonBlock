@@ -1,25 +1,15 @@
-.navBarContainer {
-	width: 100vw;
-	position: fixed;
-	z-index: 1;
-	background-color: lightblue;
-	height: 60px;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-.leftFraction {
+/* .leftFraction {
 	grid-column-start: 2;
 	grid-column-end: 2;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-}
-
+} */
+/*
 .rightFraction {
-	grid-column-start: 3;
-	grid-column-end: 3;
+	grid-column-start: 7;
+	grid-column-end: 8;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-}
+} */

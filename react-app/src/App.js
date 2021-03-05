@@ -4,11 +4,18 @@ import { useDispatch } from "react-redux";
 import { LoginForm,
          SignUpForm,
          ProtectedRoute,
-         NavBar} from "./components";
+         NavBar,
+        LandingPage} from "./components";
 
 import User from "./components/User"
 import UsersList from "./components/UsersList";
-import {restoreUser} from "./store/reducers/user"
+import {restoreUser} from "./store/reducers/user";
+
+const Test = () => {
+  return (
+    <h1>Test</h1>
+  )
+}
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -32,11 +39,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar />
       <Switch>
-        {/* <Route path="/">
+        <Route path="/test">
+          <Test />
+        </Route>
+        <Route path="/" exact={true}>
           <LandingPage />
-        </Route> */}
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
@@ -52,7 +62,7 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
