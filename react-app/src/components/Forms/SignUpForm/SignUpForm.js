@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../services/auth';
+import {useDispatch} from "react-redux";
+import {signup, demoLogin, login} from '../../../store/reducers/user';
+import {blackButtonStyle, whiteButtonStyle, formInputStyle} from '../formStyles'
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [username, setUsername] = useState("");
@@ -9,14 +11,22 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [is_instructor, setIsInstructor] = useState(false);
 
+  const dispatch = useDispatch();
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password, is_instructor);
+      const user = await dispatch(signup(username, email, password, is_instructor));
       if (!user.errors) {
         setAuthenticated(true);
       }
     }
+  };
+
+  const loginDemo = async (e) => {
+    const user = await dispatch(demoLogin());
+    setAuthenticated(true);
+    dispatch(login(user));
   };
 
   const updateUsername = (e) => {
@@ -53,7 +63,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           name="username"
           value={username}
           onChange={updateUsername}
-          className="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50" placeholder="Enter Your Username"
+          className={formInputStyle}
+          placeholder="Enter Your Username"
           required={true}></input>
       </div>
       <div className="relative">
@@ -62,7 +73,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
               name="email"
             value={email}
             onChange={updateEmail}
-            className="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
+            className={formInputStyle}
             placeholder="Enter Your Email Address"
             required={true} />
       </div>
@@ -72,7 +83,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           type="password"
           value={password}
           name="password"
-          onChange={updatePassword} className="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50" placeholder="Password" />
+          onChange={updatePassword}
+          className={formInputStyle}
+          placeholder="Password" />
       </div>
       <div className="relative">
         <label className="font-medium text-gray-900">Confirm Password</label>
@@ -80,7 +93,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
             type="password"
             value={repeatPassword}
             required={true}
-            onChange={updateRepeatPassword} className="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50" placeholder="Password" />
+            onChange={updateRepeatPassword}
+            className={formInputStyle}
+            placeholder="Password" />
       </div>
       <div>
         <label>
@@ -105,9 +120,14 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           </label>
       </div>
       <div className="relative">
-        <button type="submit" className="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease">Create Account</button>
+        <button type="submit" className={blackButtonStyle}>Create Account</button>
         <button
-            className="inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease">Demo User</button>
+          type='submit'
+          className={whiteButtonStyle}
+          onClick={loginDemo}
+          >
+          Demo User
+        </button>
       </div>
     </form>
     </div>

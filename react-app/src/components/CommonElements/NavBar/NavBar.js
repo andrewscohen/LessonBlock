@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from '../../auth/LogoutButton';
 import './NavBar.css'
 
 const NavBar = ({ setAuthenticated, authenticated, setDisplay }) => {
@@ -13,7 +13,6 @@ const NavBar = ({ setAuthenticated, authenticated, setDisplay }) => {
           </NavLink>}
         </div>
         <div className="rightFraction">
-        {!authenticated && (
         <div>
          <NavLink to="/login" exact={true} activeClassName="active">
             Login
@@ -22,15 +21,12 @@ const NavBar = ({ setAuthenticated, authenticated, setDisplay }) => {
             Sign Up
           </NavLink>
           </div>
-        )}
         </div>
-        {/* <div>
-          {authenticated && (
+        <div>
           <div>
           <LogoutButton setAuthenticated={setAuthenticated} />
           </div>
-          )}
-          </div> */}
+          </div>
     </nav>
   )};
 
