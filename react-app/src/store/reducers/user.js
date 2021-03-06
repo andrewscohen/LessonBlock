@@ -7,6 +7,7 @@ const REMOVE_USER = "user/removeUser";
 const GET_COURSE = "user/getCourse";
 const CREATE_COURSE = "user/createCourse";
 const UPDATE_COURSE = "user/updateCourse";
+const REMOVE_COURSE = "user/removeCourse"
 
 const setUser = (user) => {
   return {
@@ -41,6 +42,12 @@ const updateCourse = (course) => {
   payload: course
  };
 };
+
+const removeCourse = () => {
+  return {
+    type: REMOVE_COURSE,
+  }
+}
 
 
 export const signup = ({ username, email, password, is_instructor }) => async (dispatch) => {

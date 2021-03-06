@@ -1,9 +1,9 @@
-import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import LogoutButton from '../../auth/LogoutButton';
+import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import LogoutButton from "../../auth/LogoutButton";
 import {navBarButton} from "../../../CreativeAssets/ComponentStyles";
 // import LessonBlockLogo from "../../../CreativeAssets/Icons/LessonBlockLogo.svg"
-import './NavBar.css';
+import "./NavBar.css";
 
 const NavBar = ({authenticated, setAuthenticated}) => {
   const location = useLocation();

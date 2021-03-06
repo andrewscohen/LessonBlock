@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import {blackButtonStyle, whiteButtonStyle, formInputStyle} from '../formStyles';
-import {login, demoLogin} from '../../../store/reducers/user';
-import FormPageGradient from '../../../CreativeAssets/BackgroundImages/FormPageGradient.svg';
-import DesignerAtNight from '../../../CreativeAssets/Icons/DesignerAtNight.png';
+import {blackButtonStyle, whiteButtonStyle, formInputStyle} from "../formStyles";
+import {login, demoLogin} from "../../../store/reducers/user";
+import FormPageGradient from "../../../CreativeAssets/BackgroundImages/FormPageGradient.svg";
+import DesignerAtNight from "../../../CreativeAssets/Icons/DesignerAtNight.png";
 
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
@@ -47,7 +47,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
 
   return (
-    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: 'cover', height: '100vh'}}>
+    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: "cover", height: "100vh"}}>
     <div className="container flex justify-end items-center h-screen mx-auto">
     <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md">
         <h1 className="text-5xl font-bold text-white-space">Welcome back!</h1>
@@ -83,7 +83,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             <div className="relative">
                 <button type="submit" className={blackButtonStyle}>Log In</button>
                   <button
-                  type='submit'
+                  type="submit"
                   className={whiteButtonStyle}
                   onClick={loginDemo}
                   >
@@ -91,7 +91,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
                   </button>
             </div>
             <div className="flex justify-between">
-            <Link to="/sign-up">Don't have an account?</Link>
+            <Link to="/sign-up">Don"t have an account?</Link>
             <Link to="/sign-up">Forgot Password?</Link>
           </div>
         </div>
