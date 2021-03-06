@@ -5,6 +5,7 @@ import {signup, demoLogin, login} from '../../../store/reducers/user';
 import {blackButtonStyle, whiteButtonStyle, formInputStyle} from '../formStyles'
 import FormPageGradient from '../../../CreativeAssets/BackgroundImages/FormPageGradient.svg'
 
+
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -55,9 +56,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <div className="relative overflow-hidden h-screen">
-      <img src={FormPageGradient} className="absolute h-full w-full object-cover" alt="SplashHeader"/>
-      <div></div>
+    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: 'cover', height: '100vh'}}>
     <div className="container flex justify-center items-center h-screen mx-auto">
       <form onSubmit={onSignUp} className="w-4/12">
         <div>
@@ -101,29 +100,25 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
               className={formInputStyle}
               placeholder="Password" />
         </div>
-        <div className="flex">
+        <div className="flex mt-6 mb-6">
           {/* <label className="border-solid border-black border-2 font-medium rounded-md px-4 py-4 m-2 text-xl"> */}
-          <label className="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease">
+          <label className="z-20 inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease">
             <input
                 type="radio"
                 value={true}
                 name="instructor"
                 checked={is_instructor === true}
                 onChange={updateUserType}
-                // className="hidden"
               />
               Instructor
           </label>
-          {/* <label className="relative border-solid border-black border-2 font-medium rounded-md px-4 py-4 m-2 text-xl"> */}
-          <label className="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease">
+          <label className="z-20 inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease">
             <input
               type="radio"
               value={false}
               name="instructor"
               checked={is_instructor === false}
               onChange={updateUserType}
-              // onClick={clickIt}
-              // className="hidden"
             />
             Student
             </label>
