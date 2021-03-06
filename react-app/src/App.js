@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { LoginForm,
-         SignUpForm,
-         ProtectedRoute,
-         NavBar,
-        LandingPage} from "./components";
-
 import User from "./components/User"
 import UsersList from "./components/UsersList";
 import {restoreUser} from "./store/reducers/user";
+import { LoginForm,
+  SignUpForm,
+  ProtectedRoute,
+  NavBar,
+  LandingPage,
+  UserProfile} from "./components";
 
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <UserProfile />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

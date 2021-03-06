@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link } from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {signup, demoLogin, login} from '../../../store/reducers/user';
-import {blackButtonStyle, whiteButtonStyle, formInputStyle, radioButtonStyle} from '../formStyles'
-import FormPageGradient from '../../../CreativeAssets/BackgroundImages/FormPageGradient.svg'
+import {signup, demoLogin, login} from "../../../store/reducers/user";
+import {blackButtonStyle, whiteButtonStyle, formInputStyle, radioButtonStyle} from "../formStyles"
+import FormPageGradient from "../../../CreativeAssets/BackgroundImages/FormPageGradient.svg"
 
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
@@ -56,7 +56,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: 'cover', height: '100vh'}}>
+    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: "cover", height: "100vh"}}>
     <div className="container flex justify-center items-center h-screen mx-auto">
       <form onSubmit={onSignUp} className="w-4/12">
         <div>
@@ -125,7 +125,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
         <div className="relative">
           <button type="submit" className={blackButtonStyle}>Create Account</button>
           <button
-            type='submit'
+            type="submit"
             className={whiteButtonStyle}
             onClick={loginDemo}
             >

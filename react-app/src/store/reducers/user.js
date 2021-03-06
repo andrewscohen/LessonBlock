@@ -4,15 +4,51 @@ const initialState = {
 
 const SET_USER = "user/setUser";
 const REMOVE_USER = "user/removeUser";
+const GET_COURSE = "user/getCourse";
+const CREATE_COURSE = "user/createCourse";
+const UPDATE_COURSE = "user/updateCourse";
+const REMOVE_COURSE = "user/removeCourse"
 
-const setUser = (user) => ({
+const setUser = (user) => {
+  return {
   type: SET_USER,
-  user,
-});
+  payload: user,
+  };
+};
 
-const removeUser = () => ({
+const removeUser = () => {
+  return {
   type: REMOVE_USER,
-});
+  };
+};
+
+const getCourse = (course) => {
+  return {
+  type: GET_COURSE,
+  payload: course
+  };
+};
+
+const createCourse = (course) => {
+  return {
+  type: CREATE_COURSE,
+  payload: course
+  };
+};
+
+const updateCourse = (course) => {
+  return {
+  type: UPDATE_COURSE,
+  payload: course
+ };
+};
+
+const removeCourse = () => {
+  return {
+    type: REMOVE_COURSE,
+  }
+}
+
 
 export const signup = ({ username, email, password, is_instructor }) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
@@ -51,7 +87,6 @@ export const demoLogin = () => async (dispatch) => {
   dispatch(setUser(parsedResponse));
   return parsedResponse;
 };
-
 
 
 export const restoreUser = () => async (dispatch) => {
