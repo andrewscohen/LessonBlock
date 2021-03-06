@@ -4,7 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'secondary-yellow': "#F7C229",
+        'brand-blue': '#54AAD4',
+        'brand-yellow': '#F7C229',
+        'brand-gold': '#DCAE25',
+        'brand-purple': '#4E5990',
+        'brand-purple-deep': '#333C5D',
+        'brand-gray': '#656153',
+        'white-space': '#FAFDFE',
       }
     },
   },

@@ -1,18 +1,20 @@
 import React, {useEffect} from 'react';
 import {NavLink} from 'react-router-dom'
-import SplashHeader from '../CreativeAssets/BackgroundImages/SplashHeader.svg'
+// import SplashHeader from '../CreativeAssets/BackgroundImages/SplashHeader.svg'
 // import Wave from '../CreativeAssets/BackgroundImages/Wave.svg'
 import './LandingPage.css'
 
 
 const LandingPage = () => {
+
     useEffect(() => {
         console.log("HELLO!")
     })
     return (
         <>
         <div className="relative overflow-hidden h-screen">
-        <img src={SplashHeader} className="absolute h-full w-full object-cover" alt="SplashHeader"/>
+        <img src="https://lessonblock.s3.amazonaws.com/BackgroundImages/SplashHeader.svg" className="absolute h-full w-full object-cover" alt="SplashHeader"/>
+        {/* <img src={SplashHeader} className="absolute h-full w-full object-cover" alt="SplashHeader"/> */}
         <div className="inset-0 bg-black opacity-10 absolute">
         </div>
         <div className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-72">
