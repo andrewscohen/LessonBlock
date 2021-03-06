@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import {useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
-import {login, demoLogin} from '../../../store/reducers/user';
+import { Redirect, Link } from "react-router-dom";
 import {blackButtonStyle, whiteButtonStyle, formInputStyle} from '../formStyles';
+import {login, demoLogin} from '../../../store/reducers/user';
+import FormPageGradient from '../../../CreativeAssets/BackgroundImages/FormPageGradient.svg';
+import DesignerAtNight from '../../../CreativeAssets/Icons/DesignerAtNight.png';
+
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
@@ -44,8 +47,14 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
 
   return (
-    <div className="container flex justify-center items-center h-screen mx-auto">
-    <form onSubmit={onLogin} className="w-4/12 ">
+    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: 'cover', height: '100vh'}}>
+    <div className="container flex justify-end items-center h-screen mx-auto">
+    <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md">
+        <h1 className="text-5xl font-bold text-white-space">Welcome back!</h1>
+        <img src={DesignerAtNight} alt="Designer At Night"/>
+    </div>
+    <div className="w-6/12 h-2/3 bg-white-space flex flex-col justify-center items-center rounded-r-md">
+      <form onSubmit={onLogin} className="w-6/12">
         <div className="relative w-full mt-10 space-y-8">
             <div className="relative">
                 <ul>
@@ -81,9 +90,16 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
                   Demo User
                   </button>
             </div>
+            <div className="flex justify-between">
+            <Link to="/sign-up">Don't have an account?</Link>
+            <Link to="/sign-up">Forgot Password?</Link>
+          </div>
         </div>
-    </form>
+      </form>
     </div>
+    </div>
+    </div>
+
   );
 };
 
