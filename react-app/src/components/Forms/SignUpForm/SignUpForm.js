@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect, Link } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {signup, demoLogin, login} from '../../../store/reducers/user';
-import {blackButtonStyle, whiteButtonStyle, formInputStyle} from '../formStyles'
+import {blackButtonStyle, whiteButtonStyle, formInputStyle, radioButtonStyle} from '../formStyles'
 import FormPageGradient from '../../../CreativeAssets/BackgroundImages/FormPageGradient.svg'
 
 
@@ -52,7 +52,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (
@@ -101,8 +101,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
               placeholder="Password" />
         </div>
         <div className="flex mt-6 mb-6">
-          {/* <label className="border-solid border-black border-2 font-medium rounded-md px-4 py-4 m-2 text-xl"> */}
-          <label className="z-20 inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease">
+          <label className={radioButtonStyle}>
             <input
                 type="radio"
                 value={true}
@@ -112,7 +111,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
               />
               Instructor
           </label>
-          <label className="z-20 inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease">
+          <label className={radioButtonStyle}>
             <input
               type="radio"
               value={false}

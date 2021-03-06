@@ -1,14 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {NavLink} from 'react-router-dom'
 import SplashHeader from '../../CreativeAssets/BackgroundImages/SplashHeader.svg'
 import './LandingPage.css'
 
 
 const LandingPage = () => {
-
-    useEffect(() => {
-        console.log("HELLO!")
-    })
     return (
         <>
         <div className="relative overflow-hidden h-screen">
