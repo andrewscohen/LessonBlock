@@ -90,8 +90,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
                   </button>
             </div>
             <div className="flex justify-between">
-            <Link path="/signup">Don't have an account?</Link>
-            <Link path="/signup">Forgot Password?</Link>
+            <Link to="/sign-up">Don't have an account?</Link>
+            <Link to="/sign-up">Forgot Password?</Link>
           </div>
         </div>
       </form>

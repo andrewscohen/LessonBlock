@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {signup, demoLogin, login} from '../../../store/reducers/user';
 import {blackButtonStyle, whiteButtonStyle, formInputStyle} from '../formStyles'
-import FormPageGradient from '../../CreativeAssets/BackgroundImages/FormPageGradient.svg'
+import FormPageGradient from '../../../CreativeAssets/BackgroundImages/FormPageGradient.svg'
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [username, setUsername] = useState("");

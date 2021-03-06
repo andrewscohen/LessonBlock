@@ -1,3 +1,5 @@
+// const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
@@ -10,8 +12,12 @@ module.exports = {
         'brand-purple': '#4E5990',
         'brand-purple-deep': '#333C5D',
         'brand-gray': '#656153',
-        'white-space': '#FAFDFE',
-      }
+        'white-space': '#FAFDFE'
+      },
+      fontFamily: {
+        abril: ["'Abril Fatface'", 'cursive'],
+        monst: ['Monsterrat', 'sans-serif']
+      },
     },
   },
   variants: {
