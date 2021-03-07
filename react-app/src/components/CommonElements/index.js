@@ -1,2 +1,3 @@
 import NavBar from "./NavBar";
-export { NavBar };
+import ProfileButton from "./Menu";
+export { NavBar, ProfileButton };

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {useDispatch } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
-import {blackButtonStyle, whiteButtonStyle, formInputStyle} from "../formStyles";
-import {login, demoLogin} from "../../../store/session";
-import FormPageGradient from "../../../assets/BackgroundImages/FormPageGradient.svg";
-import DesignerAtNight from "../../../assets/Icons/DesignerAtNight.png";
+import { Redirect, Link, useHistory } from "react-router-dom";
+import {blackButtonStyle, whiteButtonStyle, formInputStyle} from "../FormAssets/formStyles";
+import {login, setUser} from "../../../store/session";
+import FormPageGradient from "../FormAssets/FormPageGradient.svg";
+import DesignerAtNight from "../FormAssets/DesignerAtNight.png";
 
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
@@ -13,24 +13,38 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = await dispatch(login({email, password}));
+    const user = await dispatch(login(email, password));
     if (!user.errors) {
       setAuthenticated(true);
+      history.push('/dashboard')
     } else {
       setErrors(user.errors);
     }
   };
 
 
-  const loginDemo = async (e) => {
-    const user = await dispatch(demoLogin());
-    setAuthenticated(true);
-    dispatch(login(user));
-  };
+  // const loginDemo = async (e) => {
+  //   const user = await dispatch(demoLogin());
+  //   setAuthenticated(true);
+  //   dispatch(login(user));
+  // };
 
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const demoUser = await login('demo@aa.io', 'password');
+    if (!demoUser.errors) {
+      dispatch(setUser(demoUser))
+      setAuthenticated(true);
+      history.push("/dashboard");
+    } else {
+      setErrors(demoUser.errors);
+    }
+  }
 
 
   const updateEmail = (e) => {
@@ -49,10 +63,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   return (
     <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: "cover", height: "100vh"}}>
     <div className="container flex justify-end items-center h-screen mx-auto">
-    <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md">
-        <h1 className="text-5xl font-bold text-white-space">Welcome back!</h1>
-        <img src={DesignerAtNight} alt="Designer At Night"/>
-    </div>
+      <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md">
+          <h1 className="text-5xl font-bold text-white-space">Welcome back!</h1>
+          <img src={DesignerAtNight} alt="Designer At Night" />
+      </div>
     <div className="w-6/12 h-2/3 bg-white-space flex flex-col justify-center items-center rounded-r-md">
       <form onSubmit={onLogin} className="w-6/12">
         <div className="relative w-full mt-10 space-y-8">
@@ -85,7 +99,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
                   <button
                   type="submit"
                   className={whiteButtonStyle}
-                  onClick={loginDemo}
+                  onClick={demoLogin}
                   >
                   Demo User
                   </button>
