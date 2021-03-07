@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../store/reducers/user";
+import { logout } from "../../store/session";
 import {navBarButton} from "../../assets/ComponentStyles";
 
 const LogoutButton = ({setAuthenticated}) => {

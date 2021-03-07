@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import {blackButtonStyle, whiteButtonStyle, formInputStyle} from "../formStyles";
-import {login, demoLogin} from "../../../store/reducers/user";
+import {login, demoLogin} from "../../../store/session";
 import FormPageGradient from "../../../assets/BackgroundImages/FormPageGradient.svg";
 import DesignerAtNight from "../../../assets/Icons/DesignerAtNight.png";
 
