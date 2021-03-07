@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {signup, demoLogin, login} from "../../../store/reducers/user";
+import {signup, demoLogin, login} from "../../../store/session";
 import {blackButtonStyle, whiteButtonStyle, formInputStyle, radioButtonStyle} from "../formStyles"
-import FormPageGradient from "../../../CreativeAssets/BackgroundImages/FormPageGradient.svg"
+import FormPageGradient from "../../../assets/BackgroundImages/FormPageGradient.svg"
 
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {

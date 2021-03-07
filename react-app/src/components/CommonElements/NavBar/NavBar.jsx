@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import LogoutButton from "../../auth/LogoutButton";
-import {navBarButton} from "../../../CreativeAssets/ComponentStyles";
-// import LessonBlockLogo from "../../../CreativeAssets/Icons/LessonBlockLogo.svg"
+import {navBarButton} from "../../../assets/ComponentStyles";
 import "./NavBar.css";
 
 const NavBar = ({authenticated, setAuthenticated}) => {
