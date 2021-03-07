@@ -3,8 +3,8 @@ import {useDispatch } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import {blackButtonStyle, whiteButtonStyle, formInputStyle} from "../formStyles";
 import {login, demoLogin} from "../../../store/reducers/user";
-import FormPageGradient from "../../../CreativeAssets/BackgroundImages/FormPageGradient.svg";
-import DesignerAtNight from "../../../CreativeAssets/Icons/DesignerAtNight.png";
+import FormPageGradient from "../../../assets/BackgroundImages/FormPageGradient.svg";
+import DesignerAtNight from "../../../assets/Icons/DesignerAtNight.png";
 
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {

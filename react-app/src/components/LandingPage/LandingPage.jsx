@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import SplashHeader from '../../CreativeAssets/BackgroundImages/SplashHeader.svg'
+import SplashHeader from '../../assets/BackgroundImages/SplashHeader.svg'
 import './LandingPage.css'
 
 
