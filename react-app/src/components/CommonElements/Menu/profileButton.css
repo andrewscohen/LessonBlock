@@ -1,0 +1,97 @@
+.dropdown {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 7em;
+  right: 0;
+  /* background-color: white; */
+  /* border: 1px solid black; */
+  border-radius: 0 0 0.5em 0.5em;
+  height: fit-content;
+  z-index: 100;
+  font-family: "Rubik";
+  background-color: #1cc3d9;
+  text-align: right;
+}
+
+.dropdown div {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.dropdown__li {
+  width: 100%;
+  align-content: center;
+  box-sizing: border-box;
+}
+
+.dropdown__header--name,
+.dropdown__header--email {
+  color: black;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 1.2em;
+  padding: 0.3em 0.5em 0.3em 2em;
+  height: 100%;
+}
+
+.dropdown__header--background {
+  background-color: #17afc4;
+}
+
+.btn--hamburger {
+  background-color: transparent;
+  border: none;
+  /* border-radius: 5px; */
+  outline: none;
+  color: black;
+  padding: 0.3em 0.4em 0.2em;
+  font-size: 2em;
+}
+
+.btn--hamburger:hover {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn--dropdown {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  background-color: transparent;
+  border: none;
+  padding: 0.5em 0.6em;
+  /* border-radius: 5px; */
+  width: 100%;
+  height: 2.2em;
+  text-align: right;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn--dropdown:hover {
+  background-color: lightblue;
+}
+
+.btn--dropdown-icon {
+  color: #fe3a9e;
+  font-size: 1.2em;
+  text-align: center;
+  justify-self: center;
+  text-shadow: 1px 0 0 black;
+}
+
+.btn--dropdown-text {
+  padding-left: 1.7em;
+  font-size: 1.2em;
+}
