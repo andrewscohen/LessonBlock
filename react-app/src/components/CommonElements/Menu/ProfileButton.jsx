@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import LogoutButton from "../../auth/LogoutButton"
+import {LogoutButton} from "../../auth/"
 import "./profileButton.css";
 
 export default function ProfileButton({ setAuthenticated, setDisplay }) {
   const [showMenu, setShowMenu] = useState(false);
-  const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector((state) => (state.session.user));
+
+
+  console.log("THIS IS SESSION USER: ", sessionUser);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -30,14 +33,14 @@ export default function ProfileButton({ setAuthenticated, setDisplay }) {
       <button className="btn btn--hamburger" onClick={openMenu}>
         <i className="fas fa-bars"></i>
       </button>
-      {showMenu && (
+      {showMenu && sessionUser && (
         <>
         <div className="dropdown">
           <div>
-            <li className="dropdown__li dropdown__header--name dropdown__header--background">Welcome, {sessionUser.first_name}!</li>
+            <li className="dropdown__li dropdown__header--name dropdown__header--background">{`Welcome, ${sessionUser.username}`}</li>
           </div>
           <div>
-            <li className="dropdown__li dropdown__header--email dropdown__header--background">{sessionUser.email}</li>
+            <li className="dropdown__li dropdown__header--email dropdown__header--background">this is your email</li>
           </div>
           <div>
             <li className="dropdown__li">

@@ -3,25 +3,29 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import User from "./components/User"
 import UsersList from "./components/UsersList";
-import {restoreUser} from "./store/session";
-import { LoginForm,
+// import {setUser} from "./store/session";
+import {
+  LoginForm,
   SignUpForm,
   ProtectedRoute,
   NavBar,
   LandingPage,
-  UserProfile} from "./components";
+  UserProfile
+} from "./components";
+import { authenticate } from "./store/session";
 
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      const user = await dispatch(restoreUser());
+      const user = await dispatch(authenticate());
+      console.log("THIS IS THE USER: ", user)
       if (!user.errors) {
+        // dispatch(setUser(user));
         setAuthenticated(true);
       }
       setLoaded(true);

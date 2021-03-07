@@ -34,5 +34,5 @@ class User(db.Model, UserMixin):
             "id": self.id,
             "username": self.username,
             "email": self.email,
-            "is_instructor": self.is_instructor,
-              }
+            "is_instructor": self.is_instructor
+        }

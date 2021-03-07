@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+import json
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -41,6 +42,7 @@ def login():
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!F
         user = User.query.filter(User.email == form.data['email']).first()
+        print(user)
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -49,6 +51,7 @@ def login():
 @auth_routes.route("/demo-login", methods=["GET"])
 def demo_login():
     user = User.query.filter(User.email == 'demo@aa.io').first()
+    print("USER: ", user.to_dict())
     login_user(user)
     return user.to_dict()
 

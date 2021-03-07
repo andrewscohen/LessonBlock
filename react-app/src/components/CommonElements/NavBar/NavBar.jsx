@@ -5,7 +5,7 @@ import ProfileButton from "../Menu/ProfileButton";
 import {navBarButton} from "../../../assets/ComponentStyles";
 import "./NavBar.css";
 
-const NavBar = ({authenticated, setAuthenticated}) => {
+const NavBar = ({authenticated, setAuthenticated, setDisplay}) => {
   const location = useLocation();
   const pathName = location.pathname.slice(1);
   console.log("This is the path: ", pathName)
@@ -26,10 +26,10 @@ const NavBar = ({authenticated, setAuthenticated}) => {
           </NavLink>
           )}
           {authenticated && (
-          <LogoutButton setAuthenticated={setAuthenticated} />
+            <ProfileButton setAuthenticated={setAuthenticated} setDisplay={setDisplay} />
+          // <LogoutButton setAuthenticated={setAuthenticated} />
           )}
           </div>
-
     </nav>
   )};
 
