@@ -10,7 +10,8 @@ import {
   ProtectedRoute,
   NavBar,
   LandingPage,
-  UserProfile
+  Dashboard
+
 } from "./components";
 import { authenticate } from "./store/session";
 
@@ -59,7 +60,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated}>
-          <UserProfile />
+          <Dashboard />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
