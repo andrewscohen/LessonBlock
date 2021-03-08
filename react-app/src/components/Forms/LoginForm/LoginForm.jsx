@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {useDispatch } from "react-redux";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import {blackButtonStyle, whiteButtonStyle, formInputStyle} from "../FormAssets/formStyles";
-import {login, setUser} from "../../../store/session";
+import {login} from "../../../store/session";
 import FormPageGradient from "../FormAssets/FormPageGradient.svg";
 import DesignerAtNight from "../FormAssets/DesignerAtNight.png";
 
@@ -26,25 +26,13 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     }
   };
 
-
-  // const loginDemo = async (e) => {
-  //   const user = await dispatch(demoLogin());
-  //   setAuthenticated(true);
-  //   dispatch(login(user));
-  // };
-
-
   const demoLogin = async (e) => {
     e.preventDefault();
-    const demoUser = await login('demo@aa.io', 'password');
-    if (!demoUser.errors) {
-      dispatch(setUser(demoUser))
-      setAuthenticated(true);
-      history.push("/dashboard");
-    } else {
-      setErrors(demoUser.errors);
-    }
-  }
+    setTimeout(await dispatch(login("demo@aa.io", "password")), 1000);
+    setAuthenticated(true)
+    history.push("/dashboard")
+  };
+
 
 
   const updateEmail = (e) => {

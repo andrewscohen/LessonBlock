@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {signup, demoLogin, login} from "../../../store/session";
+import {signup, login} from "../../../store/session";
 import {blackButtonStyle, whiteButtonStyle, formInputStyle, radioButtonStyle} from "../FormAssets/formStyles"
 import FormPageGradient from "../FormAssets/FormPageGradient.svg"
 
@@ -14,6 +14,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [is_instructor, setIsInstructor] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -25,11 +26,19 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     }
   };
 
-  const loginDemo = async (e) => {
-    const user = await dispatch(demoLogin());
-    setAuthenticated(true);
-    dispatch(login(user));
+  // const loginDemo = async (e) => {
+  //   const user = await dispatch(demoLogin());
+  //   setAuthenticated(true);
+  //   dispatch(login(user));
+  // };
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    setTimeout(await dispatch(login("demo@aa.io", "password")), 1000);
+    setAuthenticated(true)
+    history.push("/dashboard")
   };
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -127,7 +136,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           <button
             type="submit"
             className={whiteButtonStyle}
-            onClick={loginDemo}
+            onClick={demoLogin}
             >
             Demo User
           </button>

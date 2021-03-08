@@ -61,22 +61,6 @@
     return user;
   };
 
-  export const demoLogin = () => async (dispatch) => {
-    const response = await fetch("/api/auth/demo-login");
-    const user = await response.json();
-    if (!user.errors) {
-    dispatch(setUser(user));
-    }
-    return user;
-  };
-
-  // export const restoreUser = () => async (dispatch) => {
-  //   const response = await fetch("/api/auth/");
-  //   const user = await response.json();
-  //   dispatch(setUser(user));
-  //   return user;
-  // };
-
   export const logout = () => async (dispatch) => {
     const response = await fetch("/api/auth/logout", {
       headers: {
