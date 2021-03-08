@@ -1,8 +1,8 @@
 import { LogoutButton, ProtectedRoute } from "./auth";
 import {LoginForm, SignUpForm} from "./Forms";
-import {NavBar} from "./CommonElements";
+import {NavBar, SideNav} from "./CommonElements";
 import {LandingPage} from "./LandingPage";
-import {UserProfile} from "./UserProfile";
+import Dashboard from "./Dashboard";
 
 export { LoginForm,
          SignUpForm,
@@ -10,4 +10,5 @@ export { LoginForm,
          ProtectedRoute,
          LandingPage,
          NavBar,
-        UserProfile};
+         SideNav,
+        Dashboard};
