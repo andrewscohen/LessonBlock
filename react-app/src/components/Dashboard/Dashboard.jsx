@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "react-modal";
 import {SideNav} from "../CommonElements";
-import * as courseActions from "../../store/course.js"
+import {createCourses} from "../../store/course.js"
 
 const customStyles = {
     content : {
@@ -49,7 +49,7 @@ const Dashboard = () => {
 
       const handleSubmit = async (e) => {
         e.preventDefault()
-        const res = await dispatch(courseActions.createCourse({
+        const res = await dispatch(createCourses({
               courseName,
               courseDescription,
               courseCategory,
