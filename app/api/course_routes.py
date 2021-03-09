@@ -40,7 +40,6 @@ def create_course():
         )
 
         db.session.add(course)
-        db.session.commit()
         user = User.query.get(data['user_id'])
         user.courses.append(course)
         db.session.add(user)
