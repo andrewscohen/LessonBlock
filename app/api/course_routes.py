@@ -33,9 +33,6 @@ def create_course():
 
     if form.validate_on_submit():
         data = request.get_json()
-        user = data['user_id']
-        print("REQUESTED USER!: ", user)
-
         course = Course(
             name=form.data['name'],
             description=form.data['description'],
@@ -44,20 +41,8 @@ def create_course():
 
         db.session.add(course)
         db.session.commit()
-        course_dict = course.to_dict()
-
-        course.users.append(course_dict)
-
-        db.session.add(course)
+        user = User.query.get(data['user_id'])
+        user.courses.append(course)
+        db.session.add(user)
         db.session.commit()
-        return course.to_dict()
     return {'errors': form_errors(form.errors)}
-
-    # User.query.\
-    #     filter_by(id=user_id).\
-    #     join(Course).\
-    #     filter_by(user_id=course_id).\
-    #     first()
-
-    # user = User.query.all()
-    # print("THIS IS THE QUERY USER: ", user)
