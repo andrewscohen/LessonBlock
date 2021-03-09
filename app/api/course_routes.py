@@ -1,10 +1,19 @@
 from flask import Blueprint, jsonify, json, request, Response
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Course, User, User_Course
 from app.forms import CourseForm
 
 
 course_routes = Blueprint('courses', __name__)
+
+
+def form_errors(validation_errors):
+
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
 
 
 @course_routes.route('/<int:id>')
@@ -26,20 +35,22 @@ def create_course():
         data = request.get_json()
         user = data['user_id']
         print("REQUESTED USER!: ", user)
+
         course = Course(
             name=form.data['name'],
             description=form.data['description'],
             category=form.data['category'],
         )
 
-        user_course = User_Course(
-            user_id=int(form.data['user_id']),
-        )
+        db.session.add(course)
+        db.session.commit()
+        course_dict = course.to_dict()
 
-        print("THIS IS THE COURSE: ", course)
-    db.session.add(course)
-    db.session.commit()
-    return course.to_dict()
+        course.users.append(course_dict)
+
+        db.session.add(course)
+        db.session.commit()
+        return course.to_dict()
     return {'errors': form_errors(form.errors)}
 
     # User.query.\
