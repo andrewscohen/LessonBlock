@@ -26,11 +26,6 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     }
   };
 
-  // const loginDemo = async (e) => {
-  //   const user = await dispatch(demoLogin());
-  //   setAuthenticated(true);
-  //   dispatch(login(user));
-  // };
 
   const demoLogin = async (e) => {
     e.preventDefault();

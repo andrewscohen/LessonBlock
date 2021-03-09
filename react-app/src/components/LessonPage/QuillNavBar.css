@@ -1,0 +1,118 @@
+.private-public-toggle {
+  width: 500px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.bookmark-button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.delete-button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.file-copy {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.toggle-label {
+  color: rgb(242, 242, 242);
+}
+
+.quill {
+  width: 100%;
+  overflow: hidden;
+}
+
+.rte-nav {
+  /* position: absolute; */
+  overflow: hidden;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ql-editor::-webkit-scrollbar {
+  width: 9px; /* width of the entire scrollbar */
+}
+
+.ql-editor::-webkit-scrollbar-track {
+  background: rgb(38, 38, 38); /* color of the tracking area */
+}
+
+.ql-editor::-webkit-scrollbar-thumb {
+  background-color: rgb(165, 165, 190); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid rgb(38, 38, 38); /* creates padding around scroll thumb */
+}
+
+/* iOS9 Toggle Switch */
+
+.onoffswitch2 {
+  position: relative;
+  width: 60px;
+  height: 24px;
+  margin: 0px 5px 0px 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.onoffswitch2-checkbox {
+  display: none;
+}
+.onoffswitch2-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  height: 20px;
+  padding: 0;
+  line-height: 20px;
+  border: 2px solid #cccccc;
+  border-radius: 20px;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease-in;
+}
+.onoffswitch2-label:before {
+  content: "";
+  display: block;
+  width: 20px;
+  margin: 0px;
+  background: #ffffff;
+  /* background:blue; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 37px;
+  border: 2px solid #cccccc;
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+.onoffswitch2-checkbox:checked + .onoffswitch2-label {
+  background-color: #4caf50;
+}
+.onoffswitch2-checkbox:checked + .onoffswitch2-label,
+.onoffswitch2-checkbox:checked + .onoffswitch2-label:before {
+  border-color: #4caf50;
+}
+.onoffswitch2-checkbox:checked + .onoffswitch2-label:before {
+  right: 0px;
+}

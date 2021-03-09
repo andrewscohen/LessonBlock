@@ -88,19 +88,4 @@
     }
   };
 
-// const sessionReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case SET_USER:
-//       if (action.payload.errors && action.payload.errors[0] === "Unauthorized") {
-//         return { ...state, user: null }
-//       }
-//       return { ...state, user: action.payload }
-//     case REMOVE_USER:
-//       return { ...state, user: null }
-//     default:
-//       return state;
-//   }
-// };
-// export default sessionReducer;
-
   export default sessionReducer;

@@ -1,6 +1,6 @@
 from .db import db
 from .user_course import User_Course
-# from .user import User
+from .user import User
 
 
 class Course(db.Model):
@@ -25,4 +25,5 @@ class Course(db.Model):
             "description": self.description,
             "category": self.category,
             "sections": [section.to_dict() for section in self.sections],
+            "users": [person.id for person in self.users]
         }
