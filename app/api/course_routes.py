@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, json, request, Response
 from flask_login import login_required
-from app.models import db, Course, User
+from app.models import db, Course, User, User_Course
 from app.forms import CourseForm
 
 
@@ -16,47 +16,37 @@ def course(id):
     return res
 
 
-@folder_routes.route('', methods=['POST'])
+@course_routes.route('', methods=['POST'])
 @login_required
 def create_course():
     form = CourseForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
+        data = request.get_json()
+        user = data['user_id']
+        print("REQUESTED USER!: ", user)
         course = Course(
-            user_id=int(form.data['user_id']),
             name=form.data['name'],
             description=form.data['description'],
             category=form.data['category'],
         )
-        db.session.add(course)
-        db.session.commit()
-        return course.to_dict()
+
+        user_course = User_Course(
+            user_id=int(form.data['user_id']),
+        )
+
+        print("THIS IS THE COURSE: ", course)
+    db.session.add(course)
+    db.session.commit()
+    return course.to_dict()
     return {'errors': form_errors(form.errors)}
 
+    # User.query.\
+    #     filter_by(id=user_id).\
+    #     join(Course).\
+    #     filter_by(user_id=course_id).\
+    #     first()
 
-# @folder_routes.route('/<int:id>', methods=['DELETE', 'PUT', 'GET'])
-# @login_required
-# def update_course(id):
-#     course = Course.query.get(id)
-
-#     if request.method == 'DELETE':
-#         db.session.delete(course)
-#         db.session.commit()
-
-#     elif request.method == 'PUT':
-#         form = EditFolderForm()
-#         form["csrf_token"].data = request.cookies["csrf_token"]
-
-#         if form.validate_on_submit():
-#             course.name = form.data["name"]
-#             course.description = form.data["description"]
-#             course.category = form.data["category"]
-#             db.session.commit()
-
-#     elif request.method == 'GET':
-#         return course.to_dict()
-
-#     user_courses = Course.query.filter_by(user_id=current_user.id)
-
-#     return {"courses": [course.to_dict() for course in user_courses]}
+    # user = User.query.all()
+    # print("THIS IS THE QUERY USER: ", user)

@@ -1,29 +1,35 @@
 const LOAD_ALL_COURSES = "courses/LOAD_ALL_COURSES";
 const LOAD_ONE_COURSE = "courses/LOAD_ONE_COURSE";
+const CREATE_COURSE = "courses/createCourse";
 const DELETE_COURSE = "courses/DELETE_ARTWALK";
 const USER_LOGOUT = "USER_LOGOUT";
 
 
-export const loadCourses = courses => {
+export const loadCourses = (courses) => {
     return { type: LOAD_ALL_COURSES, payload: courses };
   };
 
-  export const loadOneCourse = course => {
+  export const loadOneCourse = (course) => {
     return { type: LOAD_ONE_COURSE, payload: course };
   };
 
-  export const deleteCourse = id => {
+ export const createCourse = (course) => ({
+    type: CREATE_COURSE,
+    payload: course,
+  });
+
+  export const deleteCourse = (id) => {
     return { type: DELETE_COURSE, payload: id };
   };
 
-  export const getUserCourses = userId => async dispatch => {
+  export const getUserCourses = userId => async (dispatch) => {
     const res = await fetch(`/api/users/${userId}/courses`);
     const data = await res.json();
     res.data = data;
     dispatch(loadCourses(res.data));
   };
 
-  export const getOneCourse = courseId => async dispatch => {
+  export const getOneCourse = courseId => async (dispatch) => {
     const res = await fetch(`/api/courses/${courseId}`);
     const data = await res.json();
 
@@ -31,7 +37,7 @@ export const loadCourses = courses => {
     return data;
   };
 
-  export const deleteOneCourse = id => async dispatch => {
+  export const deleteOneCourse = id => async (dispatch) => {
     const res = await fetch(`/api/courses/delete/${id}`, {
       method: "DELETE"
     });
@@ -41,21 +47,21 @@ export const loadCourses = courses => {
     }
   };
 
-  export const createCourses = courseObj => async dispatch => {
-    const { courseName, courseDescription, courseCategory, user_id } = courseObj;
-    const res = await fetch(`/api/courses/`, {
+  export const createUserCourse = ({ name, description, category, user_id }) => async (dispatch) => {
+    const res = await fetch("/api/courses", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user_id,
-                             name: courseName,
-                             description: courseDescription,
-                             category: courseCategory
+      body: JSON.stringify({ user_id: user_id,
+                             name: name,
+                             description: description,
+                             category: category
                             }),
     });
-    let result = await res.json();
-    return result;
+    const parsedResponse = await res.json();
+    dispatch(createCourse(parsedResponse))
+    return parsedResponse;
   }
 
   const initialState = { currentCourse: {}, userCourses: {} };

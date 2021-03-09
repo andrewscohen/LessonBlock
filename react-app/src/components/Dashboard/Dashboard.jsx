@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {useHistory} from "react-router-dom";
+// import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "react-modal";
-import {SideNav} from "../CommonElements";
-import {createCourses} from "../../store/course.js"
+// import {SideNav} from "../CommonElements";
+import {createUserCourse} from "../../store/course.js";
 
 const customStyles = {
     content : {
@@ -31,12 +31,12 @@ const customStyles = {
 const Dashboard = () => {
     const sessionUser = useSelector((state) => state.session.user);
 
-    const [newCourse, setNewCouse] = useState(false)
+    // const [newCourse, setNewCourse] = useState(false)
     const [courseName, setCourseName] = useState('');
     const [courseDescription, setCourseDescription] = useState('');
     const [courseCategory, setCourseCategory] = useState('');
     const [showModal, setShowModal] = useState(false);
-    const history = useHistory();
+    // const history = useHistory();
     const dispatch = useDispatch();
 
     const openModal = () => {
@@ -47,17 +47,30 @@ const Dashboard = () => {
         setShowModal(false);
       }
 
-      const handleSubmit = async (e) => {
-        e.preventDefault()
-        const res = await dispatch(createCourses({
-              courseName,
-              courseDescription,
-              courseCategory,
-              user_id: sessionUser.id,
-            }))
-            history.push(`/courses/{${res.id}`)
-        }
+    //   const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     const res = await dispatch(createCourses({
+    //           courseName,
+    //           courseDescription,
+    //           courseCategory,
+    //           user_id: sessionUser.id,
+    //         }))
+    //         history.push(`/courses`)
+    //     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const newCourseData = {
+            name: courseName,
+            description: courseDescription,
+            category: courseCategory,
+            user_id: sessionUser.id,
+        }
+        dispatch(createUserCourse(newCourseData));
+        setShowModal(false);
+        return newCourseData;
+    };
 
     return (
     <>
