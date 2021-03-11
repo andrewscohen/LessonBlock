@@ -1,2 +1,3 @@
 import SideNav from "./SideNav";
-export default SideNav;
+import CreateUserCourseButton from "./CreateUserCourseButton"
+export {SideNav, CreateUserCourseButton};

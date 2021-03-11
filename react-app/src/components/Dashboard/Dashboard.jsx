@@ -2,7 +2,7 @@ import React, {useState} from "react";
 // import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "react-modal";
-// import {SideNav} from "../CommonElements";
+import {SideNav} from "../CommonElements";
 import {createUserCourse} from "../../store/course.js";
 
 const customStyles = {
@@ -28,7 +28,7 @@ const customStyles = {
     }
   };
 
-const Dashboard = () => {
+const Dashboard = ({setAuthenticated, authenticated}) => {
     const sessionUser = useSelector((state) => state.session.user);
 
     // const [newCourse, setNewCourse] = useState(false)
@@ -47,17 +47,6 @@ const Dashboard = () => {
         setShowModal(false);
       }
 
-    //   const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     const res = await dispatch(createCourses({
-    //           courseName,
-    //           courseDescription,
-    //           courseCategory,
-    //           user_id: sessionUser.id,
-    //         }))
-    //         history.push(`/courses`)
-    //     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -74,8 +63,9 @@ const Dashboard = () => {
 
     return (
     <>
-    {/* <SideNav /> */}
-    <div className="mx-auto pt-40">
+    <h1>Howdy</h1>
+    <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
+    {/* <div className="mx-auto pt-40">
      <button onClick={openModal}>Create a New Course</button>
      <Modal style={customStyles} isOpen={showModal} onRequestClose={closeModal}>
           <form onSubmit={closeModal}>
@@ -112,7 +102,7 @@ const Dashboard = () => {
           </form>
       </Modal>
       <div className="mx-auto pt-40"><h1>COURSE NAME: {courseName}</h1></div>
-      </div>
+      </div> */}
     </>
     )
 };

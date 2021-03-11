@@ -26,7 +26,6 @@ function App() {
       const user = await dispatch(authenticate());
       console.log("THIS IS THE USER: ", user)
       if (!user.errors) {
-        // dispatch(setUser(user));
         setAuthenticated(true);
       }
       setLoaded(true);
@@ -59,8 +58,8 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated}>
-          <Dashboard />
+        <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated}  setAuthenticated={setAuthenticated}>
+          <Dashboard authenticated={authenticated}  setAuthenticated={setAuthenticated} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
