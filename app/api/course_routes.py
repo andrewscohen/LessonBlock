@@ -45,3 +45,17 @@ def create_course():
         db.session.add(user)
         db.session.commit()
     return {'errors': form_errors(form.errors)}
+
+
+# @course_routes.route('/delete/<int:id>', methods=['DELETE'])
+# @login_required
+# def delete_course(id):
+#     user_course = User_Course.query.filter_by(user_id == current_user.id)
+#     deleted_course = [i["course_id"] for i in user_course]
+#     course_to_delete = Course.query.get(id)
+
+#     db.session.delete(course_to_delete)
+#     db.session.commit()
+
+    # updated_courses = Course.query.filter(all()
+    # return Response("{'a':'b'}", status=201, mimetype='application/json')

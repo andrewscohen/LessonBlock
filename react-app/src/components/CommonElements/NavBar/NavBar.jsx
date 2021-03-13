@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import {navBarButton} from "../../../assets/ComponentStyles";
 import "./NavBar.css";
 
-const NavBar = ({authenticated, setAuthenticated, setDisplay}) => {
+const NavBar = ({authenticated, setAuthenticated}) => {
   const location = useLocation();
   const pathName = location.pathname.slice(1);
   console.log("This is the path: ", pathName)
