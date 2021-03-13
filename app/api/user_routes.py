@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user, login_user, logout_user
-from app.models import db, User
+from app.models import db, User, Course
 from app.forms import login_form
 from app.forms import signup_form
 
@@ -19,3 +19,19 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route('/me/courses')
+@login_required
+def userMe():
+    courses = [course.to_dict()
+               for course in current_user.courses]
+    print("CURRENT_USER COURSES!!!!:    ", current_user.courses)
+    return {"courses": courses}
+
+
+@user_routes.route('/me/courses/<int:id>')
+@login_required
+def userCourse(id):
+    oneCourse = Course.query.get(id)
+    return oneCourse.to_dict()

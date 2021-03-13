@@ -28,7 +28,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   const demoLogin = async (e) => {
     e.preventDefault();
-    setTimeout(await dispatch(login("demo@aa.io", "password")), 1000);
+    await dispatch(login("demo@aa.io", "password"));
     setAuthenticated(true)
     history.push("/dashboard")
   };
