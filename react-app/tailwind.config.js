@@ -6,13 +6,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'brand-blue': '#54AAD4',
+        'brand-blue': '#5DBDEB',
         'brand-yellow': '#F7C229',
         'brand-gold': '#DCAE25',
         'brand-purple': '#4E5990',
         'brand-purple-deep': '#333C5D',
         'brand-gray': '#656153',
-        'white-space': '#FAFDFE',
+        'white-space': '#F5F9FF',
         'brand-tan': "#E6DCCD"
       },
       fontFamily: {

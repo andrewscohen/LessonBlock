@@ -12,9 +12,9 @@ const NavBar = ({authenticated, setAuthenticated}) => {
 
 
   return (
-    <nav className="grid grid-cols-8 w-full z-10 fixed h-16" id={pathName !== "" ? "navBarChangeColor" : ""}>
+    <nav className="grid grid-cols-8 w-full z-10 fixed h-20 shadow-sm" id={pathName !== "" ? "navBarChangeColor" : ""}>
         {!authenticated ? (
-        <div className="flex col-start-2 col-span-1 items-end content-end justify-end ml-1">
+        <div className="flex col-start-2 col-span-1 items-center content-center justify-end ml-1">
           <NavLink to="/" exact={true} activeClassName="active" className="font-monst font-bold text-2xl py-3 text-white-space">
             Lesson Block
           </NavLink>

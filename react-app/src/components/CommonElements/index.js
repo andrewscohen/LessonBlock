@@ -1,3 +1,4 @@
 import NavBar from "./NavBar";
 import {SideNav} from "./SideNav";
-export { NavBar, SideNav };
+import ContentWindow from "./ContentWindow";
+export { NavBar, SideNav, ContentWindow };
