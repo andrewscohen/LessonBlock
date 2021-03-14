@@ -1,7 +1,7 @@
 const LOAD_ALL_COURSES = "courses/LOAD_ALL_COURSES";
 const LOAD_ONE_COURSE = "courses/LOAD_ONE_COURSE";
 const CREATE_COURSE = "courses/createCourse";
-const DELETE_COURSE = "courses/DELETE_ARTWALK";
+const DELETE_COURSE = "courses/DELETE_COURSE";
 const USER_LOGOUT = "USER_LOGOUT";
 
 

@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
-import {blackButtonStyle, whiteButtonStyle, formInputStyle, radioButtonStyle} from "../FormAssets/formStyles"
-import FormPageGradient from "../FormAssets/FormPageGradient.svg"
+import sign_up_img from "./sign_up_img.jpg"
+
+const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
+const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
+const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
+const radioButtonStyle = "z-20 inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
+
 
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
+  const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,8 +28,11 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       const user = await dispatch(signup(username, email, password, is_instructor));
       if (!user.errors) {
         setAuthenticated(true);
+        history.push('/dashboard')
+      } else {
+        setErrors(user.errors);
       }
-    }
+    };
   };
 
 
@@ -60,10 +69,19 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: "cover", height: "100vh"}}>
-    <div className="container flex justify-center items-center h-screen mx-auto">
-      <form onSubmit={onSignUp} className="w-4/12">
-        <div>
+    <div className="container flex justify-end items-center h-screen mx-auto">
+    <div className="w-6/12 h-3/4 bg-brand-tan flex flex-col justify-center items-center rounded-l-md overflow-hidden">
+      <div className="h-full w-full">
+        <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative m-auto h-full w-full object-cover"/>
+        </div>
+    </div>
+  <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md">
+      <form onSubmit={onSignUp} className="w-6/12">
+      <div className="relative w-full mt-10 space-y-8">
+            <div className="relative">
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
           <label className="font-medium text-gray-900">Username</label>
           <input
             type="text"
@@ -138,6 +156,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           <div className="flex">
             <Link path="/login">Already have an account?</Link>
           </div>
+        </div>
         </div>
       </form>
     </div>
