@@ -13,7 +13,8 @@ module.exports = {
         'brand-purple-deep': '#333C5D',
         'brand-gray': '#656153',
         'white-space': '#F5F9FF',
-        'brand-tan': "#E6DCCD"
+        'brand-tan': "#E6DCCD",
+        'alt-purple': "#34315C"
       },
       fontFamily: {
         abril: ["'Abril Fatface'", 'cursive'],

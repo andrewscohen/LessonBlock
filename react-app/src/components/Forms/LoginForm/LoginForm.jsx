@@ -3,14 +3,13 @@ import {useDispatch } from "react-redux";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import {blackButtonStyle, whiteButtonStyle, formInputStyle} from "../FormAssets/formStyles";
 import {login} from "../../../store/session";
-import FormPageGradient from "../FormAssets/FormPageGradient.svg";
-import DesignerAtNight from "../FormAssets/DesignerAtNight.png";
-
+import login_img from "./login_img.jpg"
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -20,6 +19,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     const user = await dispatch(login(email, password));
     if (!user.errors) {
       setAuthenticated(true);
+      setShowModal(false);
       history.push('/dashboard')
     } else {
       setErrors(user.errors);
@@ -49,11 +49,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
 
   return (
-    <div className="relative overflow-hidden h-screen" style={{backgroundImage: `url(${FormPageGradient})`, backgroundSize: "cover", height: "100vh"}}>
     <div className="container flex justify-end items-center h-screen mx-auto">
-      <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md">
-          <h1 className="text-5xl font-bold text-white-space">Welcome back!</h1>
-          <img src={DesignerAtNight} alt="Designer At Night" />
+      <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md overflow-hidden">
+          <img src={login_img} alt="people gazing at a wall of online lesson screens"/>
       </div>
     <div className="w-6/12 h-2/3 bg-white-space flex flex-col justify-center items-center rounded-r-md">
       <form onSubmit={onLogin} className="w-6/12">
@@ -100,7 +98,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       </form>
     </div>
     </div>
-    </div>
+    // </div>
 
   );
 };

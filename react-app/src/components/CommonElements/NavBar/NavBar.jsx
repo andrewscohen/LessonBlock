@@ -1,8 +1,10 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-import {navBarButton} from "../../../assets/ComponentStyles";
 import "./NavBar.css";
+import LoginModal from "../../Forms/LoginForm/"
+
+// const navBarButton = "block bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase"
 
 const NavBar = ({authenticated, setAuthenticated}) => {
   const location = useLocation();
@@ -29,9 +31,10 @@ const NavBar = ({authenticated, setAuthenticated}) => {
 
         <div className="flex col-start-7 col-end-8 items-center justify-end">
           {!authenticated && (
-          <NavLink to="/login" activeClassName="active" className={navBarButton}>
-              LOGIN
-          </NavLink>
+            <LoginModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+          // <NavLink to="/login" activeClassName="active" className={navBarButton}>
+          //     LOGIN
+          // </NavLink>
           )}
           {authenticated && (
             <NavLink to="/dashboard" exact={true} activeClassName="active" className="text-white">{`Welcome, ${sessionUser.username}!`}</NavLink>

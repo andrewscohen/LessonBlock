@@ -43,7 +43,9 @@ function App() {
         setAuthenticated={setAuthenticated} />
       <Switch>
         <Route path="/" exact={true}>
-          <LandingPage />
+          <LandingPage
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated} />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm
