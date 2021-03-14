@@ -6,7 +6,7 @@ const LoginModal = ({authenticated, setAuthenticated}) => {
   return (
     <>
       <button
-        className="block bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase mt-8"
+        className="bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase"
         type="button"
         style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}

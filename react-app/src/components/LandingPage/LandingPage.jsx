@@ -20,13 +20,7 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
                 </h1>
                 <h2 className="font-bold text-3xl sm:text-3xl text-white leading-tight pt-5">
                     Empowering educators and students through easily scalable course building</h2>
-                <button className="block bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase mt-8">
-                    <NavLink to="/sign-up" exact={true} activeClassName="active">
-                        Get Started
-                    </NavLink>
-                </button>
                 <SignUpModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
-                {/* <LoginModal authenticated={authenticated} setAuthenticated={setAuthenticated}/> */}
             </div>
         </div>
     </div>
