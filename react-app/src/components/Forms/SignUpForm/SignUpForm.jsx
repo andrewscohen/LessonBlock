@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
-// import {blackButtonStyle, whiteButtonStyle, formInputStyle, radioButtonStyle} from "../FormAssets/formStyles"
-import signup_img from "./signup_img.jpg";
-import signAlt1 from "./signAlt1.jpg";
+import sign_up_img from "./sign_up_img.jpg"
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
@@ -73,8 +71,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   return (
     <div className="container flex justify-end items-center h-screen mx-auto">
     <div className="w-6/12 h-3/4 bg-brand-tan flex flex-col justify-center items-center rounded-l-md overflow-hidden">
-      <div className="h-2/3 w-2/3">
-        <img src={signAlt1} alt="people gazing at a wall of online lesson screens" className="relative m-auto h-screen w-screen object-cover"/>
+      <div className="h-full w-full">
+        <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative m-auto h-full w-full object-cover"/>
         </div>
     </div>
   <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md">

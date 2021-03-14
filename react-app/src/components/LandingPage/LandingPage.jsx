@@ -2,8 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom"
 import SplashHeader from "../../assets/BackgroundImages/SplashHeader.svg";
 import "./LandingPage.css";
-import SignUpModal from "./SignUpModal"
-// import LoginModal from "../Forms/LoginForm/LoginModal"
+import SignUpModal from "../Forms/SignUpForm/SignUpModal"
 
 
 
