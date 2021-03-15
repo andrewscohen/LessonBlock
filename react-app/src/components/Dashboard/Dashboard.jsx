@@ -18,9 +18,13 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
 
     return (
     <>
-    {/* <h1>Howdy</h1> */}
-    <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
-    {/* <ContentWindow ></ContentWindow> */}
+    <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}>
+    {courses && courses.map((course) => (
+        <ul className="col-start-7 col-end-8 mt-28">
+          <li key={course.id}>{course.name}</li>
+        </ul>
+      ))}
+      </SideNav>
     </>
     )
 };
