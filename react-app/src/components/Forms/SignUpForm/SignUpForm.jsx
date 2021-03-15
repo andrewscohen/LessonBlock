@@ -11,13 +11,14 @@ const radioButtonStyle = "z-20 inline-block w-full px-5 py-4 text-lg font-medium
 
 
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({authenticated, setAuthenticated, setShowLoginModal}) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [is_instructor, setIsInstructor] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -69,7 +70,13 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <div className="container flex justify-end items-center h-screen mx-auto">
+    // <div className="container flex justify-end items-center h-screen mx-auto">
+<div className="container flex justify-end mt-96 h-screen">
+<div className="absolute object-right-top pr-8 pt-5">
+        <button type="button" onClick={() => setShowModal(false)}>
+          <i className="fas fa-window-close"></i>
+        </button>
+      </div>
     <div className="w-6/12 h-3/4 bg-brand-tan flex flex-col justify-center items-center rounded-l-md overflow-hidden">
       <div className="h-full w-full">
         <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative m-auto h-full w-full object-cover"/>
