@@ -16,7 +16,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [is_instructor, setIsInstructor] = useState(false);
+  const [isInstructor, setIsInstructor] = useState(false);
 
 
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await dispatch(signup(username, email, password, is_instructor));
+      const user = await dispatch(signup({username, email, password, isInstructor}));
       if (!user.errors) {
         setAuthenticated(true);
         history.push('/dashboard')
@@ -138,7 +138,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
                 type="radio"
                 value={true}
                 name="instructor"
-                checked={is_instructor === true}
+                checked={isInstructor === true}
                 onChange={updateUserType}
               />
               Instructor
@@ -148,7 +148,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
               type="radio"
               value={false}
               name="instructor"
-              checked={is_instructor === false}
+              checked={isInstructor === false}
               onChange={updateUserType}
             />
             Student
