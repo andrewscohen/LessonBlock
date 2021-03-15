@@ -7,18 +7,17 @@ import sign_up_img from "./sign_up_img.jpg"
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
-const radioButtonStyle = "z-20 inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
+const radioButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
 
 
-
-const SignUpForm = ({authenticated, setAuthenticated, setShowLoginModal}) => {
+const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [is_instructor, setIsInstructor] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -70,7 +69,6 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowLoginModal}) => {
   }
 
   return (
-    // <div className="container flex justify-end items-center h-screen mx-auto">
 <div className="container flex justify-end mt-96 h-screen">
 <div className="absolute object-right-top pr-8 pt-5">
         <button type="button" onClick={() => setShowModal(false)}>
@@ -84,7 +82,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowLoginModal}) => {
     </div>
   <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md">
       <form onSubmit={onSignUp} className="w-6/12">
-      <div className="relative w-full mt-10 space-y-8">
+      <div className="relative w-full mt-10 space-y-4">
             <div className="relative">
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
