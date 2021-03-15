@@ -1,3 +1,7 @@
 #navBarChangeColor {
-  background-color: blue;
+  background-color: #f5f9ff;
+}
+
+#headerText {
+  color: black;
 }
