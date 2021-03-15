@@ -81,6 +81,11 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
         </div>
     </div>
   <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md">
+    <h1 className="font-bold text-7xl sm:text-7xl text-black leading-tight font-serif">
+        Join LessonBlock
+    </h1>
+    {/* <h3 className="font-bold text-sm sm:text-sm text-black leading-tight font-serif" ></h3> */}
+
       <form onSubmit={onSignUp} className="w-6/12">
       <div className="relative w-full mt-10 space-y-4">
             <div className="relative">
