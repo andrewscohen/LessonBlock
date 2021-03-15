@@ -1,6 +1,5 @@
 import React from "react";
 import SplashHeader from "../../assets/BackgroundImages/SplashHeader.svg";
-import "./LandingPage.css";
 import SignUpModal from "../Forms/SignUpForm/SignUpModal"
 
 
