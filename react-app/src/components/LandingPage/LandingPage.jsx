@@ -1,5 +1,4 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
 import SplashHeader from "../../assets/BackgroundImages/SplashHeader.svg";
 import "./LandingPage.css";
 import SignUpModal from "../Forms/SignUpForm/SignUpModal"

@@ -49,16 +49,16 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowModal }) => {
 
 
   return (
-    <div className="container flex justify-end items-center h-screen mx-auto">
-      <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md overflow-hidden">
-          <img src={login_img} alt="people gazing at a wall of online lesson screens"/>
-      </div>
-    <div className="w-6/12 h-2/3 bg-white-space flex flex-col justify-center items-center rounded-r-md">
-      <div>
-        <button type="button" onClick={() => setShowModal(false)} >
+    <div className="container flex justify-end mt-96 h-screen">
+      <div className="absolute object-right-top pr-8 pt-5">
+        <button type="button" onClick={() => setShowModal(false)}>
           <i className="fas fa-window-close"></i>
         </button>
       </div>
+      <div className="w-6/12 h-2/3 bg-brand-tan flex flex-col justify-center items-center rounded-l-md overflow-hidden">
+          <img src={login_img} alt="people gazing at a wall of online lesson screens"className="h-screen"/>
+      </div>
+    <div className="w-6/12 h-2/3 bg-white-space flex flex-col justify-center items-center rounded-r-md">
       <form onSubmit={onLogin} className="w-6/12">
         <div className="relative w-full mt-10 space-y-8">
             <div className="relative">
