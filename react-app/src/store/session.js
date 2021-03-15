@@ -1,5 +1,6 @@
   const SET_USER = "user/setUser";
   const REMOVE_USER = "user/removeUser";
+  // const UPDATE_USER = '/users/updateUser';
 
   export const setUser = (user) => {
     return {
@@ -14,6 +15,11 @@
     };
   };
 
+  // export const updateUser = (user) => ({
+  //   type: UPDATE_USER,
+  //   payload: user,
+  // })
+
   export const authenticate = () => async(dispatch) => {
     const response = await fetch('/api/auth/')
     const user = await response.json();
@@ -23,17 +29,68 @@
     return user;
   }
 
-  export const signup = ( username, email, password, is_instructor ) => async (dispatch) => {
+  // export const updateOneUser = (user, userProfileImage = null) => async (dispatch) => {
+  //   const {
+  //     profile_image,
+  //     image,
+  //   } = user;
+
+  //   const formData = new FormData();
+  //   formData.append('profile_image', profile_image);
+
+  //   if (image) formData.append('image', image);
+
+  //   if (userProfileImage) {
+  //     const res = await fetch(`/api/users/${userProfileImage}`, {
+  //       method: 'PUT',
+  //       body: formData,
+  //     });
+
+  //     const updatedProfile = await res.json();
+
+  //     if (res.ok) {
+  //       dispatch(updateUser(updatedProfile));
+  //       return updatedProfile;
+  //     } else {
+  //       const errors = user;
+  //       return errors;
+  //     }
+  //   }
+  // };
+
+  export const updateOneUser = ({username, email, password, isInstructor, profileImage}) => async (dispatch) => {
+    const response = await fetch("/api/users/me", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        email: email,
+        password: password,
+        is_instructor: isInstructor,
+        profile_img: profileImage
+      }),
+    });
+    const parsedResponse = await response.json();
+    if(!parsedResponse.errors) {
+      dispatch(setUser(parsedResponse))
+    }
+    return parsedResponse;
+  }
+
+
+  export const signup = ({username, email, password, isInstructor }) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
-        email,
-        password,
-        is_instructor
+        username: username,
+        email: email,
+        password: password,
+        is_instructor: isInstructor
       }),
     });
     const user = await response.json();

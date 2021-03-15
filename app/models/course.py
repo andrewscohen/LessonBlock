@@ -10,6 +10,7 @@ class Course(db.Model):
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     category = db.Column(db.String(50), nullable=False)
+    course_img = db.Column(db.String(100), nullable=True)
 
     users = db.relationship("User",
                             secondary=User_Course,
@@ -24,6 +25,7 @@ class Course(db.Model):
             "name": self.name,
             "description": self.description,
             "category": self.category,
+            "course_img": self.course_img,
             "sections": [section.to_dict() for section in self.sections],
             "users": [person.id for person in self.users]
         }

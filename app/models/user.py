@@ -2,7 +2,6 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .user_course import User_Course
-# from .course import Course
 
 
 class User(db.Model, UserMixin):
@@ -13,6 +12,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     is_instructor = db.Column(db.Boolean, nullable=False)
+    profile_img = db.Column(db.String(100), nullable=True)
 
     courses = db.relationship("Course",
                               secondary=User_Course,
@@ -35,5 +35,6 @@ class User(db.Model, UserMixin):
             "username": self.username,
             "email": self.email,
             "is_instructor": self.is_instructor,
+            "profile_img": self.profile_img,
             "courses": [course.id for course in self.courses]
         }

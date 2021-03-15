@@ -1,7 +1,7 @@
-const LOAD_ALL_COURSES = "courses/LOAD_ALL_COURSES";
-const LOAD_ONE_COURSE = "courses/LOAD_ONE_COURSE";
+const LOAD_ALL_COURSES = "courses/loadCourses";
+const LOAD_ONE_COURSE = "courses/loadOneCourse";
 const CREATE_COURSE = "courses/createCourse";
-const DELETE_COURSE = "courses/DELETE_COURSE";
+const DELETE_COURSE = "courses/deleteCourse";
 const USER_LOGOUT = "USER_LOGOUT";
 
 
@@ -64,7 +64,7 @@ export const loadCourses = (courses) => {
     return parsedResponse;
   }
 
-  const initialState = { currentCourse: {}, userCourses: {} };
+  const initialState = { currentCourse: {}, userCourses: [] };
 
 export default function courseReducer(state = initialState, action) {
   const updateState = { ...state };

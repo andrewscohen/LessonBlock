@@ -1,31 +1,37 @@
-import boto3, botocore
-from config import S3_KEY, S3_SECRET, S3_BUCKET
+import boto3
+import botocore
+import os
 
-s3 = boto3.client(
-   "s3",
-   aws_access_key_id=S3_KEY,
-   aws_secret_access_key=S3_SECRET
-)
+from .config import Config
+config_instance = Config()
 
 
-def upload_file_to_s3(file, bucket_name, acl="public-read"):
+S3_KEY = config_instance.S3_KEY
+S3_SECRET = config_instance.S3_SECRET
+S3_BUCKET = config_instance.S3_BUCKET
+S3_LOCATION = "http://{}.s3.amazonaws.com/".format(S3_BUCKET)
+
+
+s3 = boto3.client("s3", aws_access_key_id=S3_KEY,
+                  aws_secret_access_key=S3_SECRET)
+
+
+def upload_file_to_s3(file, bucket_name=S3_BUCKET, acl="public-read"):
+    """
+    Docs: http://boto3.readthedocs.io/en/latest/guide/s3.html
+    """
 
     try:
-
+        # print("upload")
         s3.upload_fileobj(
             file,
             bucket_name,
             file.filename,
-            ExtraArgs={
-                "ACL": acl,
-                "ContentType": file.content_type
-            }
+            ExtraArgs={"ACL": "public-read", "ContentType": file.content_type},
         )
 
     except Exception as e:
-        # This is a catch all exception, edit this part to fit your needs.
-        print("Something Happened: ", e)
+        print("-_-_-_-_-_-_-_-_ UPLOAD FAILURE -_-_-_-_-_-_-_-_", e)
         return e
 
-
-return f"{Config.S3_LOCATION}{file.filename}"
+    return "{}{}".format(S3_LOCATION, file.filename)
