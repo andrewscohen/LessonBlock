@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {SideNav, ContentWindow} from "../CommonElements";
+import {SideNav} from "../CommonElements";
 import {getUserCourses} from "../../store/course";
 
 
@@ -18,6 +18,7 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
 
     return (
     <>
+      <div className='grid grid-cols-12 w-full h-screen pt-20 bg-white-space overflow-hidden'>
     <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}>
     {courses && courses.map((course) => (
         <ul className="col-start-7 col-end-8 mt-28">
@@ -25,6 +26,7 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
         </ul>
       ))}
       </SideNav>
+      </div>
     </>
     )
 };

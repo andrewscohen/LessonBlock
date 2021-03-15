@@ -1,2 +1,2 @@
-import NewCourseForm from "./NewCourseForm";
-export default NewCourseForm;
+import NewCourseModal from "./NewCourseModal";
+export default NewCourseModal;

@@ -1,5 +1,5 @@
 import LoginForm from "./LoginForm"
 import SignUpForm from "./SignUpForm"
-import NewCourseForm from "./NewCourseForm"
+import NewCourseModal from "./NewCourseForm/NewCourseModal"
 
-export {LoginForm, SignUpForm, NewCourseForm};
+export {LoginForm, SignUpForm, NewCourseModal};

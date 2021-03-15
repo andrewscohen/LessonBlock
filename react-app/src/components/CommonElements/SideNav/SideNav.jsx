@@ -1,12 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import CreateUserCourseButton from "./CreateUserCourseButton";
+import NewCourseModal from "../../Forms/NewCourseForm/NewCourseModal";
 import LogoutButton from "./LogoutButton";
 
 const SideNav = ({setAuthenticated, authenticated}) => {
 
     return (
-      <div className='grid grid-cols-12 w-full h-screen pt-20 bg-white-space'>
+
         <div className="relative col-start-3 col-end-5 h-full border-r-2">
           <div className="flex-auto flex-col items-center justify-center h-full">
           <div className="overflow-y-auto overflow-x-hidden flex-grow">
@@ -30,7 +30,7 @@ const SideNav = ({setAuthenticated, authenticated}) => {
                 </div>
               </li>
               <li>
-                <CreateUserCourseButton />
+                <NewCourseModal />
               </li>
               <li>
                 <LogoutButton authenticated={authenticated}  setAuthenticated={setAuthenticated} />
@@ -39,7 +39,7 @@ const SideNav = ({setAuthenticated, authenticated}) => {
           </div>
         </div>
       </div>
-      </div>
+      // </div>
     );
   };
 
