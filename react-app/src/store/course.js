@@ -22,8 +22,8 @@ export const loadCourses = (courses) => {
     return { type: DELETE_COURSE, payload: id };
   };
 
-  export const getUserCourses = userId => async (dispatch) => {
-    const res = await fetch(`/api/users/${userId}/courses`);
+  export const getUserCourses = () => async (dispatch) => {
+    const res = await fetch(`/api/users/me/courses`);
     const data = await res.json();
     res.data = data;
     dispatch(loadCourses(res.data));
@@ -70,10 +70,8 @@ export default function courseReducer(state = initialState, action) {
   const updateState = { ...state };
   switch (action.type) {
     case LOAD_ALL_COURSES:
-      action.payload.forEach(course => {
-        updateState.userCourses[course.id] = course;
-      });
-      return updateState;
+      const newState = {...state, userCourses: [...action.payload.courses]}
+      return newState;
     case LOAD_ONE_COURSE:
       updateState.currentCourse = action.payload;
       return updateState;
