@@ -9,8 +9,6 @@ const NavBar = ({authenticated, setAuthenticated}) => {
   const pathName = location.pathname.slice(1);
   console.log("This is the path: ", pathName)
   const sessionUser = useSelector((state) => (state.session.user));
-  console.log("this is session from nav:  ", sessionUser.profile_img)
-
 
   return (
     <nav className="grid grid-cols-8 w-full z-50 fixed h-20 shadow-sm" id={pathName !== "" ? "navBarChangeColor" : ""}>
@@ -36,10 +34,7 @@ const NavBar = ({authenticated, setAuthenticated}) => {
             <>
             <NavLink to="/dashboard" exact={true} activeClassName="active" className="font-bold text-grey-200 pr-4 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}</NavLink>
               <img className="h-12 w-12 rounded-full" alt="avatar" src={sessionUser.profile_img} />
-
-
             </>
-
             )}
             </div>
     </nav>
