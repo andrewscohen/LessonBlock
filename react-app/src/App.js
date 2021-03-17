@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import User from "./components/User"
 import UsersList from "./components/UsersList";
-// import {setUser} from "./store/session";
 import {
   ProtectedRoute,
   NavBar,

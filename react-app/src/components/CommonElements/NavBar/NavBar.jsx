@@ -9,6 +9,7 @@ const NavBar = ({authenticated, setAuthenticated}) => {
   const pathName = location.pathname.slice(1);
   console.log("This is the path: ", pathName)
   const sessionUser = useSelector((state) => (state.session.user));
+  console.log("this is session from nav:  ", sessionUser.profile_img)
 
 
   return (
@@ -34,7 +35,7 @@ const NavBar = ({authenticated, setAuthenticated}) => {
           {authenticated && (
             <>
             <NavLink to="/dashboard" exact={true} activeClassName="active" className="font-bold text-grey-200 pr-4 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}</NavLink>
-              <img className="h-12 w-12 rounded-full" alt="avatar" src="https://lessonblock.s3.amazonaws.com/Profile_Images/default_profile_img.jpeg" />
+              <img className="h-12 w-12 rounded-full" alt="avatar" src={sessionUser.profile_img} />
 
 
             </>
