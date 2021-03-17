@@ -14,7 +14,7 @@ class Course(db.Model):
 
     users = db.relationship("User",
                             secondary=User_Course,
-                            back_populates="courses")
+                            )
     sections = db.relationship("Section",
                                back_populates="course",
                                cascade="all, delete-orphan")

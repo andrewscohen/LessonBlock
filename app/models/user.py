@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
 
     courses = db.relationship("Course",
                               secondary=User_Course,
-                              back_populates="users")
+                              )
 
     @property
     def password(self):
