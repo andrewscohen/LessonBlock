@@ -16,6 +16,15 @@ def form_errors(validation_errors):
     return errorMessages
 
 
+@course_routes.route('/')
+@login_required
+def getAllCourses():
+    allCourses = Course.query.all()
+    data = [course.to_dict() for course in allCourses]
+    res = jsonify(data)
+    return res
+
+
 @course_routes.route('/<int:id>')
 @login_required
 def course(id):
@@ -23,6 +32,16 @@ def course(id):
     data = course.to_dict()
     res = jsonify(data)
     return res
+
+
+@course_routes.route('/<int:id>/users', methods=['POST'])
+@login_required
+def studentEnroll(id):
+    course = Course.query.get(id)
+    course.users.append(current_user)
+    db.session.add(course)
+    db.session.commit()
+    return course.to_dict()
 
 
 @course_routes.route('', methods=['POST'])
