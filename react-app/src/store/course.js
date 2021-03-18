@@ -10,6 +10,7 @@ export const loadCourses = (courses) => {
   };
 
   export const loadOneCourse = (course) => {
+    console.log("COURSE FROM ACTION: ", course)
     return { type: LOAD_ONE_COURSE, payload: course };
   };
 
@@ -22,12 +23,23 @@ export const loadCourses = (courses) => {
     return { type: DELETE_COURSE, payload: id };
   };
 
+
   export const getUserCourses = () => async (dispatch) => {
     const res = await fetch(`/api/users/me/courses`);
     const data = await res.json();
     res.data = data;
     dispatch(loadCourses(res.data));
   };
+
+
+  export const getOneUserCourse = courseId => async (dispatch) => {
+    const res = await fetch(`/api/users/me/courses/${courseId}`);
+    const data = await res.json();
+    console.log("DATA!!!: ", data)
+    dispatch(loadOneCourse(data));
+    return data;
+  };
+
 
   export const getOneCourse = courseId => async (dispatch) => {
     const res = await fetch(`/api/courses/${courseId}`);
@@ -36,6 +48,8 @@ export const loadCourses = (courses) => {
     dispatch(loadOneCourse(data));
     return data;
   };
+
+
 
   export const deleteOneCourse = id => async (dispatch) => {
     const res = await fetch(`/api/courses/delete/${id}`, {
@@ -67,20 +81,21 @@ export const loadCourses = (courses) => {
   const initialState = { currentCourse: {}, userCourses: [] };
 
 export default function courseReducer(state = initialState, action) {
-  const updateState = { ...state };
+  let newState = { ...state };
   switch (action.type) {
     case LOAD_ALL_COURSES:
-      const newState = {...state, userCourses: [...action.payload.courses]}
+      newState = {...state, userCourses: [...action.payload.courses]}
       return newState;
     case LOAD_ONE_COURSE:
-      updateState.currentCourse = action.payload;
-      return updateState;
-    case DELETE_COURSE:
-      delete updateState.userCourses[action.id];
-      return updateState;
-    case USER_LOGOUT:
-      updateState.userCourses = {};
-      return updateState;
+      newState = {...state, currentCourse: {...action.payload}}
+      console.log("SOME DESCIPTOR!: ", newState.currentCourse)
+      return newState;
+    // case DELETE_COURSE:
+    //   delete updateState.userCourses[action.id];
+    //   return updateState;
+    // case USER_LOGOUT:
+    //   updateState.userCourses = {};
+    //   return updateState;
     default:
       return state;
   }
