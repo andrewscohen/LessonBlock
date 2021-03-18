@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import {getUserCourses} from "../../store/course";
@@ -22,17 +23,17 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
       <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
       <ul className="mt-28 pl-40 h-64 grid grid-span-3 grid-flow-col gap-4">
       {courses && courses.map(course => (
-          <li key={course.id}>
-    <div className="w-64 h-64 rounded overflow-hidden shadow-lg my-2">
+          <Link key={course.id} to={`/courses/${course.id}`}>
+    <div className="w-96 h-auto rounded overflow-hidden shadow-lg my-2">
   <img className="w-full" src={BookCover} alt="Sunset in the mountains" />
   <div className="px-6 py-4">
-    <div className="font-bold text-xl mb-2">{course.name}</div>
+    <div className="font-bold text-3xl  mb-2">{course.name}</div>
     <p className="text-grey-darker text-base">
       {course.description}
     </p>
   </div>
   </div>
-  </li>
+  </Link>
   ))}
   </ul>
   </div>

@@ -66,6 +66,8 @@ def create_course():
     return {'errors': form_errors(form.errors)}
 
 
+
+
 # @course_routes.route('/delete/<int:id>', methods=['DELETE'])
 # @login_required
 # def delete_course(id):

@@ -38,6 +38,7 @@ def userMe():
     return {"courses": courses}
 
 
+@user_routes.route('/')
 @user_routes.route('/<int:id>', methods=["POST"])
 @login_required
 def add_user_profile_img(id):
