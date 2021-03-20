@@ -10,7 +10,6 @@ export const loadCourses = (courses) => {
   };
 
   export const loadOneCourse = (course) => {
-    console.log("COURSE FROM ACTION: ", course)
     return { type: LOAD_ONE_COURSE, payload: course };
   };
 
@@ -33,21 +32,20 @@ export const loadCourses = (courses) => {
 
 
   export const getOneUserCourse = courseId => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId}`);
+    const res = await fetch(`/api/users/me/courses/${courseId.id}/current`);
     const data = await res.json();
-    console.log("DATA!!!: ", data)
     dispatch(loadOneCourse(data));
     return data;
   };
 
 
-  export const getOneCourse = courseId => async (dispatch) => {
-    const res = await fetch(`/api/courses/${courseId}`);
-    const data = await res.json();
+  // export const getOneCourse = courseId => async (dispatch) => {
+  //   const res = await fetch(`/api/courses/${courseId}`);
+  //   const data = await res.json();
 
-    dispatch(loadOneCourse(data));
-    return data;
-  };
+  //   dispatch(loadOneCourse(data));
+  //   return data;
+  // };
 
 
 
@@ -74,7 +72,8 @@ export const loadCourses = (courses) => {
                             }),
     });
     const parsedResponse = await res.json();
-    dispatch(createCourse(parsedResponse))
+    dispatch(createCourse(parsedResponse));
+    dispatch(getUserCourses())
     return parsedResponse;
   }
 
@@ -88,7 +87,6 @@ export default function courseReducer(state = initialState, action) {
       return newState;
     case LOAD_ONE_COURSE:
       newState = {...state, currentCourse: {...action.payload}}
-      console.log("SOME DESCIPTOR!: ", newState.currentCourse)
       return newState;
     // case DELETE_COURSE:
     //   delete updateState.userCourses[action.id];

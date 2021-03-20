@@ -7,7 +7,6 @@ import LoginModal from "../../Forms/LoginForm/"
 const NavBar = ({authenticated, setAuthenticated}) => {
   const location = useLocation();
   const pathName = location.pathname.slice(1);
-  console.log("This is the path: ", pathName)
   const sessionUser = useSelector((state) => (state.session.user));
 
   return (

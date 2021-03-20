@@ -22,7 +22,6 @@ function App() {
   useEffect(() => {
     (async () => {
       const user = await dispatch(authenticate());
-      console.log("THIS IS THE USER: ", user)
       if (!user.errors) {
         setAuthenticated(true);
       }

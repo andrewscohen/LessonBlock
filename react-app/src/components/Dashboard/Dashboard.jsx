@@ -10,7 +10,6 @@ import BookCover from "./BookCover.jpg";
 const Dashboard = ({setAuthenticated, authenticated}) => {
     const sessionUser = useSelector((state) => (state.session.user));
     const courses = useSelector((state) => Object.values(state.course.userCourses));
-    console.log("COURSES: ",  courses)
     const dispatch = useDispatch();
 
     useEffect(() => {
