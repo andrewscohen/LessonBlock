@@ -60,6 +60,7 @@ def update_course(id):
     if request.method == 'DELETE':
         db.session.delete(course)
         db.session.commit()
+        return {"Success": "Deleted"}
 
     # elif request.method == 'PUT':
     #     form = EditCourseForm()
@@ -82,6 +83,6 @@ def update_course(id):
     elif request.method == 'GET':
         return course.to_dict()
 
-    # user_courses = Course.query.filter_by(user_id=current_user.id)
+    # user_courses = User_Course.query.filter_by(user_id=current_user.id)
 
-    return {"courses": [course.to_dict() for course in user_courses]}
+    # return {"courses": [course.to_dict() for course in user_courses]}

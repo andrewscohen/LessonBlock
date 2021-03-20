@@ -14,8 +14,7 @@ class Section(db.Model):
     lessons = db.relationship("Lesson",
                               back_populates="section",
                               cascade="all, delete-orphan")
-    course = db.relationship('Course',
-                             back_populates="sections")
+    course = db.relationship('Course')
 
     def to_dict(self):
         return {
