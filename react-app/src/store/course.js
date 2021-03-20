@@ -32,7 +32,7 @@ export const loadCourses = (courses) => {
 
 
   export const getOneUserCourse = courseId => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId.id}/current`);
+    const res = await fetch(`/api/users/me/courses/${courseId}/current`);
     const data = await res.json();
     dispatch(loadOneCourse(data));
     return data;
@@ -49,11 +49,15 @@ export const loadCourses = (courses) => {
 
 
 
-  export const deleteOneCourse = id => async (dispatch) => {
-    const res = await fetch(`/api/courses/delete/${id}`, {
+  export const deleteOneUserCourse = id => async (dispatch) => {
+    console.log("THIS IS THE ID: ", id)
+    console.log(typeof id)
+    const res = await fetch(`/api/users/me/courses/${id}/current`, {
       method: "DELETE"
     });
     if (res.ok) {
+      console.log("THIS IS THE RES: ", res)
+      console.log("THIS IS THE RES.JSON: ", res.json())
       dispatch(deleteCourse(id));
       return res;
     }

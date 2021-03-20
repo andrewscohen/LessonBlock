@@ -56,7 +56,6 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </ProtectedRoute>
-
         <ProtectedRoute path="/users/me/courses/:courseId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
         <CourseBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>

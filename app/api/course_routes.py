@@ -78,5 +78,5 @@ def create_course():
 #     db.session.delete(course_to_delete)
 #     db.session.commit()
 
-    # updated_courses = Course.query.filter(all()
-    # return Response("{'a':'b'}", status=201, mimetype='application/json')
+#     updated_courses = Course.query.filter(all()
+#     return Response("{'a':'b'}", status=201, mimetype='application/json')
