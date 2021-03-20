@@ -22,6 +22,7 @@ export const loadCourses = (courses) => {
     return { type: DELETE_COURSE, payload: id };
   };
 
+
   export const getUserCourses = () => async (dispatch) => {
     const res = await fetch(`/api/users/me/courses`);
     const data = await res.json();
@@ -29,19 +30,34 @@ export const loadCourses = (courses) => {
     dispatch(loadCourses(res.data));
   };
 
-  export const getOneCourse = courseId => async (dispatch) => {
-    const res = await fetch(`/api/courses/${courseId}`);
-    const data = await res.json();
 
+  export const getOneUserCourse = courseId => async (dispatch) => {
+    const res = await fetch(`/api/users/me/courses/${courseId}/current`);
+    const data = await res.json();
     dispatch(loadOneCourse(data));
     return data;
   };
 
-  export const deleteOneCourse = id => async (dispatch) => {
-    const res = await fetch(`/api/courses/delete/${id}`, {
+
+  // export const getOneCourse = courseId => async (dispatch) => {
+  //   const res = await fetch(`/api/courses/${courseId}`);
+  //   const data = await res.json();
+
+  //   dispatch(loadOneCourse(data));
+  //   return data;
+  // };
+
+
+
+  export const deleteOneUserCourse = id => async (dispatch) => {
+    console.log("THIS IS THE ID: ", id)
+    console.log(typeof id)
+    const res = await fetch(`/api/users/me/courses/${id}/current`, {
       method: "DELETE"
     });
     if (res.ok) {
+      console.log("THIS IS THE RES: ", res)
+      console.log("THIS IS THE RES.JSON: ", res.json())
       dispatch(deleteCourse(id));
       return res;
     }
@@ -60,27 +76,28 @@ export const loadCourses = (courses) => {
                             }),
     });
     const parsedResponse = await res.json();
-    dispatch(createCourse(parsedResponse))
+    dispatch(createCourse(parsedResponse));
+    dispatch(getUserCourses())
     return parsedResponse;
   }
 
   const initialState = { currentCourse: {}, userCourses: [] };
 
 export default function courseReducer(state = initialState, action) {
-  const updateState = { ...state };
+  let newState = { ...state };
   switch (action.type) {
     case LOAD_ALL_COURSES:
-      const newState = {...state, userCourses: [...action.payload.courses]}
+      newState = {...state, userCourses: [...action.payload.courses]}
       return newState;
     case LOAD_ONE_COURSE:
-      updateState.currentCourse = action.payload;
-      return updateState;
-    case DELETE_COURSE:
-      delete updateState.userCourses[action.id];
-      return updateState;
-    case USER_LOGOUT:
-      updateState.userCourses = {};
-      return updateState;
+      newState = {...state, currentCourse: {...action.payload}}
+      return newState;
+    // case DELETE_COURSE:
+    //   delete updateState.userCourses[action.id];
+    //   return updateState;
+    // case USER_LOGOUT:
+    //   updateState.userCourses = {};
+    //   return updateState;
     default:
       return state;
   }

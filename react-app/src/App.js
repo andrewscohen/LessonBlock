@@ -7,7 +7,8 @@ import {
   ProtectedRoute,
   NavBar,
   LandingPage,
-  Dashboard
+  Dashboard,
+  CourseBuilder
 
 } from "./components";
 import { authenticate } from "./store/session";
@@ -21,7 +22,6 @@ function App() {
   useEffect(() => {
     (async () => {
       const user = await dispatch(authenticate());
-      console.log("THIS IS THE USER: ", user)
       if (!user.errors) {
         setAuthenticated(true);
       }
@@ -50,11 +50,14 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated}  setAuthenticated={setAuthenticated}>
+        <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
           <Dashboard
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/me/courses/:courseId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
+        <CourseBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
