@@ -19,7 +19,7 @@ const CreateUserCourseButton = ({setAuthenticated, authenticated}) => {
       {showModal ? (
         <>
           <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-10 outline-none focus:outline-none"
           >
             <NewCourseForm authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal} showModal={showModal}/>
           </div>

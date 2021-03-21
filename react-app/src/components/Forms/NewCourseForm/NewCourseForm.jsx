@@ -32,14 +32,14 @@ const NewCourseForm = ({setShowModal}) => {
 };
 
     return (
-        <div className="container flex justify-end mt-96 pr-24 h-screen">
+        <div className="container flex justify-center mt-96 h-screen">
         <div className="absolute object-right-top pr-8 pt-5">
             <button type="button" onClick={() => setShowModal(false)}>
                 <i className="fas fa-window-close"></i>
             </button>
         </div>
-        <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md">
-        <h1 className="font-bold text-7xl sm:text-7xl text-black leading-tight font-serif">
+        <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md border-black border-8">
+        <h1 className="font-bold text-6xl text-black font-serif">
             Create New Course
         </h1>
             <form onSubmit={handleSubmit} className="w-6/12">

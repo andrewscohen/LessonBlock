@@ -2,7 +2,8 @@ import React from "react";
 import {useSelector} from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import "./NavBar.css";
-import LoginModal from "../../Forms/LoginForm/"
+// import LoginModal from "../../Forms/LoginForm/"
+import LoginFormModal from "../../Auth/LoginFormModal"
 
 const NavBar = ({authenticated, setAuthenticated}) => {
   const location = useLocation();
@@ -27,7 +28,8 @@ const NavBar = ({authenticated, setAuthenticated}) => {
 
         <div className="flex col-start-7 col-end-8 items-center content-center justify-end">
           {!authenticated && (
-            <LoginModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+            // <LoginModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+            <LoginFormModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
           )}
           {authenticated && (
             <>

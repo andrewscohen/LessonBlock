@@ -1,4 +1,4 @@
-import {ProtectedRoute } from "./auth";
+import {ProtectedRoute } from "./Auth";
 import {NavBar} from "./CommonElements";
 import {LandingPage} from "./LandingPage";
 import CourseBuilder from "./CourseBuilder";

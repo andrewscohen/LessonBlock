@@ -1,7 +1,6 @@
 const LOAD_ALL_COURSES = "courses/loadCourses";
 const LOAD_ONE_COURSE = "courses/loadOneCourse";
 const CREATE_COURSE = "courses/createCourse";
-const DELETE_COURSE = "courses/deleteCourse";
 const USER_LOGOUT = "USER_LOGOUT";
 
 
@@ -17,10 +16,6 @@ export const loadCourses = (courses) => {
     type: CREATE_COURSE,
     payload: course,
   });
-
-  export const deleteCourse = (id) => {
-    return { type: DELETE_COURSE, payload: id };
-  };
 
 
   export const getUserCourses = () => async (dispatch) => {
@@ -39,6 +34,24 @@ export const loadCourses = (courses) => {
   };
 
 
+  export const updateOneUserCourse = ({courseId, name, description, category, courseImg}) => async (dispatch) => {
+    const res = await fetch(`/api/users/me/courses/${courseId}/current`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ course_id: courseId,
+                             name: name,
+                             description: description,
+                             category: category,
+                             course_img: courseImg
+                            }),
+    });
+    const parsedResponse = await res.json();
+    dispatch(loadCourses(parsedResponse));
+    return parsedResponse;
+  }
+
   // export const getOneCourse = courseId => async (dispatch) => {
   //   const res = await fetch(`/api/courses/${courseId}`);
   //   const data = await res.json();
@@ -50,18 +63,14 @@ export const loadCourses = (courses) => {
 
 
   export const deleteOneUserCourse = id => async (dispatch) => {
-    console.log("THIS IS THE ID: ", id)
-    console.log(typeof id)
     const res = await fetch(`/api/users/me/courses/${id}/current`, {
       method: "DELETE"
     });
-    if (res.ok) {
-      console.log("THIS IS THE RES: ", res)
-      console.log("THIS IS THE RES.JSON: ", res.json())
-      dispatch(deleteCourse(id));
-      return res;
-    }
-  };
+    const parsedResponse = await res.json();
+    dispatch(loadCourses(parsedResponse));
+    return parsedResponse;
+  }
+
 
   export const createUserCourse = ({ name, description, category, user_id }) => async (dispatch) => {
     const res = await fetch("/api/courses", {
@@ -81,7 +90,7 @@ export const loadCourses = (courses) => {
     return parsedResponse;
   }
 
-  const initialState = { currentCourse: {}, userCourses: [] };
+  const initialState = { currentCourse: null, userCourses: [] };
 
 export default function courseReducer(state = initialState, action) {
   let newState = { ...state };
@@ -92,12 +101,13 @@ export default function courseReducer(state = initialState, action) {
     case LOAD_ONE_COURSE:
       newState = {...state, currentCourse: {...action.payload}}
       return newState;
-    // case DELETE_COURSE:
-    //   delete updateState.userCourses[action.id];
-    //   return updateState;
-    // case USER_LOGOUT:
-    //   updateState.userCourses = {};
-    //   return updateState;
+  //  case LOAD_SELECTION_SECTION:
+  //     const selectedSection = { ...state, selectedSection: action.payload };
+  //      return selectedSection;
+  //  case REMOVE_SELECTED_SECTION:
+  //     const removeSelectedSection = { ...state, selectedSection: null };
+  //      return removeSelectedSection;
+
     default:
       return state;
   }
