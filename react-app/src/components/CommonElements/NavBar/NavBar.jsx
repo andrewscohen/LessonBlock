@@ -11,30 +11,30 @@ const NavBar = ({authenticated, setAuthenticated}) => {
   const sessionUser = useSelector((state) => (state.session.user));
 
   return (
-    <nav className="grid grid-cols-8 w-full z-50 fixed h-20 shadow-sm" id={pathName !== "" ? "navBarChangeColor" : ""}>
+    <nav className="fixed z-50 grid w-full h-20 grid-cols-8 shadow-sm" id={pathName !== "" ? "navBarChangeColor" : ""}>
         {!authenticated ? (
-        <div className="flex col-start-2 col-span-1 items-center content-center justify-end ml-1">
-          <NavLink to="/" exact={true} activeClassName="active" className="font-monst font-bold text-2xl py-3 text-white-space">
+        <div className="flex items-center content-center justify-end col-span-1 col-start-2 ml-1">
+          <NavLink to="/" exact={true} activeClassName="active" className="py-3 text-2xl font-bold font-monst text-white-space">
             Lesson Block
           </NavLink>
           </div>
         ) : (
-          <div className="flex col-start-4 col-span-2 items-center content-center justify-center ml-1">
-          <NavLink to="/dashboard" exact={true} activeClassName="active" className="block hover:text-indigo-500 font-monst font-bold col-start text-4xl py-3 text-grey-200">
+          <div className="flex items-center content-center justify-center col-span-2 col-start-4 ml-1">
+          <NavLink to="/dashboard" exact={true} activeClassName="active" className="block py-3 text-4xl font-bold hover:text-indigo-500 font-monst col-start text-grey-200">
             Lesson Block
           </NavLink>
           </div>
         )}
 
-        <div className="flex col-start-7 col-end-8 items-center content-center justify-end">
+        <div className="flex items-center content-center justify-end col-start-7 col-end-8">
           {!authenticated && (
             // <LoginModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
             <LoginFormModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
           )}
           {authenticated && (
             <>
-            <NavLink to="/dashboard" exact={true} activeClassName="active" className="font-bold text-grey-200 pr-4 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}</NavLink>
-              <img className="h-12 w-12 rounded-full" alt="avatar" src={sessionUser.profile_img} />
+            <NavLink to="/dashboard" exact={true} activeClassName="active" className="pr-4 font-bold text-grey-200 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}</NavLink>
+              <img className="w-12 h-12 rounded-full" alt="avatar" src={sessionUser.profile_img} />
             </>
             )}
             </div>

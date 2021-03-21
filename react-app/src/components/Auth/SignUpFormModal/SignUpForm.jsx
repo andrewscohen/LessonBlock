@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
-import sign_up_img from "./sign_up_img.jpg"
+import sign_up_img from "./sign_up_img.jpg";
+import { Modal } from '../../../context/ModalContext';
+import LoginForm from "../LoginFormModal";
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
@@ -10,13 +12,21 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 const radioButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
 
 
-const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
+const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpModal}) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [isInstructor, setIsInstructor] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  // const toggleLoginModal = () => {
+  //   console.log("TOGGLE FIRED")
+  //   setShowSignUpModal(false)
+  //   setShowLoginModal(true)
+  //   console.log(showLoginModal)
+  // }
 
 
   const dispatch = useDispatch();
@@ -69,22 +79,22 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
   }
 
   return (
-<div className="container flex justify-end mt-96 h-screen">
-<div className="absolute object-right-top pr-8 pt-5">
-        <button type="button" onClick={() => setShowModal(false)}>
+<div className="container flex justify-end h-screen mt-96">
+<div className="absolute object-right-top pt-5 pr-8">
+        <button type="button" onClick={() => setShowSignUpModal(false)}>
           <i className="fas fa-window-close"></i>
         </button>
       </div>
-    <div className="w-6/12 h-3/4 bg-brand-tan flex flex-col justify-center items-center rounded-l-md overflow-hidden">
-      <div className="h-full w-full">
-        <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative m-auto h-full w-full object-cover"/>
+    <div className="flex flex-col items-center justify-center w-6/12 overflow-hidden h-3/4 bg-brand-tan rounded-l-md">
+      <div className="w-full h-full">
+        <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative object-cover w-full h-full m-auto"/>
         </div>
     </div>
-  <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md">
-    <h1 className="font-bold text-7xl sm:text-7xl text-black leading-tight font-serif">
+  <div className="flex flex-col items-center justify-center w-6/12 h-3/4 bg-white-space rounded-r-md">
+    <h1 className="font-serif font-bold leading-tight text-black text-7xl sm:text-7xl">
         Join LessonBlock
     </h1>
-    {/* <h3 className="font-bold text-sm sm:text-sm text-black leading-tight font-serif" ></h3> */}
+    {/* <h3 className="font-serif text-sm font-bold leading-tight text-black sm:text-sm" ></h3> */}
 
       <form onSubmit={onSignUp} className="w-6/12">
       <div className="relative w-full mt-10 space-y-4">
@@ -164,8 +174,10 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowModal}) => {
             Demo User
           </button>
           <div className="flex">
-            <Link path="/login">Already have an account?</Link>
-          </div>
+            <button
+              type="button"
+              onClick={() => setShowLoginModal(true)}>Already have an account?</button>
+        </div>
         </div>
         </div>
       </form>
