@@ -7,9 +7,9 @@ const SideNav = ({setAuthenticated, authenticated}) => {
 
     return (
 
-        <div className="relative col-start-3 col-end-5 h-full border-r-2">
-          <div className="flex-auto flex-col items-center justify-center h-full">
-          <div className="overflow-y-auto overflow-x-hidden flex-grow">
+        <div className="relative col-start-1 col-end-3 h-screen border-r-2 bg-white-space">
+          <div className="flex-auto flex-col items-center justify-center h-screen">
+          <div className="overflow-y-auto overflow-x-hidden">
             <ul className="flex flex-col py-4 space-y-6">
               <li className="px-5">
                 <div className="flex flex-row items-center h-8">
@@ -26,7 +26,7 @@ const SideNav = ({setAuthenticated, authenticated}) => {
               </li>
               <li className="px-5">
                 <div className="flex flex-row items-center h-8">
-                  <div className="text-2xl font-light tracking-wide text-gray-500">COURSES</div>
+                  <div className="md:text-2xl sm:text-base font-light tracking-wide text-gray-500">COURSES</div>
                 </div>
               </li>
               <li>

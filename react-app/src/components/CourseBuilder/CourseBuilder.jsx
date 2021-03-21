@@ -5,31 +5,6 @@ import {SideNav} from "../CommonElements";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 
 
-  // Notice we use useParams here instead of getting the params
-  // From props.
-
-
-//   if (!course) {
-//     return null;
-//   }
-
-//   return (
-//     <ul>
-//       <li>
-//         <strong>Course Id</strong> {courseId}
-//       </li>
-//       <li>
-//         <strong>Course Description</strong> {user.username}
-//       </li>
-//       <li>
-//         <strong>Category</strong> {course.email}
-//       </li>
-//     </ul>
-//   );
-// }
-// export default User;
-
-
 const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
     const sessionUser = useSelector((state) => (state.session.user));

@@ -20,7 +20,7 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
     return (
       <div className='grid grid-cols-12 w-full h-screen pt-20 bg-white-space overflow-hidden'>
       <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
-      <ul className="mt-28 pl-40 h-64 grid grid-span-3 grid-flow-col gap-4">
+      <ul className="mt-28 h-64 grid col-start-4 col-end-11 grid-flow-col">
       {courses && courses.map(course => (
           <Link key={course.id} to={`/users/me/courses/${course.id}`}>
     <div className="w-96 h-auto rounded overflow-hidden shadow-lg my-2">
@@ -30,6 +30,9 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
     <p className="text-grey-darker text-base">
       {course.description}
     </p>
+  <div>
+    <button type="button" className="bg-brand-blue">Edit</button>
+  </div>
   </div>
   </div>
   </Link>
