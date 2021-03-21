@@ -27,15 +27,15 @@ export const loadCourses = (courses) => {
 
 
   export const getOneUserCourse = courseId => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId}/current`);
+    const res = await fetch(`/api/users/me/courses/${courseId}`);
     const data = await res.json();
     dispatch(loadOneCourse(data));
     return data;
   };
 
 
-  export const updateOneUserCourse = ({courseId, name, description, category, courseImg}) => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId}/current`, {
+  export const updateOneUserCourse = ({courseId, name, description, category, courseImg, userId}) => async (dispatch) => {
+    const res = await fetch(`/api/users/me/courses/${courseId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -44,11 +44,14 @@ export const loadCourses = (courses) => {
                              name: name,
                              description: description,
                              category: category,
-                             course_img: courseImg
+                             course_img: courseImg,
+                             user_id: userId
                             }),
     });
     const parsedResponse = await res.json();
+    console.log("PARSED BEFORE: ", parsedResponse)
     dispatch(loadCourses(parsedResponse));
+    console.log("PARSED AFTER: ", parsedResponse)
     return parsedResponse;
   }
 
@@ -63,7 +66,7 @@ export const loadCourses = (courses) => {
 
 
   export const deleteOneUserCourse = id => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${id}/current`, {
+    const res = await fetch(`/api/users/me/courses/${id}`, {
       method: "DELETE"
     });
     const parsedResponse = await res.json();

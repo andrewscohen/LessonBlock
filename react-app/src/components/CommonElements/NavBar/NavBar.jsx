@@ -28,7 +28,6 @@ const NavBar = ({authenticated, setAuthenticated}) => {
 
         <div className="flex items-center content-center justify-end col-start-7 col-end-8">
           {!authenticated && (
-            // <LoginModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
             <LoginFormModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
           )}
           {authenticated && (

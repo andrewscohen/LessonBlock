@@ -8,7 +8,7 @@ from app.config import Config
 from app.helpers import upload_file_to_s3
 from app.forms import login_form
 from app.forms import signup_form
-from app.forms import edit_course_form
+from app.forms import EditCourseForm
 from werkzeug.utils import secure_filename
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -51,7 +51,7 @@ def userMe():
 #     oneCourse = Course.query.filter(Course.id == id).first()
 
 
-@user_routes.route('/me/courses/<int:id>/current',
+@user_routes.route('/me/courses/<int:id>',
                    methods=['DELETE', 'PUT', 'GET'])
 @login_required
 def update_course(id):
@@ -62,6 +62,26 @@ def update_course(id):
         db.session.delete(course)
         db.session.commit()
 
+    # elif request.method == 'PUT':
+    #     form = EditCourseForm()
+    #     form["csrf_token"].data = request.cookies["csrf_token"]
+
+    #     course_to_update = Course.query.get(course_id)
+
+    #     course_to_update.name = form.data["name"]
+    #     course_to_update.category = form.data["category"]
+    #     course_to_update.description = form.data["description"]
+    #     course_to_update.course_img = form.data["course_img"]
+    #     course_to_update.user_id = form.data["user_id"]
+    #     course_to_update.course_id = form.data["course_id"]
+
+    #     if form.validate_on_submit():
+    #         db.session.add(course_to_update)
+    #         db.session.commit()
+    #         return course_to_update.to_dict()
+
+    #     errors = validation_errors_to_error_messages(form.errors)
+    #     return {"errors": errors}
     elif request.method == 'PUT':
         form = EditCourseForm()
         form["csrf_token"].data = request.cookies["csrf_token"]
@@ -80,5 +100,9 @@ def update_course(id):
     elif request.method == 'GET':
         return course.to_dict()
 
-    user_courses = User_Course.query.filter_by(user_id=current_user.id)
-    return {"courses": [course.to_dict() for course in user_courses]}
+    allCourses = Course.query.all()
+    data = [course.to_dict() for course in allCourses]
+    return {"courses": data}
+
+    # user_courses = User_Course.query.filter_by(user_id=current_user.id)
+    # return {"courses": [course.to_dict() for course in user_courses]}
