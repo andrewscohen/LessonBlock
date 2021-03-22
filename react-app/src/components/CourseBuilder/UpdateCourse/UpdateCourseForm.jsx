@@ -1,17 +1,20 @@
-import React, {useState} from "react";
-import {useHistory} from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {createUserCourse} from "../../../store/course";
+import {updateOneUserCourse} from "../../../store/course"
+
+
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
 
-const NewCourseForm = ({setShowModal}) => {
+const UpdateCourseForm = ({setShowModal, currentCourse}) => {
+    console.log("1 CURRENT COURSE: ", currentCourse.id)
     const [errors, setErrors] = useState([]);
-    const [courseName, setCourseName] = useState('');
-    const [courseDescription, setCourseDescription] = useState('');
-    const [courseCategory, setCourseCategory] = useState('');
-    // const [courseImg, setCourseImg] = useState('');
+    const [courseName, setCourseName] = useState(currentCourse.name);
+    const [courseDescription, setCourseDescription] = useState(currentCourse.description);
+    const [courseCategory, setCourseCategory] = useState(currentCourse.category);
+    const [courseImg, setCourseImg] = useState('');
 
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
@@ -19,28 +22,31 @@ const NewCourseForm = ({setShowModal}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newCourseData = {
+        const updatedCourseData = {
             name: courseName,
             description: courseDescription,
             category: courseCategory,
-            user_id: sessionUser.id,
+            courseId: currentCourse.id,
+            userId: sessionUser.id,
+            courseImg: courseImg,
         }
-        dispatch(createUserCourse(newCourseData));
+        dispatch(updateOneUserCourse(updatedCourseData));
         setShowModal(false);
-        history.push('/dashboard')
-        return newCourseData;
+        history.push('/dashboard');
+        console.log("2 FORM HAS BEEN SUBMITTED: ", updatedCourseData)
+        return updatedCourseData;
 };
 
     return (
-        <div className="container flex justify-center mt-96 h-screen">
-        <div className="absolute object-right-top pr-8 pt-5">
+        <div className="container flex justify-end h-screen mt-96">
+        <div className="absolute object-right-top pt-5 pr-8">
             <button type="button" onClick={() => setShowModal(false)}>
                 <i className="fas fa-window-close"></i>
             </button>
         </div>
-        <div className="w-6/12 h-3/4 bg-white-space flex flex-col justify-center items-center rounded-r-md border-black border-8">
-        <h1 className="font-bold text-6xl text-black font-serif">
-            Create New Course
+        <div className="flex flex-col items-center justify-center w-full rounded-md h-2/4 bg-white-space">
+        <h1 className="p-4 font-serif text-6xl font-bold text-black p">
+            EDIT THIS COURSE
         </h1>
             <form onSubmit={handleSubmit} className="w-6/12">
                 <div className="relative w-full mt-10 space-y-4">
@@ -49,7 +55,6 @@ const NewCourseForm = ({setShowModal}) => {
                             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                         </ul>
                     <div>
-                        <h2>Create a New Course</h2>
                         <input
                             type='text'
                             placeholder='Name'
@@ -86,4 +91,4 @@ const NewCourseForm = ({setShowModal}) => {
     )
 }
 
-export default NewCourseForm;
+export default UpdateCourseForm;

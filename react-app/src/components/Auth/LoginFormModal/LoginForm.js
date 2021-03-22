@@ -24,7 +24,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginModal }) => {
     if (!user.errors) {
       setAuthenticated(true);
       setShowLoginModal(false);
-      history.push('/dashboard')
+      history.push("/dashboard")
     } else {
       setErrors(user.errors);
     }

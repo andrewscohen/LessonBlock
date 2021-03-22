@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, json, request, Response
 from flask_login import login_required, current_user
 from app.models import db, Course, User, User_Course
 from app.forms import CourseForm
+from app.forms import EditCourseForm
 
 
 course_routes = Blueprint('courses', __name__)
@@ -44,28 +45,44 @@ def studentEnroll(id):
     return course.to_dict()
 
 
-@course_routes.route('', methods=['POST'])
+@course_routes.route('', methods=['POST', 'PUT'])
 @login_required
 def create_course():
-    form = CourseForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if form.validate_on_submit():
-        data = request.get_json()
-        course = Course(
-            name=form.data['name'],
-            description=form.data['description'],
-            category=form.data['category'],
-        )
+    if request.method == 'POST':
 
-        db.session.add(course)
-        user = User.query.get(data['user_id'])
-        user.courses.append(course)
-        db.session.add(user)
-        db.session.commit()
+        form = CourseForm()
+        form["csrf_token"].data = request.cookies["csrf_token"]
+
+        if form.validate_on_submit():
+            data = request.get_json()
+            course = Course(
+                name=form.data['name'],
+                description=form.data['description'],
+                category=form.data['category'],
+            )
+
+    if request.method == 'PUT':
+
+        form = EditCourseForm()
+        form["csrf_token"].data = request.cookies["csrf_token"]
+
+        if form.validate_on_submit():
+            print("7 BACKEND FORM VALIDATED")
+            data = request.get_json()
+            course = Course(
+                name=form.data["name"],
+                category=form.data["category"],
+                description=form.data["description"],
+                course_img=form.data["course_img"],
+            )
+
+    db.session.add(course)
+    user = User.query.get(data['user_id'])
+    user.courses.append(course)
+    db.session.add(user)
+    db.session.commit()
     return {'errors': form_errors(form.errors)}
-
-
 
 
 # @course_routes.route('/delete/<int:id>', methods=['DELETE'])
