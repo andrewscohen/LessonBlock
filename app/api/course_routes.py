@@ -42,25 +42,3 @@ def studentEnroll(id):
     db.session.add(course)
     db.session.commit()
     return course.to_dict()
-
-
-@course_routes.route('', methods=['POST'])
-@login_required
-def create_course():
-    form = CreateCourseForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-
-    if form.validate_on_submit():
-        data = request.get_json()
-        course = Course(
-            name=form.data['name'],
-            description=form.data['description'],
-            category=form.data['category'],
-        )
-
-    db.session.add(course)
-    user = User.query.get(data['user_id'])
-    user.courses.append(course)
-    db.session.add(user)
-    db.session.commit()
-    return {'errors': form_errors(form.errors)}

@@ -16,7 +16,7 @@ class Course(db.Model):
                             secondary=User_Course,
                             )
     sections = db.relationship("Section",
-                               back_populates="course",
+                               backref="course",
                                cascade="all, delete-orphan")
 
     def to_dict(self):
