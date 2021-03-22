@@ -1,55 +1,48 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {updateOneUserCourse} from "../../../store/course"
+// import {createCourseSection} from "../../../store/section"
 
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
 
-const UpdateCourseForm = ({setShowModal, currentCourse}) => {
+const CreateSectionForm = ({setShowModal, currentCourse}) => {
     const [errors, setErrors] = useState([]);
-    const [courseName, setCourseName] = useState(currentCourse.name);
-    const [courseDescription, setCourseDescription] = useState(currentCourse.description);
-    const [courseCategory, setCourseCategory] = useState(currentCourse.category);
-    const [courseImg, setCourseImg] = useState('');
+    const [sectionTitle, setSectionTitle] = useState('');
+    const [orderNum, setOrderNum] = useState('');
+
 
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const updatedCourseData = {
-            name: courseName,
-            description: courseDescription,
-            category: courseCategory,
-            courseId: currentCourse.id,
-            userId: sessionUser.id,
-            courseImg: courseImg,
-        }
-        dispatch(updateOneUserCourse(updatedCourseData));
-        setShowModal(false);
-        history.push('/dashboard');
-        return updatedCourseData;
+        // const newSectionData = {
+        //     title: sectionTitle,
+        //     orderNum: orderNum,
+        //     userId: sessionUser.id,
+        //     courseId: currentCourse.id,
+        // }
+        // const newSection = await dispatch(createCourseSection(newSectionData));
+        // if (!newSection.errors) {
+        //     setShowModal(false);
+        //     history.push('/dashboard')
+        //     return newSectionData;
+        // } else {
+        //     setErrors(newSection.errors)
+        // }
     };
 
-    const updateCourseName = (e) => {
-        setCourseName(e.target.value);
-    };
+    const updateSectionTitle = (e) => {
+        setSectionTitle(e.target.value);
+      };
 
-    const updateCourseDescription = (e) => {
-        setCourseDescription(e.target.value);
-    };
-
-    const updateCourseCategory = (e) => {
-        setCourseCategory(e.target.value);
-    };
-
-    // const updateCourseImg = (e) => {
-    //     setCourseImg(e.target.value);
-    // };
+      const updateOrderNum = (e) => {
+        setOrderNum(e.target.value);
+      };
 
 
     return (
@@ -61,7 +54,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
         </div>
         <div className="flex flex-col items-center justify-center w-full rounded-md h-2/4 bg-white-space">
         <h1 className="p-4 font-serif text-6xl font-bold text-black p">
-            EDIT THIS COURSE
+            Create New Section
         </h1>
             <form onSubmit={handleSubmit} className="w-6/12">
                 <div className="relative w-full mt-10 space-y-4">
@@ -72,26 +65,18 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
                     <div>
                         <input
                             type='text'
-                            placeholder='Name'
-                            value={courseName}
+                            placeholder='Section Title'
+                            value={sectionTitle}
                             className={formInputStyle}
-                            onChange={updateCourseName}
-                        >
-                        </input>
-                        <input
-                            type='textarea'
-                            placeholder='Description'
-                            value={courseDescription}
-                            className={formInputStyle}
-                            onChange={updateCourseDescription}
+                            onChange={updateSectionTitle}
                         >
                         </input>
                         <input
                             type='text'
-                            placeholder='Category'
-                            value={courseCategory}
+                            placeholder='Lesson Number'
+                            value={orderNum}
                             className={formInputStyle}
-                            onChange={updateCourseCategory}
+                            onChange={updateOrderNum}
                         >
                         </input>
                     </div>
@@ -106,4 +91,4 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     )
 }
 
-export default UpdateCourseForm;
+export default CreateSectionForm;

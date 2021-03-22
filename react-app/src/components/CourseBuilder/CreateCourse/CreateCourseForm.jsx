@@ -7,6 +7,8 @@ const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold t
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
 
+
+
 const CreateCourseForm = ({setShowModal}) => {
     const [errors, setErrors] = useState([]);
     const [courseName, setCourseName] = useState('');
@@ -36,6 +38,19 @@ const CreateCourseForm = ({setShowModal}) => {
         }
     };
 
+    const updateCourseName = (e) => {
+        setCourseName(e.target.value);
+      };
+
+    const updateCourseDescription = (e) => {
+        setCourseDescription(e.target.value);
+      };
+
+    const updateCourseCategory = (e) => {
+        setCourseCategory(e.target.value);
+      };
+
+
 
 
     return (
@@ -61,7 +76,7 @@ const CreateCourseForm = ({setShowModal}) => {
                             placeholder='Name'
                             value={courseName}
                             className={formInputStyle}
-                            onChange={(e) => setCourseName(e.target.value)}
+                            onChange={updateCourseName}
                         >
                         </input>
                         <input
@@ -69,7 +84,7 @@ const CreateCourseForm = ({setShowModal}) => {
                             placeholder='Description'
                             value={courseDescription}
                             className={formInputStyle}
-                            onChange={(e) => setCourseDescription(e.target.value)}
+                            onChange={updateCourseDescription}
                         >
                         </input>
                         <input
@@ -77,7 +92,7 @@ const CreateCourseForm = ({setShowModal}) => {
                             placeholder='Category'
                             value={courseCategory}
                             className={formInputStyle}
-                            onChange={(e) => setCourseCategory(e.target.value)}
+                            onChange={updateCourseCategory}
                         >
                         </input>
                     </div>
