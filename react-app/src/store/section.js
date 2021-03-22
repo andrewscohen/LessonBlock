@@ -27,7 +27,7 @@ export const loadAllCourseSections = (sections) => {
 
 // GET THUNKS START
   export const getUserCourseSections = ({courseId}) => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId}`);
+    const res = await fetch(`/api/users/me/courses/${courseId}/sections`);
     const data = await res.json();
     res.data = data;
     dispatch(loadAllCourseSections(res.data));
@@ -35,7 +35,7 @@ export const loadAllCourseSections = (sections) => {
 
 
   export const getOneUserCourse = ({courseId, id}) => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId}/${id}`);
+    const res = await fetch(`/api/users/me/courses/${courseId}/sections/${id}`);
     const data = await res.json();
     dispatch(loadOneCourseSection(data));
     return data;

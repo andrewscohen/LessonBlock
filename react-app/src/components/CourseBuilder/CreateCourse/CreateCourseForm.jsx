@@ -20,7 +20,7 @@ const CreateCourseForm = ({setShowModal}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const newCourseData = {
             name: courseName,
@@ -28,14 +28,10 @@ const CreateCourseForm = ({setShowModal}) => {
             category: courseCategory,
             userId: sessionUser.id,
         }
-        const newCourse = await dispatch(createUserCourse(newCourseData));
-        if (!newCourse.errors) {
-            setShowModal(false);
-            history.push('/dashboard')
-            return newCourseData;
-        } else {
-            setErrors(newCourse.errors)
-        }
+        dispatch(createUserCourse(newCourseData));
+        setShowModal(false);
+        history.push('/dashboard')
+        return newCourseData;
     };
 
     const updateCourseName = (e) => {

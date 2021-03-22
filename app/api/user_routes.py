@@ -1,21 +1,34 @@
 import re
 import boto3
 import botocore
+
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user, logout_user
-from app.models import db, User, Course
+from app.models import db, User, Course, User_Course
 from app.config import Config
 from app.helpers import upload_file_to_s3
+
 from app.forms import login_form
 from app.forms import signup_form
+from app.forms import CreateCourseForm
 from app.forms import EditCourseForm
 from app.forms import CreateSectionForm
 from app.forms import EditSectionForm
+
 from werkzeug.utils import secure_filename
 from app.api.auth_routes import validation_errors_to_error_messages
 
 
 user_routes = Blueprint('users', __name__)
+
+
+def form_errors(validation_errors):
+
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
 
 # USER ROUTES START
 
@@ -41,6 +54,28 @@ def userMe():
     courses = [course.to_dict()
                for course in current_user.courses]
     return {"courses": courses}
+
+
+@user_routes.route('/me/courses', methods=['POST'])
+@login_required
+def create_course():
+    form = CreateCourseForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = request.get_json()
+        course = Course(
+            name=form.data['name'],
+            description=form.data['description'],
+            category=form.data['category'],
+        )
+
+    db.session.add(course)
+    user = User.query.get(data['user_id'])
+    user.courses.append(course)
+    db.session.add(user)
+    db.session.commit()
+    return {'errors': form_errors(form.errors)}
 
 
 @user_routes.route('/me/courses/<int:id>',
@@ -75,7 +110,7 @@ def update_course(id):
 
 
 # SECTION CREATE ROUTES START
-@user_routes.route('/me/courses/<int:course_id>/<int:id>', methods=['POST'])
+@user_routes.route('/me/courses/<int:course_id>/sections/<int:section_id>', methods=['POST'])
 @login_required
 def create_section():
     print("5 BACKEND CREATE SECTION FUNCTION HIT!!!!")
@@ -84,15 +119,15 @@ def create_section():
 
     if form.validate_on_submit():
         data = request.get_json()
-        section = Section(
+        new_section = Section(
             title=form.data['title'],
             order_num=form.data['order_num'],
             course_id=form.data['course_id'],
         )
-    print("6: BEFORE FORM ADD TO SESSION!!!!!", section)
-    db.session.add(section)
+    print("6: BEFORE FORM ADD TO SESSION!!!!!", new_section)
+    db.session.add(new_section)
     db.session.commit()
-    print("7: AFTER FORM ADD TO SESSION!!!!!", section)
+    print("7: AFTER FORM ADD TO SESSION!!!!!", new_section)
     return {'errors': form_errors(form.errors)}
 # SECTION CREATE ROUTE END
 

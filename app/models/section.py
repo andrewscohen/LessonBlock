@@ -13,7 +13,7 @@ class Section(db.Model):
 
     lessons = db.relationship("Lesson",
                               cascade="all, delete-orphan")
-    course = db.relationship('Course')
+    # course = db.relationship('Course')
 
     def to_dict(self):
         return {

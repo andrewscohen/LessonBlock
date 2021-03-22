@@ -44,7 +44,7 @@ export const loadCourses = (courses) => {
 
 // CREATE THUNKS START
 export const createUserCourse = ({ name, description, category, userId }) => async (dispatch) => {
-  const res = await fetch("/api/courses", {
+  const res = await fetch("/api/users/me/courses", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
