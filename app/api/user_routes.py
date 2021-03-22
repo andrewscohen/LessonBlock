@@ -9,11 +9,15 @@ from app.helpers import upload_file_to_s3
 from app.forms import login_form
 from app.forms import signup_form
 from app.forms import EditCourseForm
+from app.forms import CreateSectionForm
+from app.forms import EditSectionForm
 from werkzeug.utils import secure_filename
 from app.api.auth_routes import validation_errors_to_error_messages
 
 
 user_routes = Blueprint('users', __name__)
+
+# USER ROUTES START
 
 
 @user_routes.route('')
@@ -27,8 +31,10 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
+# USER ROUTES END
 
 
+# COURSE ROUTES START
 @user_routes.route('/me/courses')
 @login_required
 def userMe():
@@ -65,3 +71,60 @@ def update_course(id):
     allCourses = Course.query.all()
     data = [course.to_dict() for course in allCourses]
     return {"courses": data}
+# COURSE ROUTES END
+
+
+# SECTION CREATE ROUTES START
+@user_routes.route('/me/sections/<int:id>', methods=['POST'])
+@login_required
+def create_section():
+
+    form = CreateSectionForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = request.get_json()
+        section = Section(
+            title=form.data['title'],
+            order_num=form.data['order_num'],
+            course_id=form.data['course_id'],
+        )
+
+    db.session.add(section)
+    db.session.commit()
+    return {'errors': form_errors(form.errors)}
+# SECTION CREATE ROUTE END
+
+# SECTION DELETE, PUT, GET ROUTE START
+
+
+@user_routes.route('/me/sections/<int:id>',
+                   methods=['DELETE', 'PUT', 'GET'])
+@login_required
+def update_section(id):
+    section = Section.query.get(id)
+
+    if request.method == 'DELETE':
+        db.session.delete(section)
+        db.session.commit()
+
+    elif request.method == 'PUT':
+        form = EditSectionForm()
+        form["csrf_token"].data = request.cookies["csrf_token"]
+
+        if form.validate_on_submit():
+            section.title = form.data["title"],
+            section.order_num = form.data["order_num"],
+            section.course_id = form.data["course_id"],
+            section.title = form.data[""],
+
+            db.session.commit()
+
+    elif request.method == 'GET':
+        return section.to_dict()
+
+    allCourses = Course.query.all()
+    data = [course.to_dict() for course in allCourses]
+    return {"courses": data}
+# SECTION DELETE, PUT, GET ROUTE START
+# SECTION ROUTES END
