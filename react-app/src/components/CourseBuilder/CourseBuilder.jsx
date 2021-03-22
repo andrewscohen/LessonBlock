@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
-import {getOneUserCourse, deleteOneUserCourse, updateOneUserCourse} from "../../store/course";
+import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 
 
 const CourseBuilder = ({authenticated, setAuthenticated}) => {
@@ -29,11 +29,6 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     function deleteThisCourse() {
       dispatch(deleteOneUserCourse(courseId))
       history.push('/dashboard')
-    }
-
-    function updateThisCourse() {
-      dispatch(updateOneUserCourse(courseId))
-      return
     }
 
     return (

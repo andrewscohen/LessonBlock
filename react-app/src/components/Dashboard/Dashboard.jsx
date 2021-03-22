@@ -1,15 +1,12 @@
 import React, {useEffect} from "react";
-import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import {getUserCourses} from "../../store/course";
-import BookCover from "./Assets/BookCover.jpg";
 import CourseCard from "./CourseCard";
 
 
 
 const Dashboard = ({setAuthenticated, authenticated}) => {
-    const sessionUser = useSelector((state) => (state.session.user));
     const courses = useSelector((state) => Object.values(state.course.userCourses));
     const dispatch = useDispatch();
 

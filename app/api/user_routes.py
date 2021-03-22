@@ -64,23 +64,23 @@ def update_course(id):
         db.session.commit()
 
     elif request.method == 'PUT':
-        # print("6 BACKEND HIT PUT REQUEST")
+        print("6 BACKEND HIT PUT REQUEST")
         form = EditCourseForm()
         form["csrf_token"].data = request.cookies["csrf_token"]
 
         if form.validate_on_submit():
-            # print("7 BACKEND FORM VALIDATED")
-            data = request.get_json()
-            course = Course(
-                name=form.data["name"],
-                category=form.data["category"],
-                description=form.data["description"],
-                course_img=form.data["course_img"],
-            )
-            db.session.add(course)
+            print("7 BACKEND FORM VALIDATED")
+            # data = request.get_json()
+
+            course.name = form.data["name"],
+            course.category = form.data["category"],
+            course.description = form.data["description"],
+            course.course_img = form.data["course_img"],
+
+            # db.session.add(course)
             # print("8 BACKEND SESSION HAS BEEN ADDED", course)
             db.session.commit()
-            # print("9 BACKEND SESSION HAS BEEN COMMITTED")
+            print("9 BACKEND SESSION HAS BEEN COMMITTED")
     # elif request.method == 'PUT':
     #     print("THIS WAS A PUT REQUEST")
     #     form = EditCourseForm()
@@ -101,12 +101,12 @@ def update_course(id):
     #         print("SESSION HAS BEEN COMMITTED")
 
     elif request.method == 'GET':
-        print("BACKEND HIT GET")
+        print("BACKEND HIT GET ROUTE")
         return course.to_dict()
 
     allCourses = Course.query.all()
     data = [course.to_dict() for course in allCourses]
-    print("BACKEND ABOUT TO RETURN: ")
+    print("BACKEND ABOUT TO RETURN: ", data)
     return {"courses": data}
 
     # user_courses = User_Course.query.filter_by(user_id=current_user.id)

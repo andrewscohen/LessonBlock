@@ -66,8 +66,8 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
 // UPDATE THUNKS START
   export const updateOneUserCourse = ({courseId, name, description, category, courseImg, userId}) => async (dispatch) => {
     console.log("3 REDUX: HIT updateOneUserCourse")
-    // const res = await fetch(`/api/users/me/courses/${courseId}`, {
-    const res = await fetch(`/api/courses`, {
+    const res = await fetch(`/api/users/me/courses/${courseId}`, {
+    // const res = await fetch(`/api/courses`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
