@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
+import CreateSectionModal from "./CreateSection/CreateSectionModal";
 
 
 const CourseBuilder = ({authenticated, setAuthenticated}) => {
@@ -43,6 +44,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
         <h1>{currentCourse.course_img}</h1>
         </>
       )}
+      <CreateSectionModal currentCourse={currentCourse}/>
       <button type='button' onClick={deleteThisCourse}>DELETE THIS COURSE</button>
       </div>
     )
