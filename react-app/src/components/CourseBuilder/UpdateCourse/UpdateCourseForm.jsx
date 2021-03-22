@@ -9,7 +9,6 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 
 
 const UpdateCourseForm = ({setShowModal, currentCourse}) => {
-    console.log("1 CURRENT COURSE: ", currentCourse.id)
     const [errors, setErrors] = useState([]);
     const [courseName, setCourseName] = useState(currentCourse.name);
     const [courseDescription, setCourseDescription] = useState(currentCourse.description);
@@ -33,7 +32,6 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
         dispatch(updateOneUserCourse(updatedCourseData));
         setShowModal(false);
         history.push('/dashboard');
-        console.log("2 FORM HAS BEEN SUBMITTED: ", updatedCourseData)
         return updatedCourseData;
 };
 
