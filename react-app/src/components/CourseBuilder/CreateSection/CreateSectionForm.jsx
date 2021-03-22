@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-// import {createCourseSection} from "../../../store/section"
+import {createCourseSection} from "../../../store/section"
 
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
@@ -20,20 +20,23 @@ const CreateSectionForm = ({setShowModal, currentCourse}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const newSectionData = {
-        //     title: sectionTitle,
-        //     orderNum: orderNum,
-        //     userId: sessionUser.id,
-        //     courseId: currentCourse.id,
-        // }
-        // const newSection = await dispatch(createCourseSection(newSectionData));
-        // if (!newSection.errors) {
-        //     setShowModal(false);
-        //     history.push('/dashboard')
-        //     return newSectionData;
-        // } else {
-        //     setErrors(newSection.errors)
-        // }
+        console.log("1: SUBMIT FIRED!!!!!!!!!!!!!!!!!!!!")
+        const newSectionData = {
+            sectionTitle: sectionTitle,
+            orderNum: orderNum,
+            userId: sessionUser.id,
+            courseId: currentCourse.id,
+        }
+
+        const newSection = await dispatch(createCourseSection(newSectionData));
+        if (!newSection.errors) {
+            setShowModal(false);
+            history.push('/dashboard')
+            console.log("2: ABOUT TO RETURN NEWSECTIODATA:!!!!!!!!!!!!!!!!!", newSectionData)
+            return newSectionData;
+        } else {
+            setErrors(newSection.errors)
+        }
     };
 
     const updateSectionTitle = (e) => {

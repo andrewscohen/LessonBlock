@@ -75,10 +75,10 @@ def update_course(id):
 
 
 # SECTION CREATE ROUTES START
-@user_routes.route('/me/sections/<int:id>', methods=['POST'])
+@user_routes.route('/me/courses/<int:course_id>/<int:id>', methods=['POST'])
 @login_required
 def create_section():
-
+    print("5 BACKEND CREATE SECTION FUNCTION HIT!!!!")
     form = CreateSectionForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
@@ -89,9 +89,10 @@ def create_section():
             order_num=form.data['order_num'],
             course_id=form.data['course_id'],
         )
-
+    print("6: BEFORE FORM ADD TO SESSION!!!!!", section)
     db.session.add(section)
     db.session.commit()
+    print("7: AFTER FORM ADD TO SESSION!!!!!", section)
     return {'errors': form_errors(form.errors)}
 # SECTION CREATE ROUTE END
 
