@@ -21,14 +21,6 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpModal}) => {
   const [isInstructor, setIsInstructor] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
-  // const toggleLoginModal = () => {
-  //   console.log("TOGGLE FIRED")
-  //   setShowSignUpModal(false)
-  //   setShowLoginModal(true)
-  //   console.log(showLoginModal)
-  // }
-
-
   const dispatch = useDispatch();
   const history = useHistory();
 

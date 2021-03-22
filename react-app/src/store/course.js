@@ -65,9 +65,7 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
 
 // UPDATE THUNKS START
   export const updateOneUserCourse = ({courseId, name, description, category, courseImg, userId}) => async (dispatch) => {
-    console.log("3 REDUX: HIT updateOneUserCourse")
     const res = await fetch(`/api/users/me/courses/${courseId}`, {
-    // const res = await fetch(`/api/courses`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -81,10 +79,8 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
                             }),
     });
     const parsedResponse = await res.json();
-    console.log("4 REDUX PARSED BEFORE DISPATCH: ", parsedResponse)
     dispatch(updateCourse(parsedResponse))
     dispatch(getUserCourses());
-    console.log("5 REDUX PARSED AFTER DISPACTCH: ", parsedResponse)
     return parsedResponse;
   }
 // UPDATE THUNKS END
