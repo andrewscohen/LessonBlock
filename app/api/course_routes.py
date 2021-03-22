@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify, json, request, Response
 from flask_login import login_required, current_user
 from app.models import db, Course, User, User_Course
-from app.forms import CourseForm
-from app.forms import EditCourseForm
+from app.forms import CreateCourseForm
 
 
 course_routes = Blueprint('courses', __name__)
@@ -45,22 +44,19 @@ def studentEnroll(id):
     return course.to_dict()
 
 
-@course_routes.route('', methods=['POST', 'PUT'])
+@course_routes.route('', methods=['POST'])
 @login_required
 def create_course():
+    form = CreateCourseForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if request.method == 'POST':
-
-        form = CourseForm()
-        form["csrf_token"].data = request.cookies["csrf_token"]
-
-        if form.validate_on_submit():
-            data = request.get_json()
-            course = Course(
-                name=form.data['name'],
-                description=form.data['description'],
-                category=form.data['category'],
-            )
+    if form.validate_on_submit():
+        data = request.get_json()
+        course = Course(
+            name=form.data['name'],
+            description=form.data['description'],
+            category=form.data['category'],
+        )
 
     db.session.add(course)
     user = User.query.get(data['user_id'])
