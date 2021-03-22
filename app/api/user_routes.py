@@ -59,34 +59,17 @@ def update_course(id):
     course = Course.query.get(id)
 
     if request.method == 'DELETE':
+        print("BACKEND HIT DELETE")
         db.session.delete(course)
         db.session.commit()
 
-    # elif request.method == 'PUT':
-    #     form = EditCourseForm()
-    #     form["csrf_token"].data = request.cookies["csrf_token"]
-
-    #     course_to_update = Course.query.get(course_id)
-
-    #     course_to_update.name = form.data["name"]
-    #     course_to_update.category = form.data["category"]
-    #     course_to_update.description = form.data["description"]
-    #     course_to_update.course_img = form.data["course_img"]
-    #     course_to_update.user_id = form.data["user_id"]
-    #     course_to_update.course_id = form.data["course_id"]
-
-    #     if form.validate_on_submit():
-    #         db.session.add(course_to_update)
-    #         db.session.commit()
-    #         return course_to_update.to_dict()
-
-    #     errors = validation_errors_to_error_messages(form.errors)
-    #     return {"errors": errors}
     elif request.method == 'PUT':
+        # print("6 BACKEND HIT PUT REQUEST")
         form = EditCourseForm()
         form["csrf_token"].data = request.cookies["csrf_token"]
 
         if form.validate_on_submit():
+            # print("7 BACKEND FORM VALIDATED")
             data = request.get_json()
             course = Course(
                 name=form.data["name"],
@@ -95,13 +78,35 @@ def update_course(id):
                 course_img=form.data["course_img"],
             )
             db.session.add(course)
+            # print("8 BACKEND SESSION HAS BEEN ADDED", course)
             db.session.commit()
+            # print("9 BACKEND SESSION HAS BEEN COMMITTED")
+    # elif request.method == 'PUT':
+    #     print("THIS WAS A PUT REQUEST")
+    #     form = EditCourseForm()
+    #     form["csrf_token"].data = request.cookies["csrf_token"]
+
+    #     if form.validate_on_submit():
+    #         print("FORM VALIDATED ON SUBMIT!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    #         data = request.get_json()
+    #         course = Course(
+    #             name=form.data["name"],
+    #             category=form.data["category"],
+    #             description=form.data["description"],
+    #             course_img=form.data["course_img"],
+    #         )
+    #         db.session.add(course)
+    #         print("SESSION HAS BEEN ADDED", course)
+    #         db.session.commit()
+    #         print("SESSION HAS BEEN COMMITTED")
 
     elif request.method == 'GET':
+        print("BACKEND HIT GET")
         return course.to_dict()
 
     allCourses = Course.query.all()
     data = [course.to_dict() for course in allCourses]
+    print("BACKEND ABOUT TO RETURN: ")
     return {"courses": data}
 
     # user_courses = User_Course.query.filter_by(user_id=current_user.id)

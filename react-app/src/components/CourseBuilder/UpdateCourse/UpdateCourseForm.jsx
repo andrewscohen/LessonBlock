@@ -9,7 +9,7 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 
 
 const UpdateCourseForm = ({setShowModal, currentCourse}) => {
-    console.log("CURRENT COURSE: ", currentCourse.id)
+    console.log("1 CURRENT COURSE: ", currentCourse.id)
     const [errors, setErrors] = useState([]);
     const [courseName, setCourseName] = useState(currentCourse.name);
     const [courseDescription, setCourseDescription] = useState(currentCourse.description);
@@ -27,10 +27,13 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
             description: courseDescription,
             category: courseCategory,
             courseId: currentCourse.id,
-            user_id: sessionUser.id,
+            userId: sessionUser.id,
+            courseImg: courseImg,
         }
         dispatch(updateOneUserCourse(updatedCourseData));
         setShowModal(false);
+        history.push('/dashboard');
+        console.log("2 FORM HAS BEEN SUBMITTED: ", updatedCourseData)
         return updatedCourseData;
 };
 
@@ -43,7 +46,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
         </div>
         <div className="flex flex-col items-center justify-center w-full rounded-md h-2/4 bg-white-space">
         <h1 className="p-4 font-serif text-6xl font-bold text-black p">
-            Create New Course
+            EDIT THIS COURSE
         </h1>
             <form onSubmit={handleSubmit} className="w-6/12">
                 <div className="relative w-full mt-10 space-y-4">

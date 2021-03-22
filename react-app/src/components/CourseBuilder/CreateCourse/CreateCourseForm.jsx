@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {createUserCourse} from "../../../store/course";
-import handDrawn from "../../Dashboard/handDrawn.jpg"
+import handDrawn from "../../Dashboard/Assets/handDrawn.jpg"
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
@@ -25,7 +25,7 @@ const CreateCourseForm = ({setShowModal}) => {
             name: courseName,
             description: courseDescription,
             category: courseCategory,
-            user_id: sessionUser.id,
+            userId: sessionUser.id,
         }
         dispatch(createUserCourse(newCourseData));
         setShowModal(false);
