@@ -44,7 +44,6 @@ export const loadAllCourseSections = (sections) => {
 
 // CREATE THUNKS START
 export const createCourseSection = ({ course_id, sectionTitle, orderNum, userId }) => async (dispatch) => {
-  console.log("REDUX THUNK HAS BEEN HIT")
   const res = await fetch(`/api/users/me/courses/${course_id}/sections`, {
     method: "POST",
     headers: {
@@ -56,7 +55,6 @@ export const createCourseSection = ({ course_id, sectionTitle, orderNum, userId 
                           }),
   });
   const parsedResponse = await res.json();
-  console.log("4: REDUX BEFORE DISPATCH!!!!", parsedResponse)
   dispatch(loadOneCourseSection(parsedResponse))
   return parsedResponse;
 }

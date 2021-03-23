@@ -18,11 +18,11 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
     return (
       <div className='grid w-full h-screen grid-cols-12 pt-20 overflow-hidden bg-white-space'>
         <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
-          <ul className="grid h-64 grid-flow-col col-start-4 col-end-11 mt-28">
             {courses && courses.map(course => (
+              <ul>
                 <CourseCard course={course} />
+              </ul>
             ))}
-          </ul>
       </div>
     )
 };

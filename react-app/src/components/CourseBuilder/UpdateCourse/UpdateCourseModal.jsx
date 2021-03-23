@@ -8,9 +8,8 @@ const UpdateCourseModal = ({authenticated, setAuthenticated, currentCourse}) => 
   return (
     <>
       <button
-        className="block px-4 py-3 mt-8 text-lg font-bold text-gray-800 uppercase bg-white rounded-lg hover:bg-gray-100"
+        className="px-4 py-3 m-5 font-bold bg-green-500 rounded-lg"
         type="button"
-        style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}>Update Course</button>
       {showModal ? (
           <Modal onClose={() => setShowModal(false)}>

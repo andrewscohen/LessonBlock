@@ -66,11 +66,6 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpModal}) => {
     setIsInstructor(e.target.value)
   }
 
-  const loginSwitch = (e) => {
-    setShowSignUpModal(false);
-    setShowLoginModal(true);
-  }
-
   if (authenticated) {
     return <Redirect to="/dashboard" />;
   }

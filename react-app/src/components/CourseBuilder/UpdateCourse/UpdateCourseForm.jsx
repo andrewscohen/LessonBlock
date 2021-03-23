@@ -9,7 +9,6 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 
 
 const UpdateCourseForm = ({setShowModal, currentCourse}) => {
-    const [errors, setErrors] = useState([]);
     const [courseName, setCourseName] = useState(currentCourse.name);
     const [courseDescription, setCourseDescription] = useState(currentCourse.description);
     const [courseCategory, setCourseCategory] = useState(currentCourse.category);
@@ -66,9 +65,6 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
             <form onSubmit={handleSubmit} className="w-6/12">
                 <div className="relative w-full mt-10 space-y-4">
                     <div className="relative">
-                        <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
                     <div>
                         <input
                             type='text'
