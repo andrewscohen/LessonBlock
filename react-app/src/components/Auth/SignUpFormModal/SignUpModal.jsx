@@ -11,12 +11,14 @@ const SignUpModal = ({authenticated, setAuthenticated}) => {
         className="block px-4 py-3 mt-8 text-lg font-bold text-gray-800 uppercase bg-white rounded-lg hover:bg-gray-100"
         type="button"
         style={{ transition: "all .15s ease" }}
-        onClick={() => setShowSignUpModal(true)}>Get Started</button>
-      {showSignUpModal ? (
+        onClick={() => setShowSignUpModal(true)}>
+          Get Started
+      </button>
+        {showSignUpModal ? (
           <Modal onClose={() => setShowSignUpModal(false)}>
-              <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setShowSignUpModal={setShowSignUpModal}/>
+            <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setShowSignUpModal={setShowSignUpModal}/>
           </Modal>
-      ) : null}
+        ) : null}
     </>
   );
 };

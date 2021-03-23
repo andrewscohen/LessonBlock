@@ -14,10 +14,7 @@ function LoginFormModal({authenticated, setAuthenticated}) {
        onClick={() => setShowLoginModal(true)}>Log In</button>
       {showLoginModal ? (
         <Modal onClose={() => setShowLoginModal(false)}>
-          {/* <div className="fixed inset-0 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
-            > */}
           <LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} setShowLoginModal={setShowLoginModal}/>
-          {/* </div> */}
         </Modal>
       ) : null }
     </>
