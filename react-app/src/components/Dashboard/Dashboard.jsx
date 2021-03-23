@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import {getUserCourses} from "../../store/course";
-import {getUserCourseSections} from "../../store/section"
 import CourseCard from "./CourseCard";
 
 
@@ -14,10 +13,6 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
     useEffect(() => {
         dispatch(getUserCourses());
       }, [dispatch]);
-
-      // useEffect(() => {
-      //   dispatch(getUserCourseSections());
-      // }, [dispatch]);
 
 
     return (

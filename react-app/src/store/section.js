@@ -43,24 +43,21 @@ export const loadAllCourseSections = (sections) => {
 // GET THUNKS END
 
 // CREATE THUNKS START
-export const createCourseSection = ({ courseId, sectionTitle, orderNum, userId }) => async (dispatch) => {
-  console.log("3: CREATE SECTION THUNK HIT!!!!!!")
-  const res = await fetch(`/api/sections`, {
+export const createCourseSection = ({ course_id, sectionTitle, orderNum, userId }) => async (dispatch) => {
+  console.log("REDUX THUNK HAS BEEN HIT")
+  const res = await fetch(`/api/users/me/courses/${course_id}/sections`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ user_id: userId,
-                           course_id: courseId,
                            title: sectionTitle,
                            order_num: orderNum,
                           }),
   });
   const parsedResponse = await res.json();
-  console.log("4: BEFORE DISPATCH!!!!", parsedResponse)
-  dispatch(createCourseSection(parsedResponse));
-  dispatch(getUserCourseSections())
-  console.log("5: AFTER DISPATCH!!!!", parsedResponse)
+  console.log("4: REDUX BEFORE DISPATCH!!!!", parsedResponse)
+  dispatch(loadOneCourseSection(parsedResponse))
   return parsedResponse;
 }
 // CREATE THUNKS END
@@ -68,13 +65,12 @@ export const createCourseSection = ({ courseId, sectionTitle, orderNum, userId }
 
 // UPDATE THUNKS START
   export const updateCourseSection = ({ courseId, sectionTitle, orderNum, userId, sectionId}) => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId}/${sectionId}`, {
+    const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ user_id: userId,
-                             course_id: courseId,
                              section_id: sectionId,
                              title: sectionTitle,
                              order_num: orderNum,

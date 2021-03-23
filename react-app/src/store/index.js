@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 
 import sessionReducer from "./session";
 import courseReducer from "./course";
+import sectionReducer from "./section";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  course: courseReducer
+  course: courseReducer,
+  section: sectionReducer,
 });
 
 let enhancer;

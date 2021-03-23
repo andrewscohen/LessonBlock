@@ -8,13 +8,13 @@ const CourseCard = ({course}) => {
             <div className="h-auto my-2 overflow-hidden rounded shadow-lg w-96">
                 <img className="w-full" src={BookCover} alt="Sunset in the mountains" />
                 <div className="px-6 py-4">
-                <div className="mb-2 text-3xl font-bold">{course.name}</div>
-                <p className="text-base text-grey-darker">
-                {course.description}
-                </p>
-            <div>
-                <button type="button" className="bg-brand-blue">Edit</button>
-                </div>
+                    <div className="mb-2 text-3xl font-bold">{course.name}</div>
+                    <p className="text-base text-grey-darker">
+                    {course.description}
+                    </p>
+                    <div>
+                        <button type="button" className="bg-brand-blue">Edit</button>
+                    </div>
                 </div>
             </div>
         </Link>

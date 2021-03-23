@@ -47,8 +47,6 @@ const CreateCourseForm = ({setShowModal}) => {
       };
 
 
-
-
     return (
         <div className="container flex justify-end h-screen mt-96">
         <div className="absolute object-right-top pt-5 pr-8">

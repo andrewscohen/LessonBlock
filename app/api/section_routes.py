@@ -18,23 +18,24 @@ def form_errors(validation_errors):
 # SECTION CREATE ROUTES START
 
 
-@section_routes.route('', methods=['POST'])
-@login_required
-def create_section():
-    print("5 BACKEND CREATE SECTION FUNCTION HIT!!!!")
-    form = CreateSectionForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
+# @section_routes.route('', methods=['POST'])
+# @login_required
+# def create_section():
+#     print("5 BACKEND CREATE SECTION FUNCTION HIT!!!!")
+#     form = CreateSectionForm()
+#     form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if form.validate_on_submit():
-        data = request.get_json()
-        section = Section(
-            title=form.data['title'],
-            order_num=form.data['order_num'],
-            course_id=form.data['course_id'],
-        )
-    db.session.add(section)
-    # print("6: BEFORE FORM ADD TO SESSION!!!!!", {section})
-    db.session.commit()
-    print("7: AFTER FORM ADD TO SESSION!!!!!", section)
-    return {'errors': form_errors(form.errors)}
+#     if form.validate_on_submit():
+#         data = request.get_json()
+#         new_section = Section(
+#             title=form.data['title'],
+#             order_num=form.data['order_num'],
+#             course_id=form.data['course_id'],
+#         )
+
+#         db.session.add(new_section)
+#     # print("6: BEFORE FORM ADD TO SESSION!!!!!", {section})
+#         db.session.commit()
+#         print("7: AFTER FORM ADD TO SESSION!!!!!", new_section)
+#         return {'errors': form_errors(form.errors)}
 # SECTION CREATE ROUTE END
