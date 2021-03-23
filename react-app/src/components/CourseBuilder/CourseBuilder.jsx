@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
+import {getUserCourseSections} from "../../store/section"
 import CreateSectionModal from "./CreateSection/CreateSectionModal";
 
 
@@ -31,6 +32,10 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
       dispatch(deleteOneUserCourse(courseId))
       history.push('/dashboard')
     }
+
+    //  useEffect((courseId) => {
+    //     dispatch(getUserCourseSections(courseId));
+    //   }, [dispatch, courseId]);
 
     return (
         <div className='grid w-full h-screen grid-cols-12 pt-20 overflow-hidden bg-white-space'>

@@ -18,25 +18,21 @@ const CreateSectionForm = ({setShowModal, currentCourse}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log("1: SUBMIT FIRED!!!!!!!!!!!!!!!!!!!!")
         const newSectionData = {
             sectionTitle: sectionTitle,
             orderNum: orderNum,
             userId: sessionUser.id,
-            courseId: currentCourse.id,
+            course_id: currentCourse.id,
         }
 
-        const newSection = await dispatch(createCourseSection(newSectionData));
-        if (!newSection.errors) {
-            setShowModal(false);
-            history.push('/dashboard')
-            console.log("2: ABOUT TO RETURN NEWSECTIODATA:!!!!!!!!!!!!!!!!!", newSectionData)
-            return newSectionData;
-        } else {
-            setErrors(newSection.errors)
-        }
+        dispatch(createCourseSection(newSectionData));
+        setShowModal(false);
+        history.push('/dashboard')
+        console.log("2: ABOUT TO RETURN NEWSECTIONDATA:!!!!!!!!!!!!!!!!!", Number.isInteger(newSectionData.course_id))
+        return newSectionData;
     };
 
     const updateSectionTitle = (e) => {

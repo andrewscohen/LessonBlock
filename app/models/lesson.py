@@ -13,8 +13,6 @@ class Lesson(db.Model):
                            db.ForeignKey("sections.id"),
                            nullable=False)
 
-    section = db.relationship("Section", back_populates="lessons")
-
     def to_dict(self):
         return {
             "id": self.id,

@@ -4,7 +4,7 @@ import botocore
 
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user, logout_user
-from app.models import db, User, Course, User_Course
+from app.models import db, User, Course, User_Course, Section, Lesson
 from app.config import Config
 from app.helpers import upload_file_to_s3
 
@@ -110,9 +110,10 @@ def update_course(id):
 
 
 # SECTION CREATE ROUTES START
-@user_routes.route('/me/courses/<int:course_id>/sections/<int:section_id>', methods=['POST'])
+@user_routes.route('/me/courses/<int:course_id>/sections',
+                   methods=['POST'])
 @login_required
-def create_section():
+def create_section(course_id):
     print("5 BACKEND CREATE SECTION FUNCTION HIT!!!!")
     form = CreateSectionForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -122,12 +123,13 @@ def create_section():
         new_section = Section(
             title=form.data['title'],
             order_num=form.data['order_num'],
-            course_id=form.data['course_id'],
+            course_id=course_id
         )
-    print("6: BEFORE FORM ADD TO SESSION!!!!!", new_section)
-    db.session.add(new_section)
-    db.session.commit()
-    print("7: AFTER FORM ADD TO SESSION!!!!!", new_section)
+        print("6: BEFORE FORM ADD TO SESSION!!!!!", new_section)
+        db.session.add(new_section)
+        db.session.commit()
+        print("7: AFTER FORM ADD TO SESSION!!!!!", new_section)
+        return new_section.to_dict()
     return {'errors': form_errors(form.errors)}
 # SECTION CREATE ROUTE END
 
