@@ -6,7 +6,6 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user, logout_user
 from app.models import db, User, Course, User_Course, Section, Lesson
 from app.config import Config
-from app.helpers import upload_file_to_s3
 
 from app.forms import login_form
 from app.forms import signup_form
@@ -71,9 +70,8 @@ def create_course():
         )
 
     db.session.add(course)
-    user = User.query.get(data['user_id'])
-    user.courses.append(course)
-    db.session.add(user)
+    current_user.courses.append(course)
+    db.session.add(current_user)
     db.session.commit()
     return {'errors': form_errors(form.errors)}
 
@@ -114,7 +112,6 @@ def update_course(id):
                    methods=['POST'])
 @login_required
 def create_section(course_id):
-    print("5 BACKEND CREATE SECTION FUNCTION HIT!!!!")
     form = CreateSectionForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
@@ -125,10 +122,9 @@ def create_section(course_id):
             order_num=form.data['order_num'],
             course_id=course_id
         )
-        print("6: BEFORE FORM ADD TO SESSION!!!!!", new_section)
+
         db.session.add(new_section)
         db.session.commit()
-        print("7: AFTER FORM ADD TO SESSION!!!!!", new_section)
         return new_section.to_dict()
     return {'errors': form_errors(form.errors)}
 # SECTION CREATE ROUTE END
@@ -136,11 +132,13 @@ def create_section(course_id):
 # SECTION DELETE, PUT, GET ROUTE START
 
 
-@user_routes.route('/me/sections/<int:id>',
+@user_routes.route('/me/courses/<int:course_id>/sections/<int:id>',
                    methods=['DELETE', 'PUT', 'GET'])
 @login_required
-def update_section(id):
+def update_section(course_id, id):
+    print("BACKEND HIT!")
     section = Section.query.get(id)
+    print("SECTION!!!!!!!!!!:", section)
 
     if request.method == 'DELETE':
         db.session.delete(section)
@@ -154,15 +152,14 @@ def update_section(id):
             section.title = form.data["title"],
             section.order_num = form.data["order_num"],
             section.course_id = form.data["course_id"],
-            section.title = form.data[""],
 
             db.session.commit()
 
     elif request.method == 'GET':
         return section.to_dict()
 
-    allCourses = Course.query.all()
-    data = [course.to_dict() for course in allCourses]
-    return {"courses": data}
+    allSections = Section.query.all()
+    data = [section.to_dict() for section in allSections]
+    return {"sections": data}
 # SECTION DELETE, PUT, GET ROUTE START
 # SECTION ROUTES END

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
-import {getUserCourseSections} from "../../store/section"
+import {deleteOneUserCourseSection} from "../../store/section"
 import CreateSectionModal from "./CreateSection/CreateSectionModal";
 
 
@@ -31,6 +31,11 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
       history.push('/dashboard')
     }
 
+    function deleteThisSection() {
+      console.log("DELETE FIRED")
+      dispatch(deleteOneUserCourseSection({courseId: 135, sectionId: 27}))
+    }
+
     return (
       <div className='grid w-full h-screen grid-cols-12 pt-20 overflow-hidden bg-white-space'>
         <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
@@ -47,12 +52,17 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
             DELETE THIS COURSE
           </button>
           <CreateSectionModal course={course}/>
-<h1 className="text-xl font-bold uppercase">SECTIONS</h1>
-            {course.sections && course.sections.map(section => (
-              <ul>
-                <li>SECTION: {section.order_num} {section.title}</li>
-              </ul>
-          ))}
+          <button type='button'
+            className="px-4 py-3 m-5 font-bold bg-green-500 rounded-lg"
+            onClick={deleteThisSection}>
+            DELETE THIS SECTION
+          </button>
+            <h1 className="text-xl font-bold uppercase">SECTIONS</h1>
+              {course.sections && course.sections.map(section => (
+                <ul>
+                  <li key={section.id}>SECTION: {section.order_num} {section.title}</li>
+                </ul>
+              ))}
       </div>
     </div>
     )

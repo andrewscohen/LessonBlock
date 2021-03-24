@@ -84,26 +84,34 @@ export const createCourseSection = ({ course_id, sectionTitle, orderNum, userId 
 
 
 // DELETE THUNKS START
-  export const deleteOneCourseSection = ({courseId, sectionId}) => async (dispatch) => {
-    const res = await fetch(`/api/users/me/courses/${courseId}/${sectionId}`, {
-      method: "DELETE"
-    });
-    const parsedResponse = await res.json();
-    dispatch(loadAllCourseSections(parsedResponse));
-    return parsedResponse;
+  export const deleteOneUserCourseSection = ({courseId, sectionId}) => async (dispatch) => {
+    console.log("THUNK HIT: ", courseId )
+    const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+                            course_id: courseId,
+                            section_id: sectionId
+                          }),
+      });
+      const parsedResponse = await res.json();
+      console.log("PARSED RESPONSE: ", parsedResponse)
+      dispatch(loadAllCourseSections(parsedResponse.sections));
+      return parsedResponse;
   }
 // DELETE THUNKS END
 
 
 // END THUNKS
-
   const initialState = { currentSection: null, userCourseSections: [] };
 
 export default function sectionReducer(state = initialState, action) {
   let newState = { ...state };
   switch (action.type) {
     case LOAD_ALL_COURSE_SECTIONS:
-      newState = {...state, userCoursesSections: [...action.payload.sections]}
+      newState = {...state, userCourseSections: [...action.payload]}
       return newState;
     case LOAD_ONE_COURSE_SECTION:
       newState = {...state, currentSection: {...action.payload}}

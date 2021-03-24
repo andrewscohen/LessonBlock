@@ -18,7 +18,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedCourseData = {
             name: courseName,
@@ -28,7 +28,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
             userId: sessionUser.id,
             courseImg: courseImg,
         }
-        dispatch(updateOneUserCourse(updatedCourseData));
+        await dispatch(updateOneUserCourse(updatedCourseData));
         setShowModal(false);
         history.push('/dashboard');
         return updatedCourseData;
@@ -47,7 +47,8 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     };
 
     // const updateCourseImg = (e) => {
-    //     setCourseImg(e.target.value);
+    //     const file = e.target.files[0]
+    //     if(file) setCourseImg(file);
     // };
 
 
