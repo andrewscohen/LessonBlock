@@ -1,9 +1,8 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-import "./NavBar.css";
-// import LoginModal from "../../Forms/LoginForm/"
 import LoginFormModal from "../../Auth/LoginFormModal"
+import "./NavBar.css";
 
 const NavBar = ({authenticated, setAuthenticated}) => {
   const location = useLocation();

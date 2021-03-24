@@ -9,7 +9,6 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 
 
 const UpdateCourseForm = ({setShowModal, currentCourse}) => {
-    const [errors, setErrors] = useState([]);
     const [courseName, setCourseName] = useState(currentCourse.name);
     const [courseDescription, setCourseDescription] = useState(currentCourse.description);
     const [courseCategory, setCourseCategory] = useState(currentCourse.category);
@@ -19,7 +18,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedCourseData = {
             name: courseName,
@@ -29,7 +28,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
             userId: sessionUser.id,
             courseImg: courseImg,
         }
-        dispatch(updateOneUserCourse(updatedCourseData));
+        await dispatch(updateOneUserCourse(updatedCourseData));
         setShowModal(false);
         history.push('/dashboard');
         return updatedCourseData;
@@ -48,7 +47,8 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     };
 
     // const updateCourseImg = (e) => {
-    //     setCourseImg(e.target.value);
+    //     const file = e.target.files[0]
+    //     if(file) setCourseImg(file);
     // };
 
 
@@ -66,9 +66,6 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
             <form onSubmit={handleSubmit} className="w-6/12">
                 <div className="relative w-full mt-10 space-y-4">
                     <div className="relative">
-                        <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
                     <div>
                         <input
                             type='text'

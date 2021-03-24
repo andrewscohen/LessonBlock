@@ -8,8 +8,7 @@ const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold t
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
 
-const CreateSectionForm = ({setShowModal, currentCourse}) => {
-    const [errors, setErrors] = useState([]);
+const CreateSectionForm = ({setShowModal, course}) => {
     const [sectionTitle, setSectionTitle] = useState('');
     const [orderNum, setOrderNum] = useState('');
 
@@ -20,18 +19,16 @@ const CreateSectionForm = ({setShowModal, currentCourse}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("1: SUBMIT FIRED!!!!!!!!!!!!!!!!!!!!")
         const newSectionData = {
             sectionTitle: sectionTitle,
             orderNum: orderNum,
             userId: sessionUser.id,
-            course_id: currentCourse.id,
+            course_id: course.id,
         }
 
         dispatch(createCourseSection(newSectionData));
         setShowModal(false);
         history.push('/dashboard')
-        console.log("2: ABOUT TO RETURN NEWSECTIONDATA:!!!!!!!!!!!!!!!!!", Number.isInteger(newSectionData.course_id))
         return newSectionData;
     };
 
@@ -57,10 +54,6 @@ const CreateSectionForm = ({setShowModal, currentCourse}) => {
         </h1>
             <form onSubmit={handleSubmit} className="w-6/12">
                 <div className="relative w-full mt-10 space-y-4">
-                    <div className="relative">
-                        <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
                     <div>
                         <input
                             type='text'
@@ -82,7 +75,6 @@ const CreateSectionForm = ({setShowModal, currentCourse}) => {
                     <div>
                         <button type="submit" className={whiteButtonStyle}>Enter</button>
                     </div>
-                </div>
                 </div>
             </form>
         </div>

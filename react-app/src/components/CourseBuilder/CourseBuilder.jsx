@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
-import {getUserCourseSections} from "../../store/section"
+import {deleteOneUserCourseSection} from "../../store/section"
 import CreateSectionModal from "./CreateSection/CreateSectionModal";
 
 
@@ -17,41 +17,54 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const { courseId }  = useParams();
 
     useEffect(() => {
-      if (!courseId) {
-        return
-      }
-      (async () => {
-        const response = await fetch(`/api/users/me/courses/${courseId}`);
-        const course = await response.json();
-        setCourse(course);
-        dispatch(getOneUserCourse(courseId));
-      })();
-    }, [courseId, dispatch]);
+      if (courseId) {
+        dispatch(getOneUserCourse(courseId))
+    }}, [courseId, dispatch]);
+
+    useEffect(() => {
+      if (currentCourse) {
+        setCourse(currentCourse)
+      }}, [currentCourse])
 
     function deleteThisCourse() {
-      dispatch(deleteOneUserCourse(courseId))
+      dispatch(deleteOneUserCourse(course.id))
       history.push('/dashboard')
     }
 
-    //  useEffect((courseId) => {
-    //     dispatch(getUserCourseSections(courseId));
-    //   }, [dispatch, courseId]);
+    function deleteThisSection() {
+      console.log("DELETE FIRED")
+      dispatch(deleteOneUserCourseSection({courseId: 135, sectionId: 27}))
+    }
 
     return (
-        <div className='grid w-full h-screen grid-cols-12 pt-20 overflow-hidden bg-white-space'>
-      <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
-      <UpdateCourseModal currentCourse={currentCourse}/>
-      {currentCourse && (
-        <>
-        <h1>{currentCourse.name}</h1>
-        <h1>{currentCourse.description}</h1>
-        <h1>{currentCourse.category}</h1>
-        <h1>{currentCourse.course_img}</h1>
-        </>
-      )}
-      <CreateSectionModal currentCourse={currentCourse}/>
-      <button type='button' onClick={deleteThisCourse}>DELETE THIS COURSE</button>
+      <div className='grid w-full h-screen grid-cols-12 pt-20 overflow-hidden bg-white-space'>
+        <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
+            {course && (
+              <>
+                <h1 className="col-span-6 mx-auto text-6xl font-bold">Welcome To {course.name}</h1>
+              </>
+            )}
+        <div className="flex flex-col">
+          <UpdateCourseModal currentCourse={course}/>
+          <button type='button'
+            className="px-4 py-3 m-5 font-bold bg-green-500 rounded-lg"
+            onClick={deleteThisCourse}>
+            DELETE THIS COURSE
+          </button>
+          <CreateSectionModal course={course}/>
+          <button type='button'
+            className="px-4 py-3 m-5 font-bold bg-green-500 rounded-lg"
+            onClick={deleteThisSection}>
+            DELETE THIS SECTION
+          </button>
+            <h1 className="text-xl font-bold uppercase">SECTIONS</h1>
+              {course.sections && course.sections.map(section => (
+                <ul>
+                  <li key={section.id}>SECTION: {section.order_num} {section.title}</li>
+                </ul>
+              ))}
       </div>
+    </div>
     )
 }
 
