@@ -2,6 +2,7 @@ import re
 import boto3
 import botocore
 
+
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user, login_user, logout_user
 from app.models import db, User, Course, User_Course, Section, Lesson
@@ -14,7 +15,7 @@ from app.forms import EditCourseForm
 from app.forms import CreateSectionForm
 from app.forms import EditSectionForm
 from app.forms import CreateLessonForm
-
+from app.aws_s3 import *
 from werkzeug.utils import secure_filename
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -56,7 +57,9 @@ def userMe():
     return {"courses": courses}
 
 
-@user_routes.route('/me/courses', methods=['POST'])
+@user_routes.route(
+    '/me/courses',
+    methods=['POST'])
 @login_required
 def create_course():
     form = CreateCourseForm()
@@ -77,8 +80,9 @@ def create_course():
     return {'errors': form_errors(form.errors)}
 
 
-@user_routes.route('/me/courses/<int:id>',
-                   methods=['DELETE', 'PUT', 'GET'])
+@user_routes.route(
+    '/me/courses/<int:id>',
+    methods=['DELETE', 'PUT', 'GET'])
 @login_required
 def update_course(id):
     course = Course.query.get(id)
@@ -88,16 +92,31 @@ def update_course(id):
         db.session.commit()
 
     elif request.method == 'PUT':
-        form = EditCourseForm()
-        form["csrf_token"].data = request.cookies["csrf_token"]
+        # form = EditCourseForm()
+        # form["csrf_token"].data = request.cookies["csrf_token"]
+        if "course_img" not in request.files:
+            return "No user_file key in request.files"
 
-        if form.validate_on_submit():
-            course.name = form.data["name"],
-            course.category = form.data["category"],
-            course.description = form.data["description"],
-            course.course_img = form.data["course_img"],
+        file = request.files["course_img"]
 
+        if file:
+            file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+            # course.course_id = request.form.get('course_id')
+            # course.user_id = request.form.get('user_id')
+            course.name = request.form.get('name')
+            course.description = request.form.get('description')
+            course.category = request.form.get('category')
+            course.course_img = file_url
+            # db.session.add(course)
             db.session.commit()
+            return course.to_dict()
+        else:
+            return "No File Attached!"
+    # if form.validate_on_submit():
+        #     course.name = form.data["name"],
+        #     course.category = form.data["category"],
+        #     course.description = form.data["description"],
+        #     course.course_img = form.data["course_img"],
 
     elif request.method == 'GET':
         return course.to_dict()
@@ -109,9 +128,10 @@ def update_course(id):
 
 
 # SECTION CREATE ROUTES START
-@user_routes.route('/me/courses/<int:course_id>/sections',
-                   methods=['POST'])
-@login_required
+@ user_routes.route(
+    '/me/courses/<int:course_id>/sections',
+    methods=['POST'])
+@ login_required
 def create_section(course_id):
     form = CreateSectionForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -133,8 +153,9 @@ def create_section(course_id):
 # SECTION DELETE, PUT, GET ROUTE START
 
 
-@user_routes.route('/me/courses/<int:course_id>/sections/<int:id>',
-                   methods=['DELETE', 'PUT', 'GET'])
+@user_routes.route(
+    '/me/courses/<int:course_id>/sections/<int:id>',
+    methods=['DELETE', 'PUT', 'GET'])
 @login_required
 def update_section(course_id, id):
     section = Section.query.get(id)
@@ -163,23 +184,19 @@ def update_section(course_id, id):
     return {"sections": data}
 # SECTION ROUTES END
 
+# LESSON ROUTES START
 
-@user_routes.route('/me/courses/<int:course_id>/sections/<int:section_id>/lessons',
-                   methods=['POST'])
+
+@user_routes.route(
+    '/me/courses/<int:course_id>/sections/<int:section_id>/lessons',
+    methods=['POST'])
 @login_required
 def create_lesson(course_id, section_id):
-    print("BACKEND CREATE LESSON FUNCTION HIT")
     form = CreateLessonForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
         data = request.get_json()
-        print("BACKEND DATA FROM JSON: ", data)
-        # lesson = Lesson()
-        # form.populate_obj(lesson)
-        # db.session.add(lesson)
-        # db.session.commit()
-        # return lesson.to_dict()
         new_lesson = Lesson(
             title=form.data['title'],
             content_media_type=form.data['content_media_type'],
@@ -187,40 +204,40 @@ def create_lesson(course_id, section_id):
             is_complete=form.data['is_complete'],
             section_id=section_id
         )
-        print("BACKEND new_lesson instance: ", new_lesson)
         db.session.add(new_lesson)
         db.session.commit()
-        print("BACKEND COMMIT HAS BEEN HIT EAGLE ONE!")
         return new_lesson.to_dict()
-    print({'errors': form_errors(form.errors)})
     return {'errors': form_errors(form.errors)}
 # LESSON CREATE ROUTE END
 
 # # LESSON DELETE, PUT, GET ROUTE START
 
 
-@user_routes.route('/me/courses/<int:course_id>/sections/<int:section_id>/lessons/<int:id>',
-                   methods=['DELETE', 'PUT', 'GET'])
+@user_routes.route(
+    '/me/courses/<int:course_id>/sections/<int:section_id>/lessons/<int:id>',
+    methods=['DELETE', 'PUT', 'GET'])
 @login_required
 def update_lesson(section_id, id):
     section = Section.query.get(section_id)
     lesson = Lesson.query.get(id)
 
     if request.method == 'DELETE':
-        db.session.delete(section)
+        db.session.delete(lesson)
         db.session.commit()
 
     elif request.method == 'PUT':
-        form = EditSectionForm()
+        form = EditLessonForm()
         form["csrf_token"].data = request.cookies["csrf_token"]
 
         if form.validate_on_submit():
-            section.title = form.data["title"],
-            section.order_num = form.data["order_num"],
-            course_id = course_id,
-            id = id
-
+            form.populate_obj(lesson)
             db.session.commit()
+            return lesson.to_dict()
+
+        # section.title = form.data["title"],
+        # section.order_num = form.data["order_num"],
+        # course_id = course_id,
+        # id = id
 
     elif request.method == 'GET':
         return lesson.to_dict()
@@ -228,4 +245,5 @@ def update_lesson(section_id, id):
     allLessons = Lesson.query.all()
     data = [lesson.to_dict() for lesson in allLessons]
     return {"lessons": data}
-# SECTION ROUTES END
+
+# LESSON ROUTES END
