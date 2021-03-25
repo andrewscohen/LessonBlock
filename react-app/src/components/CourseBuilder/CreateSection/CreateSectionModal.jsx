@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Modal } from '../../../context/ModalContext';
 import CreateSectionForm from "./CreateSectionForm";
 
-const CreateCourseModal = ({setAuthenticated, authenticated, course}) => {
+const CreateSectionModal = ({setAuthenticated, authenticated, course}) => {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -21,4 +21,4 @@ const CreateCourseModal = ({setAuthenticated, authenticated, course}) => {
   );
 };
 
-export default CreateCourseModal;
+export default CreateSectionModal;

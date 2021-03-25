@@ -1,20 +1,25 @@
 import React, {useEffect, useState} from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
+import CreateSectionModal from "./CreateSection/CreateSectionModal";
+import CreateLessonModal from "./CreateLesson/CreateLessonModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 import {deleteOneUserCourseSection} from "../../store/section"
-import CreateSectionModal from "./CreateSection/CreateSectionModal";
+import {deleteOneUserCourseLesson} from "../../store/lesson"
 
 
 const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
-    const sessionUser = useSelector((state) => (state.session.user));
-    const currentCourse = useSelector((state) => (state.course.currentCourse))
+    const [selectedSection, setSelectedSection] = useState({})
+    const [selectedLesson, setSelectedLesson] = useState({})
     const dispatch = useDispatch();
     const history = useHistory();
     const { courseId }  = useParams();
+
+    const sessionUser = useSelector((state) => (state.session.user));
+    const currentCourse = useSelector((state) => (state.course.currentCourse))
 
     useEffect(() => {
       if (courseId) {
@@ -31,10 +36,12 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
       history.push('/dashboard')
     }
 
-    function deleteThisSection() {
-      console.log("DELETE FIRED")
-      dispatch(deleteOneUserCourseSection({courseId: 135, sectionId: 27}))
+    const deleteThisSection = async (e) => {
+      await dispatch(deleteOneUserCourseSection({courseId: course.id, sectionId: selectedSection.id}))
+      history.push(`/users/me/courses/${course.id}`)
+      setSelectedSection('')
     }
+
 
     return (
       <div className='grid w-full h-screen grid-cols-12 pt-20 overflow-hidden bg-white-space'>
@@ -57,12 +64,30 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
             onClick={deleteThisSection}>
             DELETE THIS SECTION
           </button>
+          <CreateLessonModal course={course} section={selectedSection}/>
             <h1 className="text-xl font-bold uppercase">SECTIONS</h1>
               {course.sections && course.sections.map(section => (
                 <ul>
-                  <li key={section.id}>SECTION: {section.order_num} {section.title}</li>
+                  {/* <Link to={`/users/me/courses/${course.id}/sections/${section.id}`} key={section.id}>
+                    SECTION: {section.order_num} {section.title}
+                  </Link> */}
+                  <li key={section.order_num}>
+                  <button key={section.id}value={section.id} onClick={() => setSelectedSection(section)}>
+                    SECTION: {section.order_num} {section.title}
+                  </button>
+                  </li>
                 </ul>
               ))}
+          <h1 className="text-xl font-bold uppercase">LESSONS</h1>
+          {/* {course.sections.lessons && course.sections.lessons.map(lesson => (
+                <ul>
+                  <li key={lesson.id}>
+                  <button value={lesson.id} onClick={() => setSelectedLesson(lesson)}>
+                    Lesson: {lesson.title}
+                  </button>
+                  </li>
+                </ul>
+                ))} */}
       </div>
     </div>
     )
