@@ -12,7 +12,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     const [courseName, setCourseName] = useState(currentCourse.name);
     const [courseDescription, setCourseDescription] = useState(currentCourse.description);
     const [courseCategory, setCourseCategory] = useState(currentCourse.category);
-    const [courseImg, setCourseImg] = useState('');
+    const [courseImg, setCourseImg] = useState('hello!');
 
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
@@ -89,6 +89,13 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
                             value={courseCategory}
                             className={formInputStyle}
                             onChange={updateCourseCategory}
+                        >
+                        </input>
+                        <input
+                            type='file'
+                            // value={courseImg}
+                            className={formInputStyle}
+                            onChange={(e) => setCourseImg(e.target.files[0])}
                         >
                         </input>
                     </div>

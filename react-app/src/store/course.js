@@ -65,18 +65,20 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
 
 // UPDATE THUNKS START
   export const updateOneUserCourse = ({courseId, name, description, category, courseImg, userId}) => async (dispatch) => {
+    const form = new FormData()
+    form.append("course_id", courseId)
+    form.append("user_id", userId)
+    form.append("name", name)
+    form.append("description", description)
+    form.append("category", category)
+    form.append("course_img", courseImg)
+
     const res = await fetch(`/api/users/me/courses/${courseId}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ course_id: courseId,
-                             user_id: userId,
-                             name: name,
-                             description: description,
-                             category: category,
-                             course_img: courseImg,
-                            }),
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      body: form,
     });
     const parsedResponse = await res.json();
     dispatch(updateCourse(parsedResponse))

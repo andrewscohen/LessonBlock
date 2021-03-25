@@ -79,7 +79,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
                 </ul>
               ))}
           <h1 className="text-xl font-bold uppercase">LESSONS</h1>
-          {/* {course.sections.lessons && course.sections.lessons.map(lesson => (
+              {/* {course.sections.lessons && course.sections.lessons.map(lesson => (
                 <ul>
                   <li key={lesson.id}>
                   <button value={lesson.id} onClick={() => setSelectedLesson(lesson)}>
@@ -87,7 +87,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
                   </button>
                   </li>
                 </ul>
-                ))} */}
+              ))} */}
       </div>
     </div>
     )
