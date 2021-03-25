@@ -43,8 +43,8 @@ export const loadAllCourseSections = (sections) => {
 // GET THUNKS END
 
 // CREATE THUNKS START
-export const createCourseSection = ({ course_id, sectionTitle, orderNum, userId }) => async (dispatch) => {
-  const res = await fetch(`/api/users/me/courses/${course_id}/sections`, {
+export const createCourseSection = ({ courseId, sectionTitle, orderNum, userId }) => async (dispatch) => {
+  const res = await fetch(`/api/users/me/courses/${courseId}/sections`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

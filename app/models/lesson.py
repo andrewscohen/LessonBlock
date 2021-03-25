@@ -8,7 +8,7 @@ class Lesson(db.Model):
     title = db.Column(db.String(50), nullable=False)
     content_media_type = db.Column(db.String(50), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    is_complete = db.Column(db.Boolean, nullable=False)
+    is_complete = db.Column(db.Boolean, nullable=True)
     section_id = db.Column(db.Integer,
                            db.ForeignKey("sections.id"),
                            nullable=False)
@@ -17,7 +17,7 @@ class Lesson(db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            "content_media_type": self.content_media_type,
+            "content_media_type": self. content_media_type,
             "content": self.content,
-            "section_id": self.section,
+            "section_id": self.section_id,
         }

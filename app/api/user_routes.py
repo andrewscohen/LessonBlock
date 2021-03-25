@@ -13,6 +13,7 @@ from app.forms import CreateCourseForm
 from app.forms import EditCourseForm
 from app.forms import CreateSectionForm
 from app.forms import EditSectionForm
+from app.forms import CreateLessonForm
 
 from werkzeug.utils import secure_filename
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -136,9 +137,7 @@ def create_section(course_id):
                    methods=['DELETE', 'PUT', 'GET'])
 @login_required
 def update_section(course_id, id):
-    print("BACKEND HIT!")
     section = Section.query.get(id)
-    print("SECTION!!!!!!!!!!:", section)
 
     if request.method == 'DELETE':
         db.session.delete(section)
@@ -151,7 +150,8 @@ def update_section(course_id, id):
         if form.validate_on_submit():
             section.title = form.data["title"],
             section.order_num = form.data["order_num"],
-            section.course_id = form.data["course_id"],
+            course_id = course_id,
+            id = id
 
             db.session.commit()
 
@@ -161,5 +161,71 @@ def update_section(course_id, id):
     allSections = Section.query.all()
     data = [section.to_dict() for section in allSections]
     return {"sections": data}
-# SECTION DELETE, PUT, GET ROUTE START
+# SECTION ROUTES END
+
+
+@user_routes.route('/me/courses/<int:course_id>/sections/<int:section_id>/lessons',
+                   methods=['POST'])
+@login_required
+def create_lesson(course_id, section_id):
+    print("BACKEND CREATE LESSON FUNCTION HIT")
+    form = CreateLessonForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = request.get_json()
+        print("BACKEND DATA FROM JSON: ", data)
+        # lesson = Lesson()
+        # form.populate_obj(lesson)
+        # db.session.add(lesson)
+        # db.session.commit()
+        # return lesson.to_dict()
+        new_lesson = Lesson(
+            title=form.data['title'],
+            content_media_type=form.data['content_media_type'],
+            content=form.data['content'],
+            is_complete=form.data['is_complete'],
+            section_id=section_id
+        )
+        print("BACKEND new_lesson instance: ", new_lesson)
+        db.session.add(new_lesson)
+        db.session.commit()
+        print("BACKEND COMMIT HAS BEEN HIT EAGLE ONE!")
+        return new_lesson.to_dict()
+    print({'errors': form_errors(form.errors)})
+    return {'errors': form_errors(form.errors)}
+# LESSON CREATE ROUTE END
+
+# # LESSON DELETE, PUT, GET ROUTE START
+
+
+@user_routes.route('/me/courses/<int:course_id>/sections/<int:section_id>/lessons/<int:id>',
+                   methods=['DELETE', 'PUT', 'GET'])
+@login_required
+def update_lesson(section_id, id):
+    section = Section.query.get(section_id)
+    lesson = Lesson.query.get(id)
+
+    if request.method == 'DELETE':
+        db.session.delete(section)
+        db.session.commit()
+
+    elif request.method == 'PUT':
+        form = EditSectionForm()
+        form["csrf_token"].data = request.cookies["csrf_token"]
+
+        if form.validate_on_submit():
+            section.title = form.data["title"],
+            section.order_num = form.data["order_num"],
+            course_id = course_id,
+            id = id
+
+            db.session.commit()
+
+    elif request.method == 'GET':
+        return lesson.to_dict()
+
+    allLessons = Lesson.query.all()
+    data = [lesson.to_dict() for lesson in allLessons]
+    return {"lessons": data}
 # SECTION ROUTES END
