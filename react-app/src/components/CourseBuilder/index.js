@@ -1,2 +1,4 @@
 import CourseBuilder from "./CourseBuilder";
-export default CourseBuilder;
+import TestSpace from "./TestSpace";
+import TestSpace2 from "./TestSpace2";
+export {CourseBuilder, TestSpace, TestSpace2};

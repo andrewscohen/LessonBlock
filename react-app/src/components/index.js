@@ -1,11 +1,13 @@
 import {ProtectedRoute } from "./Auth";
 import {NavBar} from "./CommonElements";
 import {LandingPage} from "./LandingPage";
-import CourseBuilder from "./CourseBuilder";
+import {CourseBuilder, TestSpace, TestSpace2} from "./CourseBuilder";
 import Dashboard from "./Dashboard";
 
 export { ProtectedRoute,
          LandingPage,
          NavBar,
          Dashboard,
-        CourseBuilder};
+        CourseBuilder,
+        TestSpace,
+        TestSpace2};
