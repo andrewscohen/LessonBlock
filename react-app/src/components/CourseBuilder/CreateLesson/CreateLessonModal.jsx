@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Modal } from '../../../context/ModalContext';
 import CreateLessonForm from "./CreateLessonForm";
 
-const CreateLessonModal = ({setAuthenticated, authenticated, course, selectedSection}) => {
+const CreateLessonModal = ({setAuthenticated, authenticated, course, selectedSectionId}) => {
     const [showLessonModal, setShowLessonModal] = useState(false);
 
     return (
@@ -19,7 +19,7 @@ const CreateLessonModal = ({setAuthenticated, authenticated, course, selectedSec
                 setAuthenticated={setAuthenticated}
                 setShowLessonModal={setShowLessonModal}
                 showModal={showLessonModal}
-                selectedSection={selectedSection}
+                selectedSectionId={selectedSectionId}
                 course={course}
             />
         </Modal>

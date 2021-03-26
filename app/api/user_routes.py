@@ -101,8 +101,6 @@ def update_course(id):
 
         if file:
             file_url = upload_file_to_s3(file, Config.S3_BUCKET)
-            # course.course_id = request.form.get('course_id')
-            # course.user_id = request.form.get('user_id')
             course.name = request.form.get('name')
             course.description = request.form.get('description')
             course.category = request.form.get('category')
@@ -112,11 +110,6 @@ def update_course(id):
             return course.to_dict()
         else:
             return "No File Attached!"
-    # if form.validate_on_submit():
-        #     course.name = form.data["name"],
-        #     course.category = form.data["category"],
-        #     course.description = form.data["description"],
-        #     course.course_img = form.data["course_img"],
 
     elif request.method == 'GET':
         return course.to_dict()
