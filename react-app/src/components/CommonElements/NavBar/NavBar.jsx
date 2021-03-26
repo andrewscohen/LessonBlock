@@ -2,6 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import LoginFormModal from "../../Auth/LoginFormModal"
+import ProfileButton from "../ProfileButton";
 import "./NavBar.css";
 
 const NavBar = ({authenticated, setAuthenticated}) => {
@@ -31,11 +32,12 @@ const NavBar = ({authenticated, setAuthenticated}) => {
           )}
           {authenticated && (
             <>
-            <NavLink to="/dashboard" exact={true} activeClassName="active" className="pr-4 font-bold text-grey-200 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}</NavLink>
-              <img className="w-12 h-12 rounded-full" alt="avatar" src={sessionUser.profile_img} />
+            <NavLink to="/dashboard" exact={true} activeClassName="active" className="pr-4 font-bold text-grey-200 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}
+            </NavLink>
+            <ProfileButton />
             </>
-            )}
-            </div>
+          )}
+      </div>
     </nav>
   )};
 
