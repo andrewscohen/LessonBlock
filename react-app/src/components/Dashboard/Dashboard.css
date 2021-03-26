@@ -1,0 +1,21 @@
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  padding-top: 80px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.dashboard-wrapper {
+  width: 18%;
+}
+
+.card-wrapper {
+  width: 70%;
+  margin-right: 10%;
+  margin-left: 5%;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  justify-content: center;
+  justify-items: center;
+}

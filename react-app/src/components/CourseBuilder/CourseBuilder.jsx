@@ -8,7 +8,8 @@ import CreateSectionModal from "./CreateSection/CreateSectionModal";
 import CreateLessonModal from "./CreateLesson/CreateLessonModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 import {deleteOneUserCourseSection} from "../../store/section"
-import {deleteOneUserCourseLesson} from "../../store/lesson"
+import {deleteOneUserCourseLesson} from "../../store/lesson";
+// import "./CourseBuilder.css"
 
 
 const CourseBuilder = ({authenticated, setAuthenticated}) => {
@@ -43,6 +44,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
 
     function deleteThisCourse() {
       dispatch(deleteOneUserCourse(course.id))
+      history.push('/')
       setEventTrigger(true)
     }
 

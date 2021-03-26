@@ -65,6 +65,7 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
 
 // UPDATE THUNKS START
   export const updateOneUserCourse = ({courseId, name, description, category, courseImg, userId}) => async (dispatch) => {
+    console.log("Thunk Hit")
     const form = new FormData()
     form.append("course_id", courseId)
     form.append("user_id", userId)
@@ -81,6 +82,7 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
       body: form,
     });
     const parsedResponse = await res.json();
+    console.log("PARSED RESPONSE: ", parsedResponse)
     dispatch(updateCourse(parsedResponse))
     dispatch(getUserCourses());
     return parsedResponse;

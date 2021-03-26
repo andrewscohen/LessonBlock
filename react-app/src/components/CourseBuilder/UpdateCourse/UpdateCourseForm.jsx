@@ -18,7 +18,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const updatedCourseData = {
             name: courseName,
@@ -28,7 +28,9 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
             userId: sessionUser.id,
             courseImg: courseImg,
         }
-        await dispatch(updateOneUserCourse(updatedCourseData));
+        console.log("1 handleSubmit fired")
+        dispatch(updateOneUserCourse(updatedCourseData));
+        console.log("dispatch fired")
         setShowModal(false);
         history.push('/dashboard');
         return updatedCourseData;
@@ -45,12 +47,6 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     const updateCourseCategory = (e) => {
         setCourseCategory(e.target.value);
     };
-
-    // const updateCourseImg = (e) => {
-    //     const file = e.target.files[0]
-    //     if(file) setCourseImg(file);
-    // };
-
 
     return (
         <div className="container flex justify-end h-screen mt-96">

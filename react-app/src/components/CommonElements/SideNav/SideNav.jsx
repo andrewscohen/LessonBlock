@@ -7,7 +7,7 @@ const SideNav = ({setAuthenticated, authenticated}) => {
 
     return (
 
-        <div className="relative h-screen col-start-1 col-end-3 border-r-2 bg-white-space">
+        <div className="relative h-screen border-r-2 bg-white-space">
           <div className="flex-col items-center justify-center flex-auto h-screen">
           <div className="overflow-x-hidden overflow-y-auto">
             <ul className="flex flex-col py-4 space-y-6">

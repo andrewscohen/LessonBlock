@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import {getUserCourses} from "../../store/course";
 import CourseCard from "./CourseCard";
+import "./Dashboard.css";
 
 
 
@@ -16,13 +17,17 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
 
 
     return (
-      <div className='grid w-full h-screen grid-cols-12 pt-20 overflow-hidden bg-white-space'>
-        <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
-            {courses && courses.map(course => (
-              <ul>
-                <CourseCard course={course} />
-              </ul>
-            ))}
+      <div className="dashboard-container">
+        <div className="dashboard-wrapper">
+          <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
+        </div>
+        <div className="card-wrapper">
+          {courses && courses.map(course => (
+            <div key={course.id}>
+              <CourseCard course={course} />
+            </div>
+          ))}
+        </div>
       </div>
     )
 };

@@ -92,9 +92,11 @@ def update_course(id):
         db.session.commit()
 
     elif request.method == 'PUT':
+        print("PUT ROUTE HIT")
         # form = EditCourseForm()
         # form["csrf_token"].data = request.cookies["csrf_token"]
         if "course_img" not in request.files:
+            print("No user_file key in request.files")
             return "No user_file key in request.files"
 
         file = request.files["course_img"]
