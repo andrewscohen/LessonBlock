@@ -8,7 +8,7 @@ const UpdateCourseModal = ({authenticated, setAuthenticated, currentCourse}) => 
   return (
     <>
     <button
-       className="flex items-center justify-start px-3 py-4 mt-8 text-white bg-green-400 rounded-lg shadow mr-60 focus:outline-none"
+       className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
         type="button"
         style={{transition: "all .15s ease"}}
         onClick={() => setShowModal(true)} >

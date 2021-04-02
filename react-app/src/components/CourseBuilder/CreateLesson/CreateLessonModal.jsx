@@ -8,7 +8,7 @@ const CreateLessonModal = ({setAuthenticated, authenticated, course, selectedSec
     return (
         <>
         <button
-       className="px-4 py-3 m-5 font-bold bg-green-500 rounded-lg"
+       className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
         type="button"
         style={{transition: "all .15s ease"}}
         onClick={() => setShowLessonModal(true)} >Create a New Lesson</button>

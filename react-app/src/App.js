@@ -10,7 +10,8 @@ import {
   Dashboard,
   CourseBuilder,
   TestSpace,
-  TestSpace2
+  TestSpace2,
+  SectionPage,
 } from "./components";
 import { authenticate } from "./store/session";
 
@@ -65,6 +66,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/test2" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
           <TestSpace2 authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/me/courses/:courseId/sections/:sectionId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
+          <SectionPage authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

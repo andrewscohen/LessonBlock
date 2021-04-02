@@ -29,51 +29,6 @@ const ProfileButton = () => {
     <>
      <button onClick={openMenu}><img className="w-12 h-12 rounded-full" alt="avatar" src={sessionUser.profile_img} />
      </button>
-      {showMenu && (
-        <>
-        <div className="dropdown">
-          <div>
-            <li className="dropdown__li dropdown__header--name dropdown__header--background">Welcome, {sessionUser.name}!</li>
-          </div>
-          <div>
-            <li className="dropdown__li dropdown__header--email dropdown__header--background">{sessionUser.email}</li>
-          </div>
-          <div>
-            <li className="dropdown__li">
-              <Link to="/dashboard">
-                <button className="btn--dropdown"><i className="fas fa-home btn--dropdown-icon"></i><p className="btn--dropdown-text">Dashboard</p></button>
-              </Link>
-            </li>
-          </div>
-          <div>
-            <li className="dropdown__li">
-              <Link to="/map">
-                <button className="btn--dropdown"><i class="fas fa-globe-americas btn--dropdown-icon"></i><p className="btn--dropdown-text">Explore</p></button>
-              </Link>
-            </li>
-          </div>
-          <div>
-            <li className="dropdown__li">
-              <Link to="/locations/add/new">
-                <button className="btn--dropdown"><i className="fas fa-plus btn--dropdown-icon"></i><p className="btn--dropdown-text">Add Art Location</p></button>
-              </Link>
-            </li>
-          </div>
-          <div>
-            <li className="dropdown__li">
-              <Link to="/artwalks/add/new">
-              <button className="btn--dropdown"><i className="fas fa-plus btn--dropdown-icon"></i><p className="btn--dropdown-text">Create New Art Walk</p></button>
-              </Link>
-            </li>
-          </div>
-          <div>
-            <li className="dropdown__li">
-              {/* <LogoutButton setAuthenticated={setAuthenticated} setDisplay={setDisplay} /> */}
-            </li>
-          </div>
-        </div>
-        </>
-      )}
     </>
   );
 }

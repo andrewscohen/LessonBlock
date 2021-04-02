@@ -64,7 +64,7 @@ export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_c
   });
   const parsedResponse = await res.json();
   console.log("REDUX PARSED RESPONSE:  ", parsedResponse)
-  dispatch(loadOneCourseLesson(parsedResponse))
+  dispatch(loadOneCourseLesson())
   console.log("ACTION HAS BEEN DISPATCHED")
   return parsedResponse;
 }

@@ -8,7 +8,7 @@ const CreateSectionModal = ({setAuthenticated, authenticated, course}) => {
     return (
         <>
         <button
-       className="flex items-center justify-start px-3 py-4 mt-8 text-white bg-green-400 rounded-lg shadow mr-60 focus:outline-none"
+       className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
         style={{transition: "all .15s ease"}}
         onClick={() => setShowModal(true)} >
         <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
