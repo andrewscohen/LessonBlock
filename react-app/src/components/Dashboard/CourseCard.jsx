@@ -12,9 +12,6 @@ const CourseCard = ({course}) => {
                     <p className="text-base text-grey-darker">
                     {course.description}
                     </p>
-                    <div>
-                        <button type="button" className="bg-brand-blue">Edit</button>
-                    </div>
                 </div>
             </div>
         </Link>

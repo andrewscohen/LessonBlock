@@ -10,7 +10,7 @@ const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
 
-const LoginForm = ({ authenticated, setAuthenticated, setShowLoginModal }) => {
+const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +23,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginModal }) => {
     const user = await dispatch(login(email, password));
     if (!user.errors) {
       setAuthenticated(true);
-      setShowLoginModal(false);
+      // setShowSignModal(false);
       history.push("/dashboard")
     } else {
       setErrors(user.errors);
@@ -53,7 +53,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginModal }) => {
   return (
     <div className="container flex justify-end h-screen mt-96">
       <div className="absolute object-right-top pt-5 pr-8">
-        <button type="button" onClick={() => setShowLoginModal(false)}>
+        <button type="button" onClick={() => setIsOpen(false)}>
           <i className="fas fa-window-close"></i>
         </button>
       </div>
@@ -101,7 +101,9 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginModal }) => {
                   </button>
             </div>
             <div className="flex justify-between">
-            <Link to="/sign-up">Don't have an account?</Link>
+              <button
+              type="button"
+              onClick={() => setShowSignUpForm(true) || setShowLoginForm(false)}>Don't have an account?</button>
             <Link to="/sign-up">Forgot Password?</Link>
           </div>
         </div>

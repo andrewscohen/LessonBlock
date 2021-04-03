@@ -13,7 +13,7 @@ import {deleteOneUserCourseLesson} from "../../store/lesson";
 import BookCover from "../Dashboard/Assets/BookCover.jpg"
 
 
-const CourseBuilder = ({authenticated, setAuthenticated}) => {
+const SectionPage = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
     const [selectedSectionId, setSelectedSectionId] = useState(0);
     const [selectedLesson, setSelectedLesson] = useState({});
@@ -22,6 +22,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { courseId }  = useParams();
+    const { sectionId }  = useParams();
 
     const sessionUser = useSelector((state) => (state.session.user));
     const currentCourse = useSelector((state) => state.course.currentCourse ? state.course.currentCourse : null)
@@ -30,6 +31,11 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
       if (courseId) {
         dispatch(getOneUserCourse(courseId))
     }}, [courseId, dispatch]);
+
+    useEffect(() => {
+      if (sectionId) {
+        setSelectedSectionId(sectionId)
+    }}, [sectionId, dispatch]);
 
     useEffect(() => {
       if (eventTrigger) {
@@ -42,7 +48,6 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
         setCourse(currentCourse)
       }}, [currentCourse, course])
 
-
     function deleteThisCourse() {
       dispatch(deleteOneUserCourse(course.id))
       history.push('/')
@@ -50,7 +55,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     }
 
     const deleteThisSection = async (e) => {
-      await dispatch(deleteOneUserCourseSection({courseId: course.id, sectionId: selectedSectionId}))
+      await dispatch(deleteOneUserCourseSection({courseId: course.id, sectionId: sectionId}))
       setEventTrigger(true)
     }
 
@@ -67,7 +72,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
         {/* Card list container */}
         <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
           {/* Header */}
-          <span>Curriculum</span>
+          <span>Your Lessons</span>
           <button className="ml-2">
             {/* <svg className="w-5 h-5 fill-current" viewBox="0 0 256 512">
               <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9
@@ -80,20 +85,18 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
         </h3>
         <div className="mb-10">
           {/* List */}
+          <CreateLessonModal selectedSectionId={selectedSectionId} />
               <ul className="px-3 pt-1 pb-2 mb-8">
-                {course.sections !== undefined && course.sections.map(section => (
-                <Link to={`/users/me/courses/${course.id}/sections/${section.id}`} className="mt-2" key={section.order_num}>
-                <a className="flex flex-col justify-between p-5 bg-gray-100 rounded-lg dark:bg-gray-200" href="/">
-                <div className="flex items-center justify-between font-semibold capitalize dark:text-gray-700">
-                <span onClick={() => setSelectedSectionId(section.id)}>
-                  {section.title}</span>
-                  <div className="flex items-center">
-                  <span>"Section No. "{section.order_num}</span>
-                  </div>
-                  </div>
-                  </a>
-                </Link>
-              ))}
+              {course.section !== undefined && course.sections.lesson.map(lesson => (
+
+                    <ul>
+                      <Link key={course.id} to={`/users/me/courses/${course.id}/sections/${course.sections.id}/lesson/${lesson.id}`} key={lesson.id}>
+                        <button value={lesson.id} onClick={() => setSelectedLesson(lesson)}>
+                          Lesson: {lesson.title}
+                        </button>
+                      </Link>
+                    </ul>
+                  ))}
               </ul>
             </div>
         </div>
@@ -149,8 +152,8 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
 
          {/* <CreateSectionModal /> */}
 
-          {/* <CreateLessonModal course={course} selectedSectionId={selectedSectionId} />
-            <h1 className="text-xl font-bold uppercase">SECTIONS</h1>
+
+            {/* <h1 className="text-xl font-bold uppercase">SECTIONS</h1>
               {course.sections !== undefined && course.sections.map(section => (
                 <ul>
                   <li key={section.order_num}>
@@ -177,4 +180,4 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     )
 }
 
-export default CourseBuilder;
+export default SectionPage;

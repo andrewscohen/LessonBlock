@@ -8,8 +8,10 @@ import {
   NavBar,
   LandingPage,
   Dashboard,
-  CourseBuilder
-
+  CourseBuilder,
+  TestSpace,
+  TestSpace2,
+  SectionPage,
 } from "./components";
 import { authenticate } from "./store/session";
 
@@ -58,6 +60,15 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/users/me/courses/:courseId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
           <CourseBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/test" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
+          <TestSpace authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/test2" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
+          <TestSpace2 authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/me/courses/:courseId/sections/:sectionId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
+          <SectionPage authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

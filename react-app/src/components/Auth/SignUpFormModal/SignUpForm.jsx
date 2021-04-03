@@ -12,14 +12,13 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 const radioButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
 
 
-const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpModal}) => {
+const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [isInstructor, setIsInstructor] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -73,7 +72,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpModal}) => {
   return (
     <div className="container flex justify-end h-screen mt-96">
       <div className="absolute object-right-top pt-5 pr-8">
-        <button type="button" onClick={() => setShowSignUpModal(false)}>
+        <button type="button" onClick={() => setIsOpen(false)}>
           <i className="fas fa-window-close"></i>
         </button>
       </div>
@@ -171,14 +170,9 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpModal}) => {
           <div className="flex">
             <button
               type="button"
-              onClick={() =>  setShowLoginModal(true)}>
+              onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}>
               Already have an account?
             </button>
-            {showLoginModal && (
-              <Modal onClose={() => setShowLoginModal(false)}>
-                <LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} setShowLoginModal={setShowLoginModal}/>
-              </Modal>
-            )}
           </div>
         </div>
       </div>
