@@ -2,7 +2,6 @@ import React from "react";
 import {useHistory} from "react-router-dom";
 import SplashHeader from "../../assets/BackgroundImages/SplashHeader.svg";
 import SignUpModal from "../Auth/SignUpFormModal/SignUpModal";
-// import TestModal from "./TestModal";
 
 
 
@@ -25,8 +24,6 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
                 <h2 className="pt-5 text-3xl font-bold leading-tight text-white sm:text-3xl">
                     Empowering educators and students through easily scalable course building</h2>
                 <SignUpModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
-                {/* <TestModal /> */}
-
             </div>
         </div>
     </div>
