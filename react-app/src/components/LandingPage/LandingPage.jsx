@@ -1,5 +1,5 @@
 import React from "react";
-import {useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import SplashHeader from "../../assets/BackgroundImages/SplashHeader.svg";
 import SignUpModal from "../Auth/SignUpFormModal/SignUpModal";
 
@@ -7,11 +7,10 @@ import SignUpModal from "../Auth/SignUpFormModal/SignUpModal";
 
 
 const LandingPage = ({ authenticated, setAuthenticated }) => {
-    const history = useHistory();
 
     return (
         <>
-        {authenticated && history.push("/dashboard")}
+        {authenticated && <Redirect to="/dashboard" /> }
         <div className="relative h-screen overflow-hidden">
         <img src={SplashHeader} className="fixed object-cover w-full h-full overflow-auto" alt="SplashHeader"/>
         <div className="absolute inset-0 bg-black opacity-10">
