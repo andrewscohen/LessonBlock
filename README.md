@@ -105,37 +105,14 @@ To get started follow the following steps
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-- Demo Login
-<img src="https://raw.githubusercontent.com/andrewscohen/2020.11.badReads/main/public/BadReads-DemoLogin.gif" /> 
-
-- Filtering Books by Genre
-<img src="https://github.com/andrewscohen/2020.11.badReads/blob/main/public/BadReads-HomeGenreFilter.gif?raw=true" />
-
-- Be able to set Rating, Review and Status of the book (Ex: Reading, Want to Read and Read)
-<img src="https://github.com/andrewscohen/2020.11.badReads/blob/main/public/BadReads-RatingReview.gif?raw=true" />
-
-- Filter Own Bookshelf by book status
-<img src="https://github.com/andrewscohen/2020.11.badReads/blob/main/public/BadReads-BookshelfFilter.gif?raw=true" />
-
-
 <!-- ROADMAP -->
 ## Roadmap
 
-Checkout The Planning At The [Wiki](https://github.com/andrewscohen/2020.11.badReads/wiki) Section
-
-
-
+Checkout The Planning At The [Wiki](https://github.com/andrewscohen/lessonblock/wiki) Section
 
 <!-- CONTACT -->
 ## Contact
 
 Andrew Cohen - [LinkedIn](https://www.linkedin.com/in/mrandrewcohen/) [Github](https://github.com/andrewscohen)
----
-Ramses Romero - [LinkedIn](https://www.linkedin.com/in/ramses-romero-jr/) [Github](https://github.com/RamsesRomeroJr)
----
-River Cha - [LinkedIn](https://www.linkedin.com/in/river-cha-432337120/) [Github](https://github.com/cosmoscha)
----
-William Vincent - [LinkedIn](https://www.linkedin.com/in/william-vincent-5658851ba/) [Github](https://github.com/WJVincent)
----
 
-Project Link: [Bad Reads](https://github.com/andrewscohen/2020.11.badReads)
+Project Link: [LessonBlock](https://github.com/andrewscohen/lessonblock)
