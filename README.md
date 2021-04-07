@@ -113,6 +113,6 @@ Checkout The Planning At The [Wiki](https://github.com/andrewscohen/lessonblock/
 <!-- CONTACT -->
 ## Contact
 
-Andrew Cohen - [LinkedIn](https://www.linkedin.com/in/mrandrewcohen/) [Github](https://github.com/andrewscohen)
+Andrew Cohen - [LinkedIn](https://www.linkedin.com/in/mrandrewcohen/) [Email](andrewcohen14@gmail.com)
 
 Project Link: [LessonBlock](https://github.com/andrewscohen/lessonblock)
