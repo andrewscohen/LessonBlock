@@ -64,13 +64,15 @@ Implemented a user friendly platform to review and recommend books to people who
 
 
 ### Built With
-* [Javascript]()
-* [Express](https://expressjs.com/)
-* [Pug](https://pugjs.org/api/getting-started.html)
-* [Sequelize](sequelize.org)
-* [PostgreSQL](https://www.postgresql.org/)
-* [Bcrypt.js](https://www.npmjs.com/package/bcryptjs)
-
+- React.js
+- Redux
+- JavaScript
+- Python
+- Flask
+- SQLAlchemy
+- Alembic
+- PostgreSQL
+- TailwindCSS
 
 
 <!-- GETTING STARTED -->
