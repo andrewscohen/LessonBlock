@@ -21,7 +21,7 @@
     <a href="https://github.com/andrewscohen/lessonblock/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://lessonblock.herokuapp.com/">View Demo</a>
+    <a href="https://lessonblock.herokuapp.com/">Live Site</a>
     ·
     <a href="https://github.com/andrewscohen/lessonblock/issues">Report Bug</a>
     ·
@@ -107,10 +107,16 @@ To get started follow the following steps
 
 Checkout The Planning At The [Wiki](https://github.com/andrewscohen/lessonblock/wiki) Section
 
+<!-- LIVE LINK -->
+## Live Site
+<p align="left">
+<a href="https://lessonblock.herokuapp.com/" rel="noopener noreferrer" target="_blank" title="andrewcohen14@gmail.com">LessonBlock Live</a>
+</p>
+
 <!-- CONTACT -->
 ## Connect with Me
 <p align="left">
-<a href="https://linkedin.com/in/mrandrewcohen" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="mrandrewcohen" height="30" width="40" /></a>
-<a href="https://fb.com/andrew.cohen1" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="andrew.cohen1" height="30" width="40" /></a>
-<a href="mailto:andrewcohen14@gmail.com" rel="noopener noreferrer" target="_blank" title="Andrew's Email."><img align="center" src="https://simpleicons.org/icons/gmail.svg" alt="andrew.cohen1" height="30" width="40" /></a>
+<a href="https://linkedin.com/in/mrandrewcohen" rel="noopener noreferrer" target="blank" "linkedin.com/in/mrandrewcohen"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="link to Andrew's LinkedIn" height="30" width="40" /></a>
+<a href="https://fb.com/andrew.cohen1" rel="noopener noreferrer" target="blank" title="fb.com/andrew.cohen1"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="link to Andrew's Facebook" height="30" width="40" /></a>
+<a href="mailto:andrewcohen14@gmail.com" rel="noopener noreferrer" target="_blank" title="andrewcohen14@gmail.com"><img align="center" src="https://simpleicons.org/icons/gmail.svg" alt="link to Andrew's gmail" height="30" width="40" /></a>
 </p>
