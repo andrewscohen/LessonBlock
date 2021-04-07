@@ -9,9 +9,11 @@ const SignUpModal = ({authenticated, setAuthenticated}) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   const onClose = () => {
+    if (showLoginForm === true) {
     setIsOpen(false);
     setShowSignUpForm(true);
     setShowLoginForm(false);
+    }
   }
 
   return (

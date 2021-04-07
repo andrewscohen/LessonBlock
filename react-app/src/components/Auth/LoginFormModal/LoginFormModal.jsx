@@ -9,10 +9,12 @@ function LoginFormModal({authenticated, setAuthenticated}) {
   const [showSignUpForm, setShowSignUpForm] = useState(false);
 
   const onClose = () => {
-    setIsOpen(false);
-    setShowSignUpForm(false);
-    setShowLoginForm(true);
+    if (showSignUpForm === true)
+      setIsOpen(false)
+      setShowSignUpForm(false)
+      setShowLoginForm(true)
   }
+
   return (
     <>
       <button

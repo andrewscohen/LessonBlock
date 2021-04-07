@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {useDispatch } from "react-redux";
-import { Redirect, Link, useHistory } from "react-router-dom";
+import { Redirect, Link} from "react-router-dom";
 import {login} from "../../../store/session";
 import login_img from "./login_img.jpg"
 
@@ -16,15 +16,13 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await dispatch(login(email, password));
     if (!user.errors) {
       setAuthenticated(true);
-      // setShowSignModal(false);
-      history.push("/dashboard")
+      return <Redirect to="/dashboard" />
     } else {
       setErrors(user.errors);
     }
@@ -34,7 +32,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
     e.preventDefault();
     await dispatch(login("demo@aa.io", "password"));
     setAuthenticated(true)
-    history.push("/dashboard")
+    return <Redirect to="/dashboard" />
   };
 
   const updateEmail = (e) => {

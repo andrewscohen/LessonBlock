@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
 import sign_up_img from "./sign_up_img.jpg";
-import { Modal } from '../../../context/ModalContext';
-import LoginForm from '../LoginFormModal/LoginForm';
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
@@ -21,7 +19,6 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   const [isInstructor, setIsInstructor] = useState(false);
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -29,7 +26,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
       const user = await dispatch(signup({username, email, password, isInstructor}));
         if (!user.errors) {
           setAuthenticated(true);
-          history.push('/dashboard')
+          return <Redirect to="/dashboard" />
         } else {
           setErrors(user.errors);
         }
@@ -41,7 +38,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
     e.preventDefault();
     setTimeout(await dispatch(login("demo@aa.io", "password")), 1000);
     setAuthenticated(true)
-    history.push("/dashboard")
+    return <Redirect to="/dashboard" />
   };
 
 
