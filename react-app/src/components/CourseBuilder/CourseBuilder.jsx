@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from "react";
-import ReactPlayer from 'react-player'
 import { useParams, useHistory, Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
 import CreateSectionModal from "./CreateSection/CreateSectionModal";
-import CreateLessonModal from "./CreateLesson/CreateLessonModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 import {deleteOneUserCourseSection} from "../../store/section"
-import {deleteOneUserCourseLesson} from "../../store/lesson";
-// import "./CourseBuilder.css"
 import BookCover from "../Dashboard/Assets/BookCover.jpg"
 
 
@@ -23,7 +19,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const history = useHistory();
     const { courseId }  = useParams();
 
-    const sessionUser = useSelector((state) => (state.session.user));
+    // const sessionUser = useSelector((state) => (state.session.user));
     const currentCourse = useSelector((state) => state.course.currentCourse ? state.course.currentCourse : null)
 
     useEffect(() => {
@@ -69,20 +65,17 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
           {/* Header */}
           <span>Curriculum</span>
           <button className="ml-2">
-            {/* <svg className="w-5 h-5 fill-current" viewBox="0 0 256 512">
-              <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9
-								0l-22.6-22.6c-9.4-9.4-9.4-24.6
-								0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6
-								0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136
-								136c9.5 9.4 9.5 24.6.1 34z" />
-            </svg> */}
           </button>
         </h3>
         <div className="mb-10">
           {/* List */}
               <ul className="px-3 pt-1 pb-2 mb-8">
                 {course.sections !== undefined && course.sections.map(section => (
-                <Link to={`/users/me/courses/${course.id}/sections/${section.id}`} className="mt-2" key={section.order_num}>
+                <Link
+                  to={`/users/me/courses/${course.id}/sections/${section.id}`}
+                  key={section.order_num}
+                  className="mt-2"
+                >
                 <a className="flex flex-col justify-between p-5 bg-gray-100 rounded-lg dark:bg-gray-200" href="/">
                 <div className="flex items-center justify-between font-semibold capitalize dark:text-gray-700">
                 <span onClick={() => setSelectedSectionId(section.id)}>
@@ -113,14 +106,17 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
         </h3>
         <div className="flex flex-col items-center mt-12">
           <div className="w-full h-full"></div>
-          <img src={BookCover} className="relative object-cover w-full h-full" alt=" empty schedule" />
-          {/* <span className="mt-8 font-bold">Update This Course</span> */}
-          <span className="text-purple-500">
+            <img
+              src={BookCover}
+              className="relative object-cover w-full h-full"
+              alt=" empty schedule"
+            />
+            <span className="text-purple-500">
 
-          </span>
-          <button className="px-4 py-2 my-4 bg-purple-800 rounded-lg">
-            Update This Course
-          </button>
+            </span>
+            <button className="px-4 py-2 my-4 bg-purple-800 rounded-lg">
+              Update This Course
+            </button>
         </div>
       </div>
     </div>
