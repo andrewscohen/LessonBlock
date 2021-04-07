@@ -58,10 +58,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-Implemented a user friendly platform to review and recommend books to people who enjoy books so bad, they are “good”.
-
+LessonBlock is an EdTech platform inspired by Khan Academy that allows instructors to create new video courses and students to enroll in those course.
 
 ### Built With
 - React.js
@@ -111,8 +108,8 @@ To get started follow the following steps
 Checkout The Planning At The [Wiki](https://github.com/andrewscohen/lessonblock/wiki) Section
 
 <!-- CONTACT -->
-## Contact
-
-Andrew Cohen - [LinkedIn](https://www.linkedin.com/in/mrandrewcohen/) [Email](andrewcohen14@gmail.com)
-
-Project Link: [LessonBlock](https://github.com/andrewscohen/lessonblock)
+## Connect with Me
+<p align="left">
+<a href="https://linkedin.com/in/mrandrewcohen" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="mrandrewcohen" height="30" width="40" /></a>
+<a href="https://fb.com/andrew.cohen1" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="andrew.cohen1" height="30" width="40" /></a>
+</p>
