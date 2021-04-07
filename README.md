@@ -79,8 +79,9 @@ Implemented a user friendly platform to review and recommend books to people who
 To get started follow the following steps
 
 ### Prerequisites
-- npm
-```npm install npm@latest -g```
+- PostgreSQL
+- Pipenv with Python v3.8
+- Node.js
 
 ### Installation
 
