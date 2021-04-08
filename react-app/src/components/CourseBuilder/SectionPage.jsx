@@ -9,7 +9,6 @@ import CreateLessonModal from "./CreateLesson/CreateLessonModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 import {deleteOneUserCourseSection} from "../../store/section"
 import {deleteOneUserCourseLesson} from "../../store/lesson";
-// import "./CourseBuilder.css"
 import BookCover from "../Dashboard/Assets/BookCover.jpg"
 
 
