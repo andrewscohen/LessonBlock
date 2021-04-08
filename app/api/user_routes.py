@@ -235,6 +235,7 @@ def update_lesson(section_id, id):
         # id = id
 
     elif request.method == 'GET':
+        print("BACKEND GET HIT")
         return lesson.to_dict()
 
     allLessons = Lesson.query.all()
