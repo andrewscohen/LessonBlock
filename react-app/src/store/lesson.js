@@ -28,8 +28,10 @@ export const loadAllCourseLessons = (lessons) => {
 
 // GET THUNKS START
   export const getUserCourseLesson = ({courseId, sectionId}) => async (dispatch) => {
+   console.log("THUNK FIRED!!!")
     const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons`);
     const data = await res.json();
+    console.log("THUNK data: ", data)
     res.data = data;
     console.log("REDUX getUserCourseLesson: ", data)
     dispatch(loadAllCourseLessons(res.data));
