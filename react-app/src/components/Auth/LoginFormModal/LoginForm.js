@@ -28,9 +28,16 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
     }
   };
 
-  const demoLogin = async (e) => {
+  const demoInstructorLogin = async (e) => {
     e.preventDefault();
-    await dispatch(login("demo@aa.io", "password"));
+    await dispatch(login("instructor@lessonblock.io", "8b4c7b0a-b365-4420-ae67-8f310c872054"));
+    setAuthenticated(true)
+    return <Redirect to="/dashboard" />
+  };
+
+  const demoStudentLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login("student@lessonblock.io", "719cfc7c-8a95-48ef-91ec-c6425790245f"));
     setAuthenticated(true)
     return <Redirect to="/dashboard" />
   };
@@ -89,13 +96,25 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
                     className={formInputStyle} />
             </div>
             <div className="relative">
-                <button type="submit" className={blackButtonStyle}>Log In</button>
+                <button
+                  type="submit"
+                  className={blackButtonStyle}
+                >
+                  Log In
+                </button>
                   <button
                   type="submit"
                   className={whiteButtonStyle}
-                  onClick={demoLogin}
+                  onClick={demoInstructorLogin}
                   >
-                  Demo User
+                  Demo Instructor
+                  </button>
+                  <button
+                  type="submit"
+                  className={whiteButtonStyle}
+                  onClick={demoStudentLogin}
+                  >
+                  Demo Student
                   </button>
             </div>
             <div className="flex justify-between">

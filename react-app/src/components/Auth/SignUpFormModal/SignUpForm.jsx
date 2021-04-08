@@ -33,10 +33,16 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
       };
   };
 
-
-  const demoLogin = async (e) => {
+  const demoInstructorLogin = async (e) => {
     e.preventDefault();
-    setTimeout(await dispatch(login("demo@aa.io", "password")), 1000);
+    setTimeout(await dispatch(login("instructor@lessonblock.io", "8b4c7b0a-b365-4420-ae67-8f310c872054")), 1000);
+    setAuthenticated(true)
+    return <Redirect to="/dashboard" />
+  };
+
+  const demoStudentLogin = async (e) => {
+    e.preventDefault();
+    setTimeout(await dispatch(login("student@lessonblock.io", "719cfc7c-8a95-48ef-91ec-c6425790245f")), 1000);
     setAuthenticated(true)
     return <Redirect to="/dashboard" />
   };
@@ -158,12 +164,19 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
             Create Account
           </button>
           <button
-            type="submit"
-            className={whiteButtonStyle}
-            onClick={demoLogin}
-            >
-            Demo User
-          </button>
+                  type="submit"
+                  className={whiteButtonStyle}
+                  onClick={demoInstructorLogin}
+                  >
+                  Demo Instructor
+                  </button>
+                  <button
+                  type="submit"
+                  className={whiteButtonStyle}
+                  onClick={demoStudentLogin}
+                  >
+                  Demo Student
+                  </button>
           <div className="flex">
             <button
               type="button"
