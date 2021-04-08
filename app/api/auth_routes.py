@@ -48,10 +48,18 @@ def login():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route("/demo-login", methods=["GET"])
-def demo_login():
-    user = User.query.filter(User.email == 'demo@aa.io').first()
-    print("USER: ", user.to_dict())
+@auth_routes.route('/demo-instructor-login', methods=['GET'])
+def demo_instructor_login():
+    user = User.query.filter(User.email == 'instructor@lessonblock.io').first()
+    print('USER: ', user.to_dict())
+    login_user(user)
+    return user.to_dict()
+
+
+@auth_routes.route('/demo-student-login', methods=['GET'])
+def demo_student_login():
+    user = User.query.filter(User.email == 'student@lessonblock.io').first()
+    print('USER: ', user.to_dict())
     login_user(user)
     return user.to_dict()
 
