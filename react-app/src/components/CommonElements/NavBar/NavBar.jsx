@@ -34,7 +34,9 @@ const NavBar = ({authenticated, setAuthenticated}) => {
             <>
             <NavLink to="/dashboard" exact={true} activeClassName="active" className="pr-4 font-bold text-grey-200 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}
             </NavLink>
-            <UserAvatarDropDown />
+            <UserAvatarDropDown
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated} />
             </>
           )}
       </div>

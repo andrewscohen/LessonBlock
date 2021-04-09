@@ -103,8 +103,6 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
                 >
                     <p>Section No. {section.order_num}</p>
                     <p>{section.title}</p>
-                    <p>{typeof section.id}</p>
-                    <p>{typeof course.id}</p>
                 </Link>
                 <button
                   onClick={() => setSelectedSectionId(section.id)}
