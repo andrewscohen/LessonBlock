@@ -2,8 +2,6 @@ import React, {useEffect, useState} from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {SideNav} from "../CommonElements";
-import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
-import CreateSectionModal from "./CreateSection/CreateSectionModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 import {deleteOneUserCourseSection} from "../../store/section";
 import MenuDropDown from "./MenuDropDown";
@@ -132,27 +130,6 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
       </div>
         </div>
       </main>
-      <aside className="flex flex-col justify-start w-1/4 px-6 py-10 mr-1 overflow-y-auto pt-60 bg-white-space dark:bg-black dark:text-gray-400">
-        {/* Right side NavBar */}
-        <span className="mx-auto mt-1 text-3xl font-semibold">Control Panel</span>
-        <UpdateCourseModal currentCourse={currentCourse} />
-        <CreateSectionModal course={course}/>
-        <button className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
-                onClick={deleteThisCourse}>
-          {/* Action */}
-          <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-          </svg>
-          <span>Delete this Course</span>
-        </button>
-        <button className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none" onClick={deleteThisSection}>
-          {/* Action */}
-          <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-          </svg>
-          <span>Delete this Section</span>
-        </button>
-      </aside>
     </div>
   )
 }

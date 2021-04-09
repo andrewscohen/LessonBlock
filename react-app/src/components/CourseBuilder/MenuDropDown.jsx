@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import CreateSectionModal from "./CreateSection/";
 import UpdateCourseModal from "./UpdateCourse/";
-import DeleteAlert from "./DeleteAlert";
+import DeleteCourseModal from "./DeleteCourse";
 
 const buttonStyle = "flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500";
 
@@ -13,14 +13,9 @@ const MenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
     const [openAlert, setOpenAlert] = useState(false);
 
     // Toggles open and closed the Controls Drop Down
-    // const toggleDropDown = () => {
-    //     displayControls === false ? setDisplayControls(true) : setDisplayControls(false);
-    // }
-
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
-      };
+    const toggleDropDown = () => {
+        showMenu === false ? setShowMenu(true) : setShowMenu(false);
+    }
 
     return (
         <div className="relative">
@@ -29,7 +24,7 @@ const MenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
                 className={buttonStyle}
                 id="options-menu"
                 type="button"
-                onClick={openMenu}
+                onClick={toggleDropDown}
             >
               Controls
                 <svg
@@ -59,16 +54,8 @@ const MenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
                     </span>
                 </span>
                 <span className="flex flex-col">
-                    <button
-                        className={listItemStyle}
-                        type="button"
-                        onClick={() => setOpenAlert(true)}
-                    >
-                        <span>Delete This Course</span>
-                    </button>
-                    {openAlert ? (
-                        <DeleteAlert deleteThisCourse={deleteThisCourse} setOpenAlert={setOpenAlert} id="options-menu"/>
-                    ) : null}
+                    <span><DeleteCourseModal deleteThisCourse={deleteThisCourse}/></span>
+
                 </span>
             </div>
           </div>

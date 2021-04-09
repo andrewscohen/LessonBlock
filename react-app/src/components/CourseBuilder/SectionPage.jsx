@@ -10,7 +10,7 @@ import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 import {deleteOneUserCourseSection} from "../../store/section"
 import {deleteOneUserCourseLesson} from "../../store/lesson";
 import BookCover from "../Dashboard/Assets/BookCover.jpg"
-import DeleteAlert from "./DeleteAlert";
+import DeleteAlert from "./DeleteCourse/DeleteCourseForm";
 
 
 const SectionPage = ({authenticated, setAuthenticated}) => {

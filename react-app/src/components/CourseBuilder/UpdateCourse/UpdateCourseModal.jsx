@@ -9,17 +9,17 @@ const UpdateCourseModal = ({authenticated, setAuthenticated, currentCourse}) => 
 
   return (
     <>
-    <button
-       className={listItemStyle}
-        type="button"
-        onClick={() => setShowModal(true)} >
-      <span>Update This Course</span>
-    </button>
-      {showModal ? (
-          <Modal onClose={() => setShowModal(false)}>
-              <UpdateCourseForm currentCourse={currentCourse} authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal}/>
-          </Modal>
-      ) : null}
+      <button
+        className={listItemStyle}
+          type="button"
+          onClick={() => setShowModal(true)} >
+        <span>Update This Course</span>
+      </button>
+        {showModal ? (
+            <Modal onClose={() => setShowModal(false)}>
+                <UpdateCourseForm currentCourse={currentCourse} authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal}/>
+            </Modal>
+        ) : null}
     </>
   );
 };
