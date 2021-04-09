@@ -11,15 +11,15 @@ import BookCover from "../Dashboard/Assets/BookCover.jpg"
 
 const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
+    const [isInstructor, setIsInstructor] = useState(false);
     const [selectedSectionId, setSelectedSectionId] = useState(0);
-    const [selectedLesson, setSelectedLesson] = useState({});
     const [eventTrigger, setEventTrigger] = useState(false)
 
     const dispatch = useDispatch();
     const history = useHistory();
     const { courseId }  = useParams();
 
-    // const sessionUser = useSelector((state) => (state.session.user));
+    const sessionUser = useSelector((state) => (state.session.user));
     const currentCourse = useSelector((state) => state.course.currentCourse ? state.course.currentCourse : null)
 
     useEffect(() => {
@@ -38,8 +38,12 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
         setCourse(currentCourse)
       }}, [currentCourse, course])
 
+    // useEffect(() => {
+    //   sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
+    //   console.log("isINSTRUCTOR!: ", isInstructor)
+    // }, [sessionUser, isInstructor])
 
-    function deleteThisCourse() {
+    const deleteThisCourse = () => {
       dispatch(deleteOneUserCourse(course.id))
       history.push('/')
       setEventTrigger(true)
@@ -52,20 +56,22 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
 
     return (
       <div className="flex w-full h-screen pt-20 overflow-hidden select-none">
-    <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
-  <main className="flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black">
-    <div className="flex flex-col text-3xl capitalize">
-      <span className="font-semibold">Welcome back to your</span>
-      <span>{course.name}!</span>
-    </div>
-    <div className="flex">
-      <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 bg-white rounded-lg dark:bg-gray-600">
+        <SideNav
+          setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+        />
+        <main className="flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black">
+          <div className="flex flex-col text-3xl capitalize">
+            <span className="font-semibold">{course.name}</span>
+          </div>
+          <div className="flex">
+            <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 bg-white rounded-lg dark:bg-gray-600">
         {/* Card list container */}
-        <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
+              <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
           {/* Header */}
-          <span>Curriculum</span>
-          <button className="ml-2">
-          </button>
+              <span>Curriculum</span>
+              <button className="ml-2">
+          Hey!</button>
         </h3>
         <div className="mb-10">
           {/* List */}
@@ -119,58 +125,31 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
             </button>
         </div>
       </div>
+        </div>
+      </main>
+      <aside className="flex flex-col justify-start w-1/4 px-6 py-10 mr-1 overflow-y-auto pt-60 bg-white-space dark:bg-black dark:text-gray-400">
+        {/* Right side NavBar */}
+        <span className="mx-auto mt-1 text-3xl font-semibold">Control Panel</span>
+        <UpdateCourseModal currentCourse={currentCourse} />
+        <CreateSectionModal course={course}/>
+        <button className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
+                onClick={deleteThisCourse}>
+          {/* Action */}
+          <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          <span>Delete this Course</span>
+        </button>
+        <button className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none" onClick={deleteThisSection}>
+          {/* Action */}
+          <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+          </svg>
+          <span>Delete this Section</span>
+        </button>
+      </aside>
     </div>
-  </main>
-  <aside className="flex flex-col justify-start w-1/4 px-6 py-10 mr-1 overflow-y-auto pt-60 bg-white-space dark:bg-black dark:text-gray-400">
-    {/* Right side NavBar */}
-    <span className="mx-auto mt-1 text-3xl font-semibold">Control Panel</span>
-    <UpdateCourseModal currentCourse={currentCourse} />
-    <CreateSectionModal course={course}/>
-    <button className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
-            onClick={deleteThisCourse}>
-      {/* Action */}
-       <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
-      <span>Delete this Course</span>
-    </button>
-    <button className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none" onClick={deleteThisSection}>
-      {/* Action */}
-      <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
-      <span>Delete this Section</span>
-    </button>
-  </aside>
-
-         {/* <CreateSectionModal /> */}
-
-          {/* <CreateLessonModal course={course} selectedSectionId={selectedSectionId} />
-            <h1 className="text-xl font-bold uppercase">SECTIONS</h1>
-              {course.sections !== undefined && course.sections.map(section => (
-                <ul>
-                  <li key={section.order_num}>
-                  <button onClick={() => setSelectedSectionId(section.id)}>
-                    SECTION: {section.order_num} {section.title}
-                  </button>
-                  </li>
-                  <h1 className="text-xl font-bold uppercase">LESSONS</h1>
-                  {section !== undefined && section.lessons.map(lesson => (
-                    <ul>
-                      <li key={lesson.id}>
-                        <button value={lesson.id} onClick={() => setSelectedLesson(lesson)}>
-                          Lesson: {lesson.title}
-                        </button>
-                      </li>
-                    </ul>
-                  ))}
-                </ul>
-              ))}
-          <ReactPlayer url='https://www.twitch.tv/a_cohen14' />
-      </div> */}
-    </div>
-
-    )
+  )
 }
 
 export default CourseBuilder;
