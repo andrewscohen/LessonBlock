@@ -1,2 +1,2 @@
-import CreateSectionModal from ".'/CreateSectionModal"
+import CreateSectionModal from "./CreateSectionModal"
 export default CreateSectionModal;

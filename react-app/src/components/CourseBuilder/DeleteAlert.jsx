@@ -5,6 +5,7 @@ const deleteButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center 
 const cancelButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center text-indigo-500 transition duration-200 ease-in bg-white rounded-lg shadow-md hover:bg-gray-100 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
 
 const DeleteAlert = ({deleteThisCourse, setOpenAlert}) => {
+
     return(
         <div className="w-64 p-4 m-auto bg-white shadow-lg rounded-2xl dark:bg-gray-800">
             <div className="w-full h-full text-center">
@@ -21,14 +22,14 @@ const DeleteAlert = ({deleteThisCourse, setOpenAlert}) => {
                             type="button"
                             onClick={deleteThisCourse}
                         >
-                        Delete
+                            Delete
                         </button>
                         <button
                             className={cancelButtonStyle}
                             type="button"
                             onClick={() => setOpenAlert(false)}
                         >
-                        Cancel
+                            Cancel
                         </button>
                     </div>
                 </div>

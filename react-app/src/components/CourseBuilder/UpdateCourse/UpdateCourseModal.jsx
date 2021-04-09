@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import { Modal } from '../../../context/ModalContext';
 import UpdateCourseForm from "./UpdateCourseForm";
 
+const listItemStyle = "block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 font-semibold w-full";
+
 const UpdateCourseModal = ({authenticated, setAuthenticated, currentCourse}) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
     <button
-       className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
+       className={listItemStyle}
         type="button"
-        style={{transition: "all .15s ease"}}
         onClick={() => setShowModal(true)} >
-        <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
       <span>Update This Course</span>
-      </button>
+    </button>
       {showModal ? (
           <Modal onClose={() => setShowModal(false)}>
               <UpdateCourseForm currentCourse={currentCourse} authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal}/>

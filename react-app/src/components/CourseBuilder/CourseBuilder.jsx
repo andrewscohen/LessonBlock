@@ -69,10 +69,14 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
           <div className="flex">
             <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 bg-white rounded-lg dark:bg-gray-600">
         {/* Card list container */}
-              <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
+              <h3 className="flex items-center justify-between px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
           {/* Header */}
               <span>Curriculum</span>
-                <MenuDropDown />
+                <MenuDropDown
+                  deleteThisCourse={deleteThisCourse}
+                  currentCourse={currentCourse}
+                  course={course}
+                />
               </h3>
         <div className="mb-10">
           {/* List */}
