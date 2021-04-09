@@ -55,8 +55,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
   <main className="flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black">
     <div className="flex flex-col text-3xl capitalize">
-      <span className="font-semibold">Welcome back to your</span>
-      <span>{course.name}!</span>
+      <span className="font-semibold">{course.name}</span>
     </div>
     <div className="flex">
       <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 bg-white rounded-lg dark:bg-gray-600">

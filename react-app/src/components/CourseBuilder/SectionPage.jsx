@@ -10,14 +10,16 @@ import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
 import {deleteOneUserCourseSection} from "../../store/section"
 import {deleteOneUserCourseLesson} from "../../store/lesson";
 import BookCover from "../Dashboard/Assets/BookCover.jpg"
+import DeleteAlert from "./DeleteAlert";
 
 
 const SectionPage = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
     const [selectedSectionId, setSelectedSectionId] = useState(0);
     const [selectedLesson, setSelectedLesson] = useState({});
-    const [eventTrigger, setEventTrigger] = useState(false)
-    const [selectedVideoUrl, setSelectedVideoUrl] = useState('')
+    const [eventTrigger, setEventTrigger] = useState(false);
+    const [selectedVideoUrl, setSelectedVideoUrl] = useState('');
+    const [openAlert, setOpenAlert] = useState(false);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -53,6 +55,7 @@ const SectionPage = ({authenticated, setAuthenticated}) => {
       dispatch(deleteOneUserCourse(course.id))
       history.push('/')
       setEventTrigger(true)
+      setOpenAlert(false)
     }
 
     const deleteThisSection = async (e) => {
@@ -65,7 +68,7 @@ const SectionPage = ({authenticated, setAuthenticated}) => {
     <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
   <main className="flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black">
     <div className="flex flex-col text-3xl capitalize">
-      <span className="font-semibold">Welcome back to your</span>
+      {/* <span className="font-semibold">{course.name}</span> */}
       <span>{course.name}!</span>
     </div>
     <div className="flex">
@@ -141,13 +144,18 @@ const SectionPage = ({authenticated, setAuthenticated}) => {
       </svg>
       <span>Delete this Section</span>
     </button>
-    <button className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none">
+    <button
+      className="flex items-center justify-center px-3 py-4 mt-8 ml-20 mr-20 text-white bg-green-400 rounded-lg shadow focus:outline-none"
+      onClick={() => setOpenAlert(true)}>
       {/* Action */}
       <svg className="w-5 h-5 ml-3 mr-2 fill-current" viewBox="0 0 24 24">
         <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
       </svg>
       <span>YOOOOOO</span>
     </button>
+    {openAlert ? (
+      <DeleteAlert deleteThisCourse={deleteThisCourse} setOpenAlert={setOpenAlert}/>
+    ) : null};
   </aside>
 
          {/* <CreateSectionModal /> */}

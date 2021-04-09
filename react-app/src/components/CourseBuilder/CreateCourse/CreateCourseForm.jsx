@@ -93,7 +93,7 @@ const CreateCourseForm = ({setShowModal}) => {
                 </div>
             </form>
         </div>
-        </div>
+     </div>
     )
 }
 
