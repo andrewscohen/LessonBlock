@@ -12,8 +12,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
     const [isInstructor, setIsInstructor] = useState(false);
     const [selectedSectionId, setSelectedSectionId] = useState(0);
-    const [eventTrigger, setEventTrigger] = useState(false)
-    const [displayControls, setDisplayControls] = useState(false);
+    const [eventTrigger, setEventTrigger] = useState(false);
 
     const dispatch = useDispatch();
     const history = useHistory();

@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import CreateSectionModal from "./CreateSection/";
 import UpdateCourseModal from "./UpdateCourse/";
 import DeleteCourseModal from "./DeleteCourse";
 
 const buttonStyle = "flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500";
 
-const listItemStyle = "block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 font-semibold"
-
 
 const MenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
     const [showMenu, setShowMenu] = useState(false);
-    const [openAlert, setOpenAlert] = useState(false);
+
 
     // Toggles open and closed the Controls Drop Down
     const toggleDropDown = () => {

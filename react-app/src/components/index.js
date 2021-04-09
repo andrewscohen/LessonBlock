@@ -1,7 +1,7 @@
 import {ProtectedRoute } from "./Auth";
 import {NavBar} from "./CommonElements";
 import {LandingPage} from "./LandingPage";
-import {CourseBuilder, SectionPage} from "./CourseBuilder";
+import {CourseBuilder, SectionBuilder} from "./CourseBuilder";
 import Dashboard from "./Dashboard";
 
 export { ProtectedRoute,
@@ -9,5 +9,5 @@ export { ProtectedRoute,
          NavBar,
          Dashboard,
         CourseBuilder,
-        SectionPage
+        SectionBuilder
 };

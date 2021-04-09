@@ -9,7 +9,7 @@ import {
   LandingPage,
   Dashboard,
   CourseBuilder,
-  SectionPage,
+  SectionBuilder,
 } from "./components";
 import { authenticate } from "./store/session";
 
@@ -60,7 +60,7 @@ function App() {
           <CourseBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>
         <ProtectedRoute path="/users/me/courses/:courseId/sections/:sectionId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
-          <SectionPage authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+          <SectionBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
