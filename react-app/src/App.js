@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { authenticate } from "./store/session";
 import User from "./components/User"
 import UsersList from "./components/UsersList";
 import {
@@ -8,10 +9,10 @@ import {
   NavBar,
   LandingPage,
   Dashboard,
-  CourseBuilder,
-  SectionPage,
+  SectionBuilder,
+  LessonBuilder
 } from "./components";
-import { authenticate } from "./store/session";
+
 
 
 function App() {
@@ -57,10 +58,10 @@ function App() {
           />
         </ProtectedRoute>
         <ProtectedRoute path="/users/me/courses/:courseId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
-          <CourseBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+          <SectionBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>
         <ProtectedRoute path="/users/me/courses/:courseId/sections/:sectionId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
-          <SectionPage authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+          <LessonBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

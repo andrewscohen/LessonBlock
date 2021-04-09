@@ -1,3 +1,3 @@
-import CourseBuilder from "./CourseBuilder";
-import SectionPage from "./SectionPage";
-export {CourseBuilder, SectionPage};
+import SectionBuilder from "./SectionBuilder";
+import LessonBuilder from "./LessonBuilder";
+export {SectionBuilder, LessonBuilder};
