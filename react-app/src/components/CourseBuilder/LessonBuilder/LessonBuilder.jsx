@@ -2,14 +2,14 @@ import React, {useEffect, useState} from "react";
 import ReactPlayer from 'react-player'
 import { useParams, useHistory, Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {SideNav} from "../CommonElements";
-import CreateLessonModal from "./CreateLesson/CreateLessonModal";
-import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
-import {deleteOneUserCourseSection} from "../../store/section"
-import {deleteOneUserCourseLesson} from "../../store/lesson";
-import BookCover from "../Dashboard/Assets/BookCover.jpg"
+import {SideNav} from "../../CommonElements";
+import CreateLessonModal from "../CreateLesson/CreateLessonModal";
+import {getOneUserCourse, deleteOneUserCourse} from "../../../store/course";
+import {deleteOneUserCourseSection} from "../../../store/section"
+import {deleteOneUserCourseLesson} from "../../../store/lesson";
+import BookCover from "../../Dashboard/Assets/BookCover.jpg"
 
-const SectionBuilder = ({authenticated, setAuthenticated}) => {
+const LessonBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
     const [selectedSectionId, setSelectedSectionId] = useState(0);
     // const [selectedLesson, setSelectedLesson] = useState({});
@@ -46,17 +46,6 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
         setCourse(currentCourse)
       }}, [currentCourse, course])
 
-    function deleteThisCourse() {
-      dispatch(deleteOneUserCourse(course.id))
-      history.push('/')
-      setEventTrigger(true)
-    }
-
-    const deleteThisSection = async (e) => {
-      await dispatch(deleteOneUserCourseSection({courseId: course.id, sectionId: sectionId}))
-      setEventTrigger(true)
-    }
-
     return (
       <div className="flex w-full h-screen pt-20 overflow-hidden select-none">
         <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
@@ -92,13 +81,15 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
                   {/* Header */}
                   <span>You're Doing Great!</span>
                   <button className="ml-2">
-                    <svg className="w-5 h-5 fill-current" viewBox="0 0 256 512">
+                  <svg
+                    className="w-5 h-5 fill-current"
+                    viewBox="0 0 256 512">
                       <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9
                         0l-22.6-22.6c-9.4-9.4-9.4-24.6
                         0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6
                         0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136
                         136c9.5 9.4 9.5 24.6.1 34z" />
-                    </svg>
+                  </svg>
                   </button>
                 </h3>
                 <div className="flex flex-col items-center mt-12">
@@ -121,4 +112,4 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
     )
 }
 
-export default SectionBuilder;
+export default LessonBuilder;

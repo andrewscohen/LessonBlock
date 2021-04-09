@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import CreateSectionModal from "./CreateSection/";
-import UpdateCourseModal from "./UpdateCourse/";
-import DeleteCourseModal from "./DeleteCourse";
+import CreateSectionModal from "../CreateSection/";
+import UpdateCourseModal from "../UpdateCourse/";
+import DeleteCourseModal from "../DeleteCourse";
 
 const buttonStyle = "flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500";
 
 
-const MenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
+const SectionMenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
     const [showMenu, setShowMenu] = useState(false);
 
 
@@ -62,4 +62,4 @@ const MenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
       );
     };
 
-export default MenuDropDown;
+export default SectionMenuDropDown;

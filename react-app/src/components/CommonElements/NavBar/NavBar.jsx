@@ -2,7 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import LoginFormModal from "../../Auth/LoginFormModal"
-import ProfileButton from "../ProfileButton";
+import UserAvatarDropDown from "../UserAvatarDropDown";
 import "./NavBar.css";
 
 const NavBar = ({authenticated, setAuthenticated}) => {
@@ -34,7 +34,7 @@ const NavBar = ({authenticated, setAuthenticated}) => {
             <>
             <NavLink to="/dashboard" exact={true} activeClassName="active" className="pr-4 font-bold text-grey-200 hover:text-indigo-500">{`Welcome, ${sessionUser.username}!`}
             </NavLink>
-            <ProfileButton />
+            <UserAvatarDropDown />
             </>
           )}
       </div>
