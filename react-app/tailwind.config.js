@@ -1,10 +1,20 @@
 // const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  important: true,
+  // Active dark mode on class basis
+  darkMode: "class",
+  i18n: {
+    locales: ["en-US"],
+    defaultLocale: "en-US",
+  },
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html', "./pages/**/*.tsx", "./components/**/*.tsx"], // or 'media' or 'class'
   theme: {
     extend: {
+      backgroundImage: (theme) => ({
+        // check: "url('/icons/check.svg')",
+        // landscape: "url('/images/landscape/2.jpg')",
+      }),
       colors: {
         'brand-blue': '#5DBDEB',
         'brand-yellow': '#F7C229',
@@ -23,7 +33,15 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ["checked"],
+      borderColor: ["checked"],
+      inset: ["checked"],
+      zIndex: ["hover", "active"],
+    },
   },
   plugins: [],
-}
+  future: {
+    purgeLayersByDefault: true,
+  },
+};

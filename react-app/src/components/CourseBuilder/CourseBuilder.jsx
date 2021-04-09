@@ -5,7 +5,8 @@ import {SideNav} from "../CommonElements";
 import UpdateCourseModal from "./UpdateCourse/UpdateCourseModal";
 import CreateSectionModal from "./CreateSection/CreateSectionModal";
 import {getOneUserCourse, deleteOneUserCourse} from "../../store/course";
-import {deleteOneUserCourseSection} from "../../store/section"
+import {deleteOneUserCourseSection} from "../../store/section";
+import MenuDropDown from "./MenuDropDown";
 import BookCover from "../Dashboard/Assets/BookCover.jpg"
 
 
@@ -14,6 +15,7 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
     const [isInstructor, setIsInstructor] = useState(false);
     const [selectedSectionId, setSelectedSectionId] = useState(0);
     const [eventTrigger, setEventTrigger] = useState(false)
+    const [displayControls, setDisplayControls] = useState(false);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -70,9 +72,8 @@ const CourseBuilder = ({authenticated, setAuthenticated}) => {
               <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
           {/* Header */}
               <span>Curriculum</span>
-              <button className="ml-2">
-          Hey!</button>
-        </h3>
+                <MenuDropDown />
+              </h3>
         <div className="mb-10">
           {/* List */}
               <ul className="px-3 pt-1 pb-2 mb-8">
