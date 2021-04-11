@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import CreateSectionModal from "../CreateSection/";
-import UpdateCourseModal from "../UpdateCourse/";
-import DeleteCourseModal from "../DeleteCourse";
+import CreateLessonModal from "../CreateLesson/";
+// import UpdateCourseModal from "../UpdateCourse/";
+// import DeleteCourseModal from "../DeleteCourse";
 
 const buttonStyle = "flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500";
 
 
-const SectionMenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
+const LessonMenuDropDown = ({course, sectionId, currentCourse}) => {
     const [showMenu, setShowMenu] = useState(false);
 
 
@@ -16,6 +16,7 @@ const SectionMenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
     }
 
     return (
+
         <div className="relative">
           <div>
             <button
@@ -43,21 +44,14 @@ const SectionMenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
             <div className="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 <span className="flex flex-col">
                     <span>
-                        <CreateSectionModal
-                            showMenu={showMenu}
-                            setShowMenu={setShowMenu}
-                            course={course}
-                            id="options-menu"/>
+                        <CreateLessonModal
+                          showMenu={showMenu}
+                          setShowMenu={setShowMenu}
+                          course={course}
+                          sectionId={sectionId}
+                          id="options-menu"
+                        />
                     </span>
-                </span>
-                <span className="flex flex-col">
-                    <span>
-                        <UpdateCourseModal currentCourse={currentCourse} id="options-menu"/>
-                    </span>
-                </span>
-                <span className="flex flex-col">
-                    <span><DeleteCourseModal deleteThisCourse={deleteThisCourse}/></span>
-
                 </span>
             </div>
           </div>
@@ -66,4 +60,4 @@ const SectionMenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
       );
     };
 
-export default SectionMenuDropDown;
+export default LessonMenuDropDown;

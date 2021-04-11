@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {createCourseLesson} from "../../../store/lesson"
 
@@ -7,15 +7,20 @@ const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold t
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
 
-const CreateLessonForm = ({setShowLessonModal, course, selectedSectionId}) => {
+const CreateLessonForm = ({setShowLessonModal, course, sectionId}) => {
     const [lessonTitle, setLessonTitle] = useState('');
     const [videoLink, setVideoLink] = useState('');
     const [isComplete, setIsComplete] = useState(false);
 
     const currentCourse = useSelector((state) => state.course.currentCourse)
     const sessionUser = useSelector((state) => state.session.user);
+    const sectionNum = Number(sectionId)
     const dispatch = useDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        if (!isComplete) setIsComplete(false)
+    }, [isComplete, setIsComplete])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +30,7 @@ const CreateLessonForm = ({setShowLessonModal, course, selectedSectionId}) => {
             contentMediaType: 'video',
             content: videoLink,
             is_complete: isComplete,
-            sectionId: selectedSectionId,
+            sectionId: sectionNum,
             courseId: currentCourse.id,
         }
         console.log("FRONTEND LESSONS DATA:  ", newLessonData)
@@ -48,6 +53,7 @@ const CreateLessonForm = ({setShowLessonModal, course, selectedSectionId}) => {
     return (
         <div className="container flex justify-end h-screen mt-96">
         <div className="absolute object-right-top pt-5 pr-8">
+            {/* <button type="button" onClick={() => console.log()}> */}
             <button type="button" onClick={() => setShowLessonModal(false)}>
                 <i className="fas fa-window-close"></i>
             </button>

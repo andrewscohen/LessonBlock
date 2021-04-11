@@ -1,5 +1,5 @@
 // PACKAGE IMPORTS
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -89,7 +89,6 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
                 <Link
                   to={`/users/me/courses/${course.id}/sections/${section.id}`}
                   className={sectionListStyle}
-                  // onClick={() => setSectionId(section.id)}
                 >
                     <p>Section No. {section.order_num}</p>
                     <p>{section.title}</p>
