@@ -16,7 +16,7 @@ const CreateSectionModal = ({setAuthenticated, authenticated, course}) => {
       </button>
       {showModal ? (
         <Modal onClose={() => setShowModal(false)}>
-            <CreateSectionForm course={course} authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal} showModal={showModal}/>
+            <CreateSectionForm course={course} authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal} showModal={showModal} />
         </Modal>
         ) : null}
     </>

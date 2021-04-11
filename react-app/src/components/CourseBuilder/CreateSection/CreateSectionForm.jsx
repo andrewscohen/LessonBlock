@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {createCourseSection} from "../../../store/section"
+import {getOneUserCourse} from "../../../store/course"
 
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
@@ -11,11 +11,18 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 const CreateSectionForm = ({setShowModal, course}) => {
     const [sectionTitle, setSectionTitle] = useState('');
     const [orderNum, setOrderNum] = useState('');
-
+    const [eventTrigger, setEventTrigger] = useState(false);
 
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const courseId = course.id;
+
+    useEffect(() => {
+        if (eventTrigger) {
+          dispatch(getOneUserCourse(courseId))
+          setShowModal(false);
+          setEventTrigger(false)
+      }}, [eventTrigger, dispatch, courseId, setShowModal]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,12 +30,10 @@ const CreateSectionForm = ({setShowModal, course}) => {
             sectionTitle: sectionTitle,
             orderNum: orderNum,
             userId: sessionUser.id,
-            courseId: course.id,
+            courseId: courseId,
         }
-
         dispatch(createCourseSection(newSectionData));
-        setShowModal(false);
-        history.push('/dashboard')
+        setEventTrigger(true);
         return newSectionData;
     };
 

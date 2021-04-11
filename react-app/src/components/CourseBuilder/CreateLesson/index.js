@@ -1,2 +1,2 @@
-import CreateLessonModal from ".'/CreateSectionModal"
+import CreateLessonModal from "./CreateLessonModal";
 export default CreateLessonModal;

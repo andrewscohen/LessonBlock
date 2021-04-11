@@ -4,7 +4,7 @@ import DeleteCourseForm from "./DeleteCourseForm";
 
 const listItemStyle = "block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 font-semibold w-full";
 
-const DeleteCourseModal = ({deleteThisCourse}) => {
+const DeleteCourseModal = ({courseId, sectionId}) => {
     const [showModal, setShowModal] = useState(false);
 
     return(
@@ -14,11 +14,11 @@ const DeleteCourseModal = ({deleteThisCourse}) => {
             type="button"
             onClick={() => setShowModal(true)}
         >
-            <span>Delete This Course</span>
+            Delete This Course
         </button>
         {showModal ? (
             <Modal onClose={() => setShowModal(false)}>
-                <DeleteCourseForm deleteThisCourse={deleteThisCourse} setShowModal={setShowModal} showModal={showModal}/>
+                <DeleteCourseForm sectionId={sectionId} courseId={courseId} setShowModal={setShowModal} showModal={showModal}/>
             </Modal>
             ) : null}
     </>

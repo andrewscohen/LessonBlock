@@ -1,23 +1,31 @@
-import React, {useEffect, useState} from "react";
-import ReactPlayer from 'react-player'
-import { useParams, useHistory, Link } from "react-router-dom";
+// PACKAGE IMPORTS
+import {useEffect, useState} from "react";
+import { useParams } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import ReactPlayer from 'react-player'
+
+// REDUX IMPORTS
+import {getOneUserCourse} from "../../../store/course";
+import {deleteOneUserCourseLesson} from "../../../store/lesson";
+
+// COMPONENT IMPORTS
 import {SideNav} from "../../CommonElements";
 import CreateLessonModal from "../CreateLesson/CreateLessonModal";
-import {getOneUserCourse, deleteOneUserCourse} from "../../../store/course";
-import {deleteOneUserCourseSection} from "../../../store/section"
-import {deleteOneUserCourseLesson} from "../../../store/lesson";
-import BookCover from "../../Dashboard/Assets/BookCover.jpg"
+import BookCover from "../../Dashboard/Assets/BookCover.jpg";
+import LessonMenuDropDown from "./LessonMenuDropDown";
+
+// TAILWIND REUSEABLE STYLES
+const pageLayout = "flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black";
+
+const sectionListStyle = "flex items-center justify-between p-5 font-semibold capitalize bg-gray-100 rounded-lg dark:text-gray-700 dark:bg-gray-200 w-10/12";
 
 const LessonBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
     const [selectedSectionId, setSelectedSectionId] = useState(0);
-    // const [selectedLesson, setSelectedLesson] = useState({});
     const [eventTrigger, setEventTrigger] = useState(false);
     const [selectedVideoUrl, setSelectedVideoUrl] = useState('');
 
     const dispatch = useDispatch();
-    const history = useHistory();
     const { courseId }  = useParams();
     const { sectionId }  = useParams();
 
@@ -48,33 +56,48 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
 
     return (
       <div className="flex w-full h-screen pt-20 overflow-hidden select-none">
-        <SideNav setAuthenticated={setAuthenticated} authenticated={authenticated}/>
-          <main className="flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black">
+        <SideNav
+          setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+        />
+        {/* {console.log("BUGSSSS: ", typeof Number(sectionId))} */}
+          <main className={pageLayout}>
             <div className="flex flex-col text-3xl capitalize">
-              {/* <span className="font-semibold">{course.name}</span> */}
-              <span>{course.name}!</span>
+              <span className="font-semibold">{course.name}</span>
             </div>
             <div className="flex">
               <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 bg-white rounded-lg dark:bg-gray-600">
                 {/* Card list container */}
-                <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
+                <h3 className="flex items-center justify-between px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
                   {/* Header */}
                   <span>Your Lessons</span>
+                  <LessonMenuDropDown
+                    currentCourse={currentCourse}
+                    course={course}
+                    sectionId={sectionId}
+                    // setSelectedSectionId={setSelectedSectionId}
+                  />
                 </h3>
                 <div className="mb-10">
                   {/* List */}
-                  <CreateLessonModal selectedSectionId={selectedSectionId} />
                     </div>
-                    <h1 className="text-xl font-bold uppercase">SECTIONS</h1>
+                    <ul key={sectionId}>
                       {course.sections !== undefined && course.sections.map(section => (
                         section.lessons.map(lesson => (
-                          <ul>
+                        <li>
                             {Number(sectionId) === lesson.section_id && (
-                              <button key={lesson.section_id} onClick={() => setSelectedVideoUrl(lesson.content)}>{lesson.title}</button>
+                              <button
+                                key={lesson.section_id}
+                                className={sectionListStyle}
+                                onClick={() => setSelectedVideoUrl(lesson.content)}
+                              >
+                                {lesson.title}
+                              </button>
                             )}
-                            </ul>
+                        </li>
                         ))
                       ))}
+                    </ul>
                 </div>
                 <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 overflow-y-hidden text-white bg-scroll bg-purple-300 rounded-lg ">
                 <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-bold capitalize">
@@ -95,7 +118,11 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
                 <div className="flex flex-col items-center mt-12">
                   <div className="w-full h-full"></div>
                   {selectedVideoUrl === "" ? (
-                  <img src={BookCover} className="relative object-cover w-full h-full" alt=" empty schedule" />
+                  <img
+                    className="relative object-cover w-full h-full"
+                    src={BookCover}
+                    alt=" empty schedule"
+                  />
                   ) : <ReactPlayer url={selectedVideoUrl} />
                   }
                   <span className="text-purple-500">
