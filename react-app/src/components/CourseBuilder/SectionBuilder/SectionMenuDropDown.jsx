@@ -43,7 +43,7 @@ const SectionMenuDropDown = ({course, currentCourse, deleteThisCourse}) => {
             <div className="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 <span className="flex flex-col">
                     <span>
-                        <CreateSectionModal course={course} id="options-menu"/>
+                        <CreateSectionModal showMenu={showMenu} setShowMenu={setShowMenu} course={course} id="options-menu"/>
                     </span>
                 </span>
                 <span className="flex flex-col">

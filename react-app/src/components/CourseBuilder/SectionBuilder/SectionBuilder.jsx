@@ -57,10 +57,6 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
       setEventTrigger(true)
     }
 
-    // const deleteThisSection = async (e) => {
-    //   await dispatch(deleteOneUserCourseSection({courseId: course.id, sectionId: selectedSectionId}))
-    //   setEventTrigger(true)
-    // }
 
     return (
       <div className="flex w-full h-screen pt-20 overflow-hidden select-none">

@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {deleteOneUserCourseSection} from "../../../store/section";
 import {getOneUserCourse} from "../../../store/course";
@@ -8,10 +7,9 @@ const deleteButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center 
 
 const cancelButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center text-indigo-500 transition duration-200 ease-in bg-white rounded-lg shadow-md hover:bg-gray-100 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
 
-const DeleteSectionForm = ({sectionId, courseId, setShowModal, showModal}) => {
+const DeleteSectionForm = ({sectionId, courseId, setShowModal}) => {
     const [eventTrigger, setEventTrigger] = useState(false);
     const dispatch = useDispatch();
-    const history = useHistory()
 
     useEffect(() => {
         if (eventTrigger) {
