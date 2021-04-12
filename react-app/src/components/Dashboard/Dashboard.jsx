@@ -14,20 +14,17 @@ import "./Dashboard.css";
 
 
 const Dashboard = ({setAuthenticated, authenticated}) => {
-  const [isInstructor, setIsInstructor] = useState(false)
+    const [isInstructor, setIsInstructor] = useState(false);
     const courses = useSelector((state) => Object.values(state.course.userCourses));
     const sessionUser = useSelector((state) => (state.session.user));
 
     const dispatch = useDispatch();
 
-
     useEffect(() => {
         sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
-        console.log("isINSTRUCTOR!: ", isInstructor)
-      }, [sessionUser, isInstructor])
+      }, [sessionUser, isInstructor, setIsInstructor])
 
     useEffect(() => {
-
         dispatch(getUserCourses());
       }, [dispatch]);
 
@@ -45,8 +42,9 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
           {courses && courses.map(course => (
             <div key={course.id}>
               <CourseCard
-                course={course} />
+                course={course}
                 isInstructor={isInstructor}
+                />
             </div>
           ))}
         </div>

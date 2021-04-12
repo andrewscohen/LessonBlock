@@ -36,7 +36,8 @@ const SideNav = ({setAuthenticated, authenticated, isInstructor}) => {
               <li>
                 <CreateCourseModal />
               </li>
-              ) : <CourseMarketPlaceButton />}
+              ) : <CourseMarketPlaceButton />
+              }
               <li>
                 <LogoutButton authenticated={authenticated}  setAuthenticated={setAuthenticated} />
               </li>

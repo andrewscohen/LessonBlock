@@ -19,7 +19,7 @@ const sectionListStyle = "flex items-center justify-between p-5 font-semibold ca
 
 const SectionBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
-    // const [isInstructor, setIsInstructor] = useState(false);
+    const [isInstructor, setIsInstructor] = useState(false);
     const [eventTrigger, setEventTrigger] = useState(false);
 
     const dispatch = useDispatch();
@@ -45,10 +45,9 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
         setCourse(currentCourse)
       }}, [currentCourse, course])
 
-    //   useEffect(() => {
-    //   sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
-    //   console.log("isINSTRUCTOR!: ", isInstructor)
-    // }, [sessionUser, isInstructor])
+      useEffect(() => {
+        sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
+      }, [sessionUser, isInstructor, setIsInstructor])
 
     const deleteThisCourse = () => {
       dispatch(deleteOneUserCourse(course.id))
@@ -62,6 +61,7 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
         <SideNav
           setAuthenticated={setAuthenticated}
           authenticated={authenticated}
+          isInstructor={isInstructor}
         />
         <main className={pageLayout}>
           <div className="flex flex-col text-3xl capitalize">

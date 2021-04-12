@@ -20,9 +20,10 @@ const pageLayout = "flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition durat
 const sectionListStyle = "flex items-center justify-between p-5 font-semibold capitalize bg-gray-100 rounded-lg dark:text-gray-700 dark:bg-gray-200 w-10/12";
 
 const LessonBuilder = ({authenticated, setAuthenticated}) => {
-    const [course, setCourse] = useState({});
-    const [eventTrigger, setEventTrigger] = useState(false);
-    const [selectedVideoUrl, setSelectedVideoUrl] = useState("");
+  const [course, setCourse] = useState({});
+  const [eventTrigger, setEventTrigger] = useState(false);
+  const [selectedVideoUrl, setSelectedVideoUrl] = useState("");
+  const [isInstructor, setIsInstructor] = useState(false);
 
     const dispatch = useDispatch();
     const { courseId }  = useParams();
@@ -47,11 +48,17 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
         setCourse(currentCourse)
       }}, [currentCourse, course])
 
+
+      useEffect(() => {
+          sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
+        }, [sessionUser, isInstructor, setIsInstructor])
+
     return (
       <div className="flex w-full h-screen pt-20 overflow-hidden select-none">
         <SideNav
           setAuthenticated={setAuthenticated}
           authenticated={authenticated}
+          isInstructor={isInstructor}
         />
           <main className={pageLayout}>
             <div className="flex flex-col text-3xl capitalize">
