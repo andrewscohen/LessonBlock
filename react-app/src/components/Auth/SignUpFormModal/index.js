@@ -1,2 +1,2 @@
-import SignUpModal from "./SignUpModal";
+import SignUpModal from './SignUpModal';
 export default SignUpModal;

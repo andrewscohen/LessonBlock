@@ -12,8 +12,8 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 
 
 const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
-    const [lessonTitle, setLessonTitle] = useState('');
-    const [videoLink, setVideoLink] = useState('');
+    const [lessonTitle, setLessonTitle] = useState("");
+    const [videoLink, setVideoLink] = useState("");
     const [isComplete, setIsComplete] = useState(false);
 
     const currentCourse = useSelector((state) => state.course.currentCourse)
@@ -30,7 +30,7 @@ const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
         e.preventDefault();
         const newLessonData = {
             lessonTitle: lessonTitle,
-            contentMediaType: 'video',
+            contentMediaType: "video",
             content: videoLink,
             is_complete: isComplete,
             sectionId: sectionNum,
@@ -38,7 +38,7 @@ const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
         }
         dispatch(createCourseLesson(newLessonData));
         setShowLessonModal(false);
-        history.push('/dashboard');
+        history.push("/dashboard");
         return newLessonData;
     };
 
@@ -66,16 +66,16 @@ const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
                 <div className="relative w-full mt-10 space-y-4">
                     <div>
                         <input
-                            type='text'
-                            placeholder='Section Title'
+                            type="text"
+                            placeholder="Section Title"
                             value={lessonTitle}
                             className={formInputStyle}
                             onChange={updateLessonTitle}
                         >
                         </input>
                         <input
-                            type='text'
-                            placeholder='Video Url'
+                            type="text"
+                            placeholder="Video Url"
                             value={videoLink}
                             className={formInputStyle}
                             onChange={updateVideoLink}

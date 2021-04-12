@@ -1,2 +1,2 @@
-import LessonBuilder from "./LessonBuilder";
+import LessonBuilder from './LessonBuilder';
 export default LessonBuilder;

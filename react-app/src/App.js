@@ -10,7 +10,8 @@ import {
   LandingPage,
   Dashboard,
   SectionBuilder,
-  LessonBuilder
+  LessonBuilder,
+  CourseMarket,
 } from "./components";
 
 
@@ -40,29 +41,94 @@ function App() {
         authenticated={authenticated}
         setAuthenticated={setAuthenticated} />
       <Switch>
-        <Route path="/" exact={true}>
+        {/* Start Home */}
+        <Route
+          path="/"
+          exact={true}
+        >
           <LandingPage
           authenticated={authenticated}
-          setAuthenticated={setAuthenticated} />
+          setAuthenticated={setAuthenticated}
+          />
         </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
+        {/* End Home */}
+
+        {/* Start All Users */}
+        <ProtectedRoute
+          path="/users"
+          exact={true}
+          authenticated={authenticated}
+        >
           <UsersList/>
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        {/* End All Uses */}
+
+        {/* Start Single User */}
+        <ProtectedRoute
+          path="/users/:userId"
+          exact={true}
+          authenticated={authenticated}
+        >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/dashboard" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
+        {/* End Single User */}
+
+        {/* Start Dashboard */}
+        <ProtectedRoute
+          path="/dashboard"
+          exact={true}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        >
           <Dashboard
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/me/courses/:courseId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
-          <SectionBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        {/* End Dashboard */}
+
+        {/* Start Instructor Section Builder*/}
+        <ProtectedRoute
+          path="/users/me/courses/:courseId"
+          exact={true}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        >
+          <SectionBuilder
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/me/courses/:courseId/sections/:sectionId" exact={true} authenticated={authenticated} setAuthenticated={setAuthenticated}>
-          <LessonBuilder authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        {/* End Instructor Section Builder */}
+
+        {/* Start Instructor Lesson Builder */}
+        <ProtectedRoute
+          path="/users/me/courses/:courseId/sections/:sectionId"
+          exact={true}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+        >
+          <LessonBuilder
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </ProtectedRoute>
+        {/* End Instructor Lesson Builder */}
+
+        {/* Start Student Course MarketPlace */}
+        <ProtectedRoute
+          path="/courses"
+          exact={true}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+         >
+          <CourseMarket
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </ProtectedRoute>
+        {/* End Student Course MarketPlace */}
+
       </Switch>
     </BrowserRouter>
   );

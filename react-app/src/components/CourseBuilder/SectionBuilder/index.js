@@ -1,2 +1,2 @@
-import SectionBuilder from "./SectionBuilder";
+import SectionBuilder from './SectionBuilder';
 export default SectionBuilder;

@@ -15,7 +15,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
     const [courseName, setCourseName] = useState(currentCourse.name);
     const [courseDescription, setCourseDescription] = useState(currentCourse.description);
     const [courseCategory, setCourseCategory] = useState(currentCourse.category);
-    const [courseImg, setCourseImg] = useState('hello!');
+    const [courseImg, setCourseImg] = useState("hello!");
 
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
         }
         dispatch(updateOneUserCourse(updatedCourseData));
         setShowModal(false);
-        history.push('/dashboard');
+        history.push("/dashboard");
         return updatedCourseData;
     };
 
@@ -67,31 +67,31 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
                         <div className="relative">
                             <div>
                                 <input
-                                    type='text'
-                                    placeholder='Name'
+                                    type="text"
+                                    placeholder="Name"
                                     value={courseName}
                                     className={formInputStyle}
                                     onChange={updateCourseName}
                                 >
                                 </input>
                                 <input
-                                    type='textarea'
-                                    placeholder='Description'
+                                    type="textarea"
+                                    placeholder="Description"
                                     value={courseDescription}
                                     className={formInputStyle}
                                     onChange={updateCourseDescription}
                                 >
                                 </input>
                                 <input
-                                    type='text'
-                                    placeholder='Category'
+                                    type="text"
+                                    placeholder="Category"
                                     value={courseCategory}
                                     className={formInputStyle}
                                     onChange={updateCourseCategory}
                                 >
                                 </input>
                                 <input
-                                    type='file'
+                                    type="file"
                                     // value={courseImg}
                                     className={formInputStyle}
                                     onChange={(e) => setCourseImg(e.target.files[0])}

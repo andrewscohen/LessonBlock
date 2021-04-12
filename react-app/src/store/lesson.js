@@ -1,7 +1,7 @@
-const LOAD_ALL_COURSE_LESSONS = "lesson/loadCourseLessons";
-const LOAD_ONE_COURSE_LESSON = "lesson/loadOneCourseLesson";
-const CREATE_LESSON = "lessons/createLesson";
-const UPDATE_LESSON = "lessons/updateLesson";
+const LOAD_ALL_COURSE_LESSONS = 'lesson/loadCourseLessons';
+const LOAD_ONE_COURSE_LESSON = 'lesson/loadOneCourseLesson';
+const CREATE_LESSON = 'lessons/createLesson';
+const UPDATE_LESSON = 'lessons/updateLesson';
 
 
 
@@ -46,9 +46,9 @@ export const loadAllCourseLessons = (lessons) => {
 // CREATE THUNKS START
 export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_complete, sectionId, courseId }) => async (dispatch) => {
   const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       title: lessonTitle,
@@ -69,9 +69,9 @@ export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_c
 // UPDATE THUNKS START
   export const updateCourseLesson = ({ courseId, lessonTitle, orderNum, userId, lessonId, sectionId}) => async (dispatch) => {
     const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons/${lessonId}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ user_id: userId,
                              lesson_id: lessonId,
@@ -91,9 +91,9 @@ export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_c
 // DELETE THUNKS START
   export const deleteOneUserCourseLesson = ({courseId, sectionId, lessonId}) => async (dispatch) => {
     const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons/${lessonId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
                             course_id: courseId,

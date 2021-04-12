@@ -12,10 +12,10 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 
 
 const CreateCourseForm = ({setShowModal}) => {
-    const [courseName, setCourseName] = useState('');
-    const [courseDescription, setCourseDescription] = useState('');
-    const [courseCategory, setCourseCategory] = useState('');
-    // const [courseImg, setCourseImg] = useState('');
+    const [courseName, setCourseName] = useState("");
+    const [courseDescription, setCourseDescription] = useState("");
+    const [courseCategory, setCourseCategory] = useState("");
+    // const [courseImg, setCourseImg] = useState("");
 
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const CreateCourseForm = ({setShowModal}) => {
         }
         dispatch(createUserCourse(newCourseData));
         setShowModal(false);
-        history.push('/dashboard')
+        history.push("/dashboard")
         return newCourseData;
     };
 
@@ -64,24 +64,24 @@ const CreateCourseForm = ({setShowModal}) => {
                     <div className="relative">
                     <div>
                         <input
-                            type='text'
-                            placeholder='Name'
+                            type="text"
+                            placeholder="Name"
                             value={courseName}
                             className={formInputStyle}
                             onChange={updateCourseName}
                         >
                         </input>
                         <input
-                            type='textarea'
-                            placeholder='Description'
+                            type="textarea"
+                            placeholder="Description"
                             value={courseDescription}
                             className={formInputStyle}
                             onChange={updateCourseDescription}
                         >
                         </input>
                         <input
-                            type='text'
-                            placeholder='Category'
+                            type="text"
+                            placeholder="Category"
                             value={courseCategory}
                             className={formInputStyle}
                             onChange={updateCourseCategory}

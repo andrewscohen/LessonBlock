@@ -1,7 +1,7 @@
-const LOAD_ALL_COURSES = "courses/loadCourses";
-const LOAD_ONE_COURSE = "courses/loadOneCourse";
-const CREATE_COURSE = "courses/createCourse";
-const UPDATE_COURSE = "courses/updateCourse";
+const LOAD_ALL_COURSES = 'courses/loadCourses';
+const LOAD_ONE_COURSE = 'courses/loadOneCourse';
+const CREATE_COURSE = 'courses/createCourse';
+const UPDATE_COURSE = 'courses/updateCourse';
 
 
 // ACTION CREATORS START
@@ -40,14 +40,21 @@ export const loadCourses = (courses) => {
     dispatch(loadOneCourse(data));
     return data;
   };
+
+  export const getAllCourses = () => async (dispatch) => {
+    const res = await fetch(`api/courses`);
+    const data = await res.json();
+    dispatch(loadCourses(res.data));
+    return data;
+  }
 // GET THUNKS END
 
 // CREATE THUNKS START
 export const createUserCourse = ({ name, description, category, userId }) => async (dispatch) => {
-  const res = await fetch("/api/users/me/courses", {
-    method: "POST",
+  const res = await fetch('/api/users/me/courses', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ user_id: userId,
                            name: name,
@@ -66,15 +73,15 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
 // UPDATE THUNKS START
   export const updateOneUserCourse = ({courseId, name, description, category, courseImg, userId}) => async (dispatch) => {
     const form = new FormData()
-    form.append("course_id", courseId)
-    form.append("user_id", userId)
-    form.append("name", name)
-    form.append("description", description)
-    form.append("category", category)
-    form.append("course_img", courseImg)
+    form.append('course_id', courseId)
+    form.append('user_id', userId)
+    form.append('name', name)
+    form.append('description', description)
+    form.append('category', category)
+    form.append('course_img', courseImg)
 
     const res = await fetch(`/api/users/me/courses/${courseId}`, {
-      method: "PUT",
+      method: 'PUT',
       body: form,
     });
     const parsedResponse = await res.json();
@@ -88,7 +95,7 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
 // DELETE THUNKS START
   export const deleteOneUserCourse = id => async (dispatch) => {
     const res = await fetch(`/api/users/me/courses/${id}`, {
-      method: "DELETE"
+      method: 'DELETE'
     });
     const parsedResponse = await res.json();
     dispatch(loadCourses(parsedResponse));

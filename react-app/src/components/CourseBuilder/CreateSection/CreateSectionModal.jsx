@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Modal } from '../../../context/ModalContext';
+import { Modal } from "../../../context/ModalContext";
 import CreateSectionForm from "./CreateSectionForm";
 
 const CreateSectionModal = ({setAuthenticated, authenticated, course}) => {

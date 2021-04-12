@@ -12,8 +12,8 @@ const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400
 
 
 const CreateSectionForm = ({setShowModal, course}) => {
-    const [sectionTitle, setSectionTitle] = useState('');
-    const [orderNum, setOrderNum] = useState('');
+    const [sectionTitle, setSectionTitle] = useState("");
+    const [orderNum, setOrderNum] = useState("");
     const [eventTrigger, setEventTrigger] = useState(false);
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -64,16 +64,16 @@ const CreateSectionForm = ({setShowModal, course}) => {
                 <div className="relative w-full mt-10 space-y-4">
                     <div>
                         <input
-                            type='text'
-                            placeholder='Section Title'
+                            type="text"
+                            placeholder="Section Title"
                             value={sectionTitle}
                             className={formInputStyle}
                             onChange={updateSectionTitle}
                         >
                         </input>
                         <input
-                            type='text'
-                            placeholder='Section Number'
+                            type="text"
+                            placeholder="Section Number"
                             value={orderNum}
                             className={formInputStyle}
                             onChange={updateOrderNum}

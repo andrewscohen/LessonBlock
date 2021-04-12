@@ -1,2 +1,2 @@
-import DeleteCourseModal from "./DeleteCourseModal";
+import DeleteCourseModal from './DeleteCourseModal';
 export default DeleteCourseModal;

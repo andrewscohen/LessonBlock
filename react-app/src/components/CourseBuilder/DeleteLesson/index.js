@@ -1,2 +1,2 @@
-import DeleteLessonModal from "./DeleteLessonModal";
+import DeleteLessonModal from './DeleteLessonModal';
 export default DeleteLessonModal;

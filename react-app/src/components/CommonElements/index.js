@@ -1,3 +1,3 @@
-import NavBar from "./NavBar";
-import {SideNav} from "./SideNav";
+import NavBar from './NavBar';
+import {SideNav} from './SideNav';
 export { NavBar, SideNav};

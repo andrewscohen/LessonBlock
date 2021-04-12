@@ -1,2 +1,2 @@
-import UserAvatarDropDown from "./UserAvatarDropDown";
+import UserAvatarDropDown from './UserAvatarDropDown';
 export default UserAvatarDropDown;

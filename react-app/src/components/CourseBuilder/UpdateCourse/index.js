@@ -1,2 +1,2 @@
-import UpdateCourseModal from "./UpdateCourseModal"
+import UpdateCourseModal from './UpdateCourseModal'
 export default UpdateCourseModal

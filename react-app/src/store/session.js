@@ -1,5 +1,5 @@
-  const SET_USER = "user/setUser";
-  const REMOVE_USER = "user/removeUser";
+  const SET_USER = 'user/setUser';
+  const REMOVE_USER = 'user/removeUser';
   // const UPDATE_USER = '/users/updateUser';
 
   export const setUser = (user) => {
@@ -59,10 +59,10 @@
   // };
 
   export const updateOneUser = ({username, email, password, isInstructor, profileImage}) => async (dispatch) => {
-    const response = await fetch("/api/users/me", {
-      method: "PUT",
+    const response = await fetch('/api/users/me', {
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         username: username,
@@ -81,10 +81,10 @@
 
 
   export const signup = ({username, email, password, isInstructor }) => async (dispatch) => {
-    const response = await fetch("/api/auth/signup", {
-      method: "POST",
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         username: username,
@@ -101,10 +101,10 @@
   };
 
   export const login = ( email, password ) => async (dispatch) => {
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -119,9 +119,9 @@
   };
 
   export const logout = () => async (dispatch) => {
-    const response = await fetch("/api/auth/logout", {
+    const response = await fetch('/api/auth/logout', {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       }
     });
     if (response.ok) {

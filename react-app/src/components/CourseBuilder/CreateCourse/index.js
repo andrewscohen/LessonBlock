@@ -1,2 +1,2 @@
-import CreateCourseModal from "./CreateCourseModal";
+import CreateCourseModal from './CreateCourseModal';
 export default CreateCourseModal;

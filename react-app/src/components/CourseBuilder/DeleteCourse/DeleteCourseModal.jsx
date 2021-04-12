@@ -2,7 +2,7 @@
 import {useState} from "react";
 
 // CONTEXT IMPORTS
-import { Modal } from '../../../context/ModalContext';
+import { Modal } from "../../../context/ModalContext";
 
 // COMPONENT IMPORTS
 import DeleteCourseForm from "./DeleteCourseForm";

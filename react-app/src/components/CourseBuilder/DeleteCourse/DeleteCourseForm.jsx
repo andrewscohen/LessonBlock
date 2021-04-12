@@ -19,7 +19,7 @@ const DeleteCourseForm = ({setShowModal, showModal}) => {
 
     const deleteThisCourse = () => {
         dispatch(deleteOneUserCourse(currentCourse.id))
-        history.push('/')
+        history.push("/")
       }
 
     return(
