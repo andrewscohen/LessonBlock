@@ -1,10 +1,22 @@
-import React from "react";
+import {useHistory} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteOneUserCourse} from "../../../store/course";
 
 const deleteButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 "
 
 const cancelButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center text-indigo-500 transition duration-200 ease-in bg-white rounded-lg shadow-md hover:bg-gray-100 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
 
-const DeleteCourseForm = ({deleteThisCourse, setShowModal, showModal}) => {
+
+const DeleteCourseForm = ({setShowModal, showModal}) => {
+    const currentCourse = useSelector((state) => state.course.currentCourse)
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+
+    const deleteThisCourse = () => {
+        dispatch(deleteOneUserCourse(currentCourse.id))
+        history.push('/')
+      }
 
     return(
         <div className="w-64 p-4 m-auto bg-white shadow-lg rounded-2xl dark:bg-gray-800">

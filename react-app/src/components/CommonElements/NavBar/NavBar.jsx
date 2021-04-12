@@ -1,6 +1,7 @@
-import React from "react";
+// PACKAGE IMPORTS
 import {useSelector} from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
+// COMPONENT IMPORTS
 import LoginFormModal from "../../Auth/LoginFormModal"
 import UserAvatarDropDown from "../UserAvatarDropDown";
 import "./NavBar.css";
