@@ -1,11 +1,12 @@
 // PACKAGE IMPORTS
 import {Link} from "react-router-dom";
+import CourseMarketPlaceButton from "./CourseMarketPlaceButton";
 
 // COMPONENT IMPORTS
 import CreateCourseModal from "../../CourseBuilder/CreateCourse";
 import LogoutButton from "./LogoutButton";
 
-const SideNav = ({setAuthenticated, authenticated}) => {
+const SideNav = ({setAuthenticated, authenticated, isInstructor}) => {
 
     return (
 
@@ -31,9 +32,12 @@ const SideNav = ({setAuthenticated, authenticated}) => {
                   <div className="font-light tracking-wide text-gray-500 md:text-2xl sm:text-base">COURSES</div>
                 </div>
               </li>
+              {isInstructor ? (
               <li>
                 <CreateCourseModal />
               </li>
+              ) : <CourseMarketPlaceButton />
+              }
               <li>
                 <LogoutButton authenticated={authenticated}  setAuthenticated={setAuthenticated} />
               </li>
