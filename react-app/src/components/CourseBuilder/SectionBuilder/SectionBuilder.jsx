@@ -11,7 +11,7 @@ import {getOneUserCourse, deleteOneUserCourse} from "../../../store/course";
 import SectionMenuDropDown from "./SectionMenuDropDown";
 import BookCover from "../../Dashboard/Assets/BookCover.jpg";
 import {SideNav} from "../../CommonElements";
-import DeleteSectionModal from "../DeleteSection/DeleteSectionModal";
+import DeleteSectionModal from "../DeleteSection";
 
 // TAILWIND STYLES
 const pageLayout = "flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black";
@@ -92,7 +92,10 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
                     <p>Section No. {section.order_num}</p>
                     <p>{section.title}</p>
                 </Link>
-               <DeleteSectionModal sectionId={section.id} courseId={courseId} />
+                <DeleteSectionModal
+                  sectionId={section.id}
+                  courseId={courseId}
+                />
                 </div>
                 </li>
               ))}
