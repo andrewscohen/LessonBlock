@@ -71,7 +71,6 @@ LessonBlock is an EdTech platform inspired by Khan Academy that allows instructo
 - PostgreSQL
 - TailwindCSS
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
