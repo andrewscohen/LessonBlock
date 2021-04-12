@@ -67,7 +67,7 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
                     sectionId={sectionId}
                   />
                 </h3>
-                <div className="mb-10">
+                <div className="mb-3">
                   {/* List */}
                     </div>
                     <ul className="px-3 pt-1 pb-2 mb-8" key={sectionId}>

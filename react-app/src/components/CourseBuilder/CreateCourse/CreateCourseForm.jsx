@@ -52,7 +52,7 @@ const CreateCourseForm = ({setShowModal}) => {
         <div className="container flex justify-end h-screen mt-96">
         <div className="absolute object-right-top pt-5 pr-8">
             <button type="button" onClick={() => setShowModal(false)}>
-                <i className="fas fa-window-close"></i>
+                <i className="fas fa-window-close" />
             </button>
         </div>
         <div className="flex flex-col items-center justify-center w-full rounded-md h-2/4 bg-white-space">

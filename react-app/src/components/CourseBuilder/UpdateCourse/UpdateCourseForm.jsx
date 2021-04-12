@@ -31,9 +31,7 @@ const UpdateCourseForm = ({setShowModal, currentCourse}) => {
             userId: sessionUser.id,
             courseImg: courseImg,
         }
-        console.log("1 handleSubmit fired")
         dispatch(updateOneUserCourse(updatedCourseData));
-        console.log("dispatch fired")
         setShowModal(false);
         history.push('/dashboard');
         return updatedCourseData;

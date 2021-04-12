@@ -59,7 +59,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
     <div className="container flex justify-end h-screen mt-96">
       <div className="absolute object-right-top pt-5 pr-8">
         <button type="button" onClick={() => setIsOpen(false)}>
-          <i className="fas fa-window-close"></i>
+          <i className="fas fa-window-close" />
         </button>
       </div>
       <div className="flex flex-col items-center justify-center w-6/12 overflow-hidden h-2/3 bg-brand-tan rounded-l-md">

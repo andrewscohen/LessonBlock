@@ -85,7 +85,6 @@ export const createCourseSection = ({ courseId, sectionTitle, orderNum, userId }
 
 // DELETE THUNKS START
   export const deleteOneUserCourseSection = ({courseId, sectionId}) => async (dispatch) => {
-    console.log("THUNK HIT: ", courseId )
     const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}`, {
       method: "DELETE",
       headers: {
@@ -97,7 +96,6 @@ export const createCourseSection = ({ courseId, sectionTitle, orderNum, userId }
                           }),
       });
       const parsedResponse = await res.json();
-      console.log("PARSED RESPONSE: ", parsedResponse)
       dispatch(loadAllCourseSections(parsedResponse.sections));
       return parsedResponse;
   }

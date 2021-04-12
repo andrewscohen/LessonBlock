@@ -28,7 +28,6 @@ const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("FRONTEND SUBMIT FIRED!")
         const newLessonData = {
             lessonTitle: lessonTitle,
             contentMediaType: 'video',
@@ -37,10 +36,8 @@ const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
             sectionId: sectionNum,
             courseId: currentCourse.id,
         }
-        console.log("FRONTEND LESSONS DATA:  ", newLessonData)
         dispatch(createCourseLesson(newLessonData));
         setShowLessonModal(false);
-        console.log("FRONTEND IDK I THINK THIS WORKED AT THIS POINT?")
         history.push('/dashboard');
         return newLessonData;
     };
@@ -57,9 +54,8 @@ const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
     return (
         <div className="container flex justify-end h-screen mt-96">
         <div className="absolute object-right-top pt-5 pr-8">
-            {/* <button type="button" onClick={() => console.log()}> */}
             <button type="button" onClick={() => setShowLessonModal(false)}>
-                <i className="fas fa-window-close"></i>
+                <i className="fas fa-window-close" />
             </button>
         </div>
         <div className="flex flex-col items-center justify-center w-full rounded-md h-2/4 bg-white-space">

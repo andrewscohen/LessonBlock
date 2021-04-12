@@ -28,12 +28,9 @@ export const loadAllCourseLessons = (lessons) => {
 
 // GET THUNKS START
   export const getUserCourseLesson = ({courseId, sectionId}) => async (dispatch) => {
-   console.log("THUNK FIRED!!!")
     const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons`);
     const data = await res.json();
-    console.log("THUNK data: ", data)
     res.data = data;
-    console.log("REDUX getUserCourseLesson: ", data)
     dispatch(loadAllCourseLessons(res.data));
   };
 
@@ -41,7 +38,6 @@ export const loadAllCourseLessons = (lessons) => {
   export const getOneUserCourseLesson = ({courseId, sectionId, id}) => async (dispatch) => {
     const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons/${id}`);
     const data = await res.json();
-    console.log("REDUX getOneUserCourseLesson: ", data)
     dispatch(loadOneCourseLesson(data));
     return data;
   };
@@ -49,7 +45,6 @@ export const loadAllCourseLessons = (lessons) => {
 
 // CREATE THUNKS START
 export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_complete, sectionId, courseId }) => async (dispatch) => {
-  console.log("REDUX: WE HAVE HIT THE THUNK!    ", "title: ", lessonTitle, "sectionId: ", sectionId )
   const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons`, {
     method: "POST",
     headers: {
@@ -65,9 +60,7 @@ export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_c
                           }),
   });
   const parsedResponse = await res.json();
-  console.log("REDUX PARSED RESPONSE:  ", parsedResponse)
   dispatch(loadOneCourseLesson())
-  console.log("ACTION HAS BEEN DISPATCHED")
   return parsedResponse;
 }
 // CREATE THUNKS END
@@ -97,7 +90,6 @@ export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_c
 
 // DELETE THUNKS START
   export const deleteOneUserCourseLesson = ({courseId, sectionId, lessonId}) => async (dispatch) => {
-    console.log("THUNK HIT: ", courseId )
     const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons/${lessonId}`, {
       method: "DELETE",
       headers: {
@@ -110,7 +102,6 @@ export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_c
                           }),
       });
       const parsedResponse = await res.json();
-      console.log("PARSED RESPONSE: ", parsedResponse)
       dispatch(loadAllCourseLessons(parsedResponse.lessons));
       return parsedResponse;
   }

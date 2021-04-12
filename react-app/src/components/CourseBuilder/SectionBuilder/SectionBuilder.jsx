@@ -79,9 +79,9 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
                   course={course}
                 />
               </h3>
-        <div className="mb-10">
+        <div className="mb-3">
           {/* List */}
-              <ul className="px-3 pt-1 pb-2 mb-8">
+              <ul className="px-3 pt-1 pb-2 mt-3 mb-8">
                 {course.sections !== undefined && course.sections.map(section => (
                 <li key={section.id}>
                 <div className="flex justify-between">

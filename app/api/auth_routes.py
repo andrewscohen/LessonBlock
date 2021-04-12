@@ -35,14 +35,12 @@ def login():
     Logs a user in
     """
     form = LoginForm()
-    print(request.get_json())
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!F
         user = User.query.filter(User.email == form.data['email']).first()
-        print(user)
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -51,7 +49,6 @@ def login():
 @auth_routes.route('/demo-instructor-login', methods=['GET'])
 def demo_instructor_login():
     user = User.query.filter(User.email == 'instructor@lessonblock.io').first()
-    print('USER: ', user.to_dict())
     login_user(user)
     return user.to_dict()
 
@@ -59,7 +56,6 @@ def demo_instructor_login():
 @auth_routes.route('/demo-student-login', methods=['GET'])
 def demo_student_login():
     user = User.query.filter(User.email == 'student@lessonblock.io').first()
-    print('USER: ', user.to_dict())
     login_user(user)
     return user.to_dict()
 

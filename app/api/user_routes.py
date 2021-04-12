@@ -92,7 +92,6 @@ def update_course(id):
         db.session.commit()
 
     elif request.method == 'PUT':
-        print("PUT ROUTE HIT")
         # form = EditCourseForm()
         # form["csrf_token"].data = request.cookies["csrf_token"]
         if "course_img" not in request.files:
@@ -235,7 +234,6 @@ def update_lesson(course_id, section_id, id):
         # id = id
 
     elif request.method == 'GET':
-        print("BACKEND GET HIT")
         return lesson.to_dict()
 
     allLessons = Lesson.query.all()
