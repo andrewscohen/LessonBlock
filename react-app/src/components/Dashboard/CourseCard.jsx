@@ -6,14 +6,14 @@ import {useSelector} from "react-redux";
 // ASSET IMPORTS
 import BookCover from "./Assets/BookCover.jpg";
 
-const CourseCard = ({course}) => {
-    const [isInstructor, setIsInstructor] = useState(false)
-    const sessionUser = useSelector((state) => (state.session.user));
+const CourseCard = ({course, isInstructor}) => {
+    // const [isInstructor, setIsInstructor] = useState(false)
+    // const sessionUser = useSelector((state) => (state.session.user));
 
-    useEffect(() => {
-        sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
-        console.log("isINSTRUCTOR!: ", isInstructor)
-      }, [sessionUser, isInstructor])
+    // useEffect(() => {
+    //     sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
+    //     console.log("isINSTRUCTOR!: ", isInstructor)
+    //   }, [sessionUser, isInstructor])
 
     return (
         <>

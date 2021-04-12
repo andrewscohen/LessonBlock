@@ -1,5 +1,5 @@
 // PACKAGE IMPORTS
-import {useEffect} from "react";
+import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 // REDUX IMPORTS FROM STORE
@@ -14,8 +14,17 @@ import "./Dashboard.css";
 
 
 const Dashboard = ({setAuthenticated, authenticated}) => {
+  const [isInstructor, setIsInstructor] = useState(false)
     const courses = useSelector((state) => Object.values(state.course.userCourses));
+    const sessionUser = useSelector((state) => (state.session.user));
+
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
+        console.log("isINSTRUCTOR!: ", isInstructor)
+      }, [sessionUser, isInstructor])
 
     useEffect(() => {
 
@@ -29,12 +38,15 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
           <SideNav
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
+            isInstructor={isInstructor}
           />
         </div>
         <div className="card-wrapper">
           {courses && courses.map(course => (
             <div key={course.id}>
-              <CourseCard course={course} />
+              <CourseCard
+                course={course} />
+                isInstructor={isInstructor}
             </div>
           ))}
         </div>
