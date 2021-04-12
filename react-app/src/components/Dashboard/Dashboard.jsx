@@ -18,6 +18,7 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+
         dispatch(getUserCourses());
       }, [dispatch]);
 

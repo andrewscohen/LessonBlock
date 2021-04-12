@@ -42,10 +42,13 @@ export const loadCourses = (courses) => {
   };
 
   export const getAllCourses = () => async (dispatch) => {
+    console.log("THUNK HIT");
     const res = await fetch(`api/courses`);
     const data = await res.json();
+    console.log("REDUX DATA: ", data);
+    res.data = data
     dispatch(loadCourses(res.data));
-    return data;
+
   }
 // GET THUNKS END
 
