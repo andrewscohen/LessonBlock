@@ -45,7 +45,7 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
         setCourse(currentCourse)
       }}, [currentCourse, course])
 
-      // useEffect(() => {
+    //   useEffect(() => {
     //   sessionUser.is_instructor === true ? setIsInstructor(true) : setIsInstructor(false);
     //   console.log("isINSTRUCTOR!: ", isInstructor)
     // }, [sessionUser, isInstructor])
