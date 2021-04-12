@@ -1,8 +1,12 @@
+// PACKAGE IMPORTS
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
+
+// REDUX IMPORTS FROM STORE
 import {deleteOneUserCourseSection} from "../../../store/section";
 import {getOneUserCourse} from "../../../store/course";
 
+// TAILWIND STYLES
 const deleteButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 "
 
 const cancelButtonStyle = "w-full px-4 py-2 text-base font-semibold text-center text-indigo-500 transition duration-200 ease-in bg-white rounded-lg shadow-md hover:bg-gray-100 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"

@@ -1,5 +1,10 @@
-import React, {useState} from "react";
+// PACKAGE IMPORTS
+import {useState} from "react";
+
+// CONTEXT IMPORTS
 import { Modal } from '../../../context/ModalContext';
+
+// COMPONENT IMPORTS
 import CreateCourseForm from "./CreateCourseForm";
 
 const CreateCourseModal = ({setAuthenticated, authenticated}) => {

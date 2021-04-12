@@ -1,10 +1,14 @@
-import React, { useState} from "react";
+// PACKAGE IMPORTS
+import { useState} from "react";
 import {useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+// REDUX IMPORTS FROM STORE
 import { logout } from "../../../store/session";
 
 const buttonStyle = "w-12 h-12 rounded-full";
 
+// TAILWIND STYLES
 const listItemStyle = "block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 font-semibold w-full";
 
 const UserAvatarDropDown = ({setAuthenticated, authenticated}) => {
