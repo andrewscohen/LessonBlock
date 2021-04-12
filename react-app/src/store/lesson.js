@@ -96,15 +96,16 @@ export const createCourseLesson = ({lessonTitle, contentMediaType, content, is_c
 
 
 // DELETE THUNKS START
-  export const deleteOneUserCourseLesson = ({courseId, lessonId}) => async (dispatch) => {
+  export const deleteOneUserCourseLesson = ({courseId, sectionId, lessonId}) => async (dispatch) => {
     console.log("THUNK HIT: ", courseId )
-    const res = await fetch(`/api/users/me/courses/${courseId}/lessons/${lessonId}`, {
+    const res = await fetch(`/api/users/me/courses/${courseId}/sections/${sectionId}/lessons/${lessonId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
                             course_id: courseId,
+                            section_id: sectionId,
                             lesson_id: lessonId
                           }),
       });

@@ -205,14 +205,14 @@ def create_lesson(course_id, section_id):
     return {'errors': form_errors(form.errors)}
 # LESSON CREATE ROUTE END
 
-# # LESSON DELETE, PUT, GET ROUTE START
+# LESSON DELETE, PUT, GET ROUTE START
 
 
 @user_routes.route(
     '/me/courses/<int:course_id>/sections/<int:section_id>/lessons/<int:id>',
     methods=['DELETE', 'PUT', 'GET'])
 @login_required
-def update_lesson(section_id, id):
+def update_lesson(course_id, section_id, id):
     section = Section.query.get(section_id)
     lesson = Lesson.query.get(id)
 

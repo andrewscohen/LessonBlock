@@ -6,12 +6,14 @@ import ReactPlayer from 'react-player'
 
 // REDUX IMPORTS
 import {getOneUserCourse} from "../../../store/course";
-import {deleteOneUserCourseLesson} from "../../../store/lesson";
 
 // COMPONENT IMPORTS
 import {SideNav} from "../../CommonElements";
-import BookCover from "../../Dashboard/Assets/BookCover.jpg";
 import LessonMenuDropDown from "./LessonMenuDropDown";
+import DeleteLessonModal from "../DeleteLesson";
+
+// ASSET IMPORTS
+import BookCover from "../../Dashboard/Assets/BookCover.jpg";
 
 // TAILWIND STYLES
 const pageLayout = "flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black";
@@ -68,11 +70,12 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
                 <div className="mb-10">
                   {/* List */}
                     </div>
-                    <ul key={sectionId}>
+                    <ul className="px-3 pt-1 pb-2 mb-8" key={sectionId}>
                       {course.sections !== undefined && course.sections.map(section => (
                         section.lessons.map(lesson => (
                         <li key={lesson.id}>
-                            {Number(sectionId) === lesson.section_id && (
+                            {Number(sectionId) === lesson.section_id ? (
+                              <div className="flex">
                               <button
                                 key={lesson.section_id}
                                 className={sectionListStyle}
@@ -80,7 +83,13 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
                               >
                                 {lesson.title}
                               </button>
-                            )}
+                          <DeleteLessonModal
+                            courseId={course.id}
+                            sectionId={lesson.section_id}
+                            id={lesson.id}
+                            />
+                            </div>
+                            ) : null}
                         </li>
                         ))
                       ))}

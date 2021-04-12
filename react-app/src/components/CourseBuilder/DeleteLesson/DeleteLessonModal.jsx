@@ -5,10 +5,10 @@ import {useState} from "react";
 import { Modal } from '../../../context/ModalContext';
 
 // COMPONENT IMPORTS
-import DeleteSectionForm from "./DeleteSectionForm";
+import DeleteLessonForm from "./DeleteLessonForm";
 
 
-const DeleteSectionModal = ({sectionId, courseId}) => {
+const DeleteLessonModal = ({sectionId, courseId, id}) => {
     const [showModal, setShowModal] = useState(false);
 
     return(
@@ -25,11 +25,17 @@ const DeleteSectionModal = ({sectionId, courseId}) => {
         </button>
         {showModal ? (
             <Modal onClose={() => setShowModal(false)}>
-                <DeleteSectionForm sectionId={sectionId} courseId={courseId} setShowModal={setShowModal} showModal={showModal}/>
+                <DeleteLessonForm
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                    sectionId={sectionId}
+                    courseId={courseId}
+                    id={id}
+                />
             </Modal>
             ) : null}
     </>
   );
 };
 
-export default DeleteSectionModal;
+export default DeleteLessonModal;
