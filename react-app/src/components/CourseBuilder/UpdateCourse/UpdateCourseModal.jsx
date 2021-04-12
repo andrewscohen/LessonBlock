@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+// PACKAGE IMPORTS
+import { useState } from "react";
+
+// CONTEXT IMPORTS
 import { Modal } from '../../../context/ModalContext';
+
+// COMPONENT IMPORTS
 import UpdateCourseForm from "./UpdateCourseForm";
 
+// TAILWIND STYLES
 const listItemStyle = "block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 font-semibold w-full";
 
 const UpdateCourseModal = ({authenticated, setAuthenticated, currentCourse}) => {
@@ -17,7 +23,12 @@ const UpdateCourseModal = ({authenticated, setAuthenticated, currentCourse}) => 
       </button>
         {showModal ? (
             <Modal onClose={() => setShowModal(false)}>
-                <UpdateCourseForm currentCourse={currentCourse} authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal}/>
+                <UpdateCourseForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                  currentCourse={currentCourse}
+                  setShowModal={setShowModal}
+                />
             </Modal>
         ) : null}
     </>

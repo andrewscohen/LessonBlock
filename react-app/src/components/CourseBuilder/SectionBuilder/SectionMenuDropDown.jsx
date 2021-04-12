@@ -1,8 +1,12 @@
-import React, {useState} from "react";
+// PACKAGE IMPORTS
+import {useState} from "react";
+
+// COMPONENT IMPORTS
 import CreateSectionModal from "../CreateSection/";
 import UpdateCourseModal from "../UpdateCourse/";
 import DeleteCourseModal from "../DeleteCourse";
 
+// TAILWIND STYLES
 const buttonStyle = "flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500";
 
 

@@ -1,19 +1,23 @@
+// PACKAGE IMPORTS
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
+
+// REDUX IMPORTS FROM STORE
 import {createCourseLesson} from "../../../store/lesson"
 
+// TAILWIND STYLES
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
 
-const CreateLessonForm = ({setShowLessonModal, course, sectionId}) => {
+const CreateLessonForm = ({setShowLessonModal, sectionId}) => {
     const [lessonTitle, setLessonTitle] = useState('');
     const [videoLink, setVideoLink] = useState('');
     const [isComplete, setIsComplete] = useState(false);
 
     const currentCourse = useSelector((state) => state.course.currentCourse)
-    const sessionUser = useSelector((state) => state.session.user);
+    // const sessionUser = useSelector((state) => state.session.user);
     const sectionNum = Number(sectionId)
     const dispatch = useDispatch();
     const history = useHistory();

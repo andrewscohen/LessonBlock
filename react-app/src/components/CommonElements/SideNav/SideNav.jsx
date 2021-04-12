@@ -1,6 +1,8 @@
-import React from "react";
+// PACKAGE IMPORTS
 import {Link} from "react-router-dom";
-import CreateCourseModal from "../../CourseBuilder/CreateCourse/CreateCourseModal";
+
+// COMPONENT IMPORTS
+import CreateCourseModal from "../../CourseBuilder/CreateCourse";
 import LogoutButton from "./LogoutButton";
 
 const SideNav = ({setAuthenticated, authenticated}) => {

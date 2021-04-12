@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+// PACKAGE IMPORTS
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
+
+// REDUX IMPORTS FROM STORE
 import {updateOneUserCourse} from "../../../store/course"
 
-
+// TAILWIND STYLES
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
@@ -56,7 +59,7 @@ const UpdateSectionForm = ({setShowModal, currentCourse}) => {
         <div className="container flex justify-end h-screen mt-96">
         <div className="absolute object-right-top pt-5 pr-8">
             <button type="button" onClick={() => setShowModal(false)}>
-                <i className="fas fa-window-close"></i>
+                <i className="fas fa-window-close" />
             </button>
         </div>
         <div className="flex flex-col items-center justify-center w-full rounded-md h-2/4 bg-white-space">
@@ -93,7 +96,12 @@ const UpdateSectionForm = ({setShowModal, currentCourse}) => {
                         </input>
                     </div>
                     <div>
-                        <button type="submit" className={whiteButtonStyle}>Enter</button>
+                        <button
+                            type="submit"
+                            className={whiteButtonStyle}
+                        >
+                            Enter
+                        </button>
                     </div>
                 </div>
                 </div>

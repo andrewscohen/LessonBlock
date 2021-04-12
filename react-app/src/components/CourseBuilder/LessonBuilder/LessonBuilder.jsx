@@ -10,18 +10,15 @@ import {deleteOneUserCourseLesson} from "../../../store/lesson";
 
 // COMPONENT IMPORTS
 import {SideNav} from "../../CommonElements";
-import CreateLessonModal from "../CreateLesson/CreateLessonModal";
 import BookCover from "../../Dashboard/Assets/BookCover.jpg";
 import LessonMenuDropDown from "./LessonMenuDropDown";
 
-// TAILWIND REUSEABLE STYLES
+// TAILWIND STYLES
 const pageLayout = "flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black";
-
 const sectionListStyle = "flex items-center justify-between p-5 font-semibold capitalize bg-gray-100 rounded-lg dark:text-gray-700 dark:bg-gray-200 w-10/12";
 
 const LessonBuilder = ({authenticated, setAuthenticated}) => {
     const [course, setCourse] = useState({});
-    const [selectedSectionId, setSelectedSectionId] = useState(0);
     const [eventTrigger, setEventTrigger] = useState(false);
     const [selectedVideoUrl, setSelectedVideoUrl] = useState('');
 
@@ -31,17 +28,11 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
 
     const sessionUser = useSelector((state) => (state.session.user));
     const currentCourse = useSelector((state) => state.course.currentCourse ? state.course.currentCourse : null)
-    // const courseSections = Object.values(course.sections)
 
     useEffect(() => {
       if (courseId) {
         dispatch(getOneUserCourse(courseId))
     }}, [courseId, dispatch]);
-
-    useEffect(() => {
-      if (sectionId) {
-        setSelectedSectionId(sectionId)
-    }}, [sectionId, dispatch]);
 
     useEffect(() => {
       if (eventTrigger) {
@@ -60,7 +51,6 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
           setAuthenticated={setAuthenticated}
           authenticated={authenticated}
         />
-        {/* {console.log("BUGSSSS: ", typeof Number(sectionId))} */}
           <main className={pageLayout}>
             <div className="flex flex-col text-3xl capitalize">
               <span className="font-semibold">{course.name}</span>
@@ -72,10 +62,7 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
                   {/* Header */}
                   <span>Your Lessons</span>
                   <LessonMenuDropDown
-                    currentCourse={currentCourse}
-                    course={course}
                     sectionId={sectionId}
-                    // setSelectedSectionId={setSelectedSectionId}
                   />
                 </h3>
                 <div className="mb-10">
@@ -84,7 +71,7 @@ const LessonBuilder = ({authenticated, setAuthenticated}) => {
                     <ul key={sectionId}>
                       {course.sections !== undefined && course.sections.map(section => (
                         section.lessons.map(lesson => (
-                        <li>
+                        <li key={lesson.id}>
                             {Number(sectionId) === lesson.section_id && (
                               <button
                                 key={lesson.section_id}
