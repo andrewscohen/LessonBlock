@@ -47,6 +47,11 @@ const CreateCourseForm = ({setShowModal}) => {
         setCourseCategory(e.target.value);
       };
 
+    const categories = [
+        "Math",
+        "Science",
+        "Social Studies",
+    ]
 
     return (
         <div className="container flex justify-end h-screen mt-96">
@@ -79,14 +84,19 @@ const CreateCourseForm = ({setShowModal}) => {
                             onChange={updateCourseDescription}
                         >
                         </input>
-                        <input
+                        <select
                             type="text"
                             placeholder="Category"
                             value={courseCategory}
                             className={formInputStyle}
                             onChange={updateCourseCategory}
                         >
-                        </input>
+                        <option value="" selected disabled hidden>Select A Category</option>
+                        {categories.map((category => (
+                            <option>{category}</option>
+                            ))
+                        )}
+                        </select>
                     </div>
                     <div>
                         <button type="submit" className={whiteButtonStyle}>Enter</button>
