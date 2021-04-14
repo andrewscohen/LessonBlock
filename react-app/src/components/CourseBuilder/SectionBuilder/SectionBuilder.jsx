@@ -107,7 +107,7 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
         <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 overflow-y-hidden text-white bg-scroll bg-purple-300 rounded-lg ">
         <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-bold capitalize">
           {/* Right Card*/}
-          <span>You"re Doing Great!</span>
+          <span>You're Doing Great!</span>
           <button className="ml-2">
             <svg className="w-5 h-5 fill-current" viewBox="0 0 256 512">
               <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9
