@@ -50,7 +50,12 @@ const CreateCourseForm = ({setShowModal}) => {
     const categories = [
         "Math",
         "Science",
+        "Computing",
         "Social Studies",
+        "Arts & Humanities",
+        "Economics",
+        "Reading & Language Arts",
+        "Life Skills"
     ]
 
     return (
@@ -74,22 +79,25 @@ const CreateCourseForm = ({setShowModal}) => {
                             value={courseName}
                             className={formInputStyle}
                             onChange={updateCourseName}
+                            required
                         >
                         </input>
-                        <input
+                        <textarea
                             type="textarea"
                             placeholder="Description"
                             value={courseDescription}
                             className={formInputStyle}
                             onChange={updateCourseDescription}
+                            required
                         >
-                        </input>
+                        </textarea>
                         <select
                             type="text"
                             placeholder="Category"
                             value={courseCategory}
                             className={formInputStyle}
                             onChange={updateCourseCategory}
+                            required
                         >
                         <option value="" selected disabled hidden>Select A Category</option>
                         {categories.map((category => (
