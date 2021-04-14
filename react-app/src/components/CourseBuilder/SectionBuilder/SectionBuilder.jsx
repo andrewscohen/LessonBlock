@@ -28,6 +28,7 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
 
     const sessionUser = useSelector((state) => (state.session.user));
     const currentCourse = useSelector((state) => state.course.currentCourse ? state.course.currentCourse : null)
+    const courseAdmin = course.instructor_id;
 
     useEffect(() => {
       if (courseId) {
@@ -73,11 +74,12 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
               <h3 className="flex items-center justify-between px-8 pt-1 pb-1 text-lg font-semibold capitalize dark:text-gray-300">
           {/* Header */}
               <span>YOUR SECTIONS</span>
+              {sessionUser.id === courseAdmin ? (
                 <SectionMenuDropDown
                   deleteThisCourse={deleteThisCourse}
                   currentCourse={currentCourse}
                   course={course}
-                />
+                />) : null}
               </h3>
         <div className="mb-3">
           {/* List */}

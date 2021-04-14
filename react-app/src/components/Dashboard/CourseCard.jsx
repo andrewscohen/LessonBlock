@@ -26,51 +26,30 @@ const CourseCard = ({course, isInstructor}) => {
 
     return (
         <>
-        {pathName === "dashboard" && isInstructor && (
-        <Link key={course.id} to={`/users/me/courses/${course.id}`}>
-            <div className="my-8 overflow-hidden rounded shadow-lg h-96 w-96">
-                <img
-                    className="w-full h-60"
-                    src={course.course_img ? course.course_img : BookCover}
-                    alt="Sunset in the mountains"
-                />
-                <div className="px-6 py-4">
-                    <div className="mb-2 text-3xl font-bold">{course.name}</div>
-                    <p className="text-base text-grey-darker">
-                        {course.description}
-                    </p>
+            {pathName === "dashboard" ? (
+            <Link key={course.id} to={`/users/me/courses/${course.id}`}>
+                <div className="my-8 overflow-hidden rounded shadow-lg h-96 w-96">
+                    <img
+                        className="w-full h-60"
+                        src={course.course_img ? course.course_img : BookCover}
+                        alt="Sunset in the mountains"
+                    />
+                    <div className="px-6 py-4">
+                        <div className="mb-2 text-3xl font-bold">{course.name}</div>
+                        <p className="text-base text-grey-darker">
+                            {course.description}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </Link>
-         )}
-
-         {pathName === "dashboard" && !isInstructor && (
-
-            <Link key={course.id} to={`/courses/${course.id}/users`}>
-            <div className="my-8 overflow-hidden rounded shadow-lg h-96 w-96">
-                <img
-                    className="w-full h-60"
-                    src={course.course_img ? course.course_img : BookCover}
-                    alt="Sunset in the mountains"
-                />
-                <div className="px-6 py-4">
-                    <div className="mb-2 text-3xl font-bold">{course.name}</div>
-                    <p className="text-base text-grey-darker">
-                        {course.description}
-                    </p>
-                </div>
-            </div>
-        </Link>
-        )}
-
-        {pathName === "courses" ? (
-            <div key={course.id} className="my-8 overflow-hidden rounded shadow-lg h-96 w-96">
-                <img
-                    className="w-full h-60"
-                    src={course.course_img ? course.course_img : BookCover}
-                    alt="Sunset in the mountains"
-                />
-                <div className="px-6 py-4">
+            </Link>
+            ) : (
+                <div key={course.id} className="my-8 overflow-hidden rounded shadow-lg h-96 w-96">
+                    <img
+                        className="w-full h-60"
+                        src={course.course_img ? course.course_img : BookCover}
+                        alt="Sunset in the mountains"
+                    />
+                    <div className="px-6 py-4">
                     <div className="mb-2 text-3xl font-bold">{course.name}</div>
                     <p className="text-base text-grey-darker">{course.description}</p>
                 </div>
@@ -85,8 +64,7 @@ const CourseCard = ({course, isInstructor}) => {
                     </button>
                 </div>
             </div>
-        ) : null }
-
+            )}
         </>
     )}
 
