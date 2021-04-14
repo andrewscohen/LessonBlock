@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserCourses} from "../../store/course";
 
 // COMPONENT IMPORTS
-import {SideNav} from "../CommonElements";
+import {SideNav} from "../Navigation";
 import CourseCard from "./CourseCard";
 
 // CSS STYLES IMPORTS

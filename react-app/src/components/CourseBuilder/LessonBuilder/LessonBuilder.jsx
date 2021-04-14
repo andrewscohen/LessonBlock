@@ -8,7 +8,7 @@ import ReactPlayer from "react-player"
 import {getOneUserCourse} from "../../../store/course";
 
 // COMPONENT IMPORTS
-import {SideNav} from "../../CommonElements";
+import {SideNav} from "../../Navigation";
 import LessonMenuDropDown from "./LessonMenuDropDown";
 import DeleteLessonModal from "../DeleteLesson";
 

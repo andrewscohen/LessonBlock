@@ -80,7 +80,7 @@
   }
 
 
-  export const signup = ({username, email, password, isInstructor }) => async (dispatch) => {
+  export const signup = ({username, email, password, isInstructor, profileImage }) => async (dispatch) => {
     const response = await fetch('/api/auth/signup', {
       method: 'POST',
       headers: {
@@ -90,7 +90,8 @@
         username: username,
         email: email,
         password: password,
-        is_instructor: isInstructor
+        is_instructor: isInstructor,
+        profile_img: profileImage
       }),
     });
     const user = await response.json();

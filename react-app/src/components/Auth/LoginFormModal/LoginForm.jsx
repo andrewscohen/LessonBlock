@@ -54,7 +54,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
     return <Redirect to='/dashboard' />;
   }
 
-
   return (
     <div className='container flex justify-end h-screen mt-96'>
       <div className='absolute object-right-top pt-5 pr-8'>
@@ -72,10 +71,14 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
       <form onSubmit={onLogin} className='w-6/12 pb-10'>
         <div className='relative w-full space-y-4'>
             <div className='relative'>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <label htmlFor='email' className='font-medium text-gray-900'>Email</label>
+                {!errors ? (
+                  <label htmlFor='email' className='font-medium text-gray-900'>email</label>
+                  ) : errors.map((error) => (
+                      error.includes("email") ?
+                        <label htmlFor='email' className="font-medium text-red-500">{error}</label>
+                        : null
+                  ))
+                  }
                 <input
                     name='email'
                     type='text'
@@ -86,7 +89,15 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
                 />
             </div>
             <div className='relative'>
-                <label htmlFor='password' className='font-medium text-gray-900'>Password</label>
+            {!errors ? (
+                  <label htmlFor='password' className='font-medium text-gray-900'>Password</label>
+                  ) : errors.map((error) => (
+                      error.includes("Password") ?
+                        <label htmlFor='password' className="font-medium text-red-500">{error}</label>
+                        : null
+                  ))
+                  }
+
                 <input
                     name='password'
                     type='password'

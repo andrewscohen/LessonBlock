@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Redirect} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
@@ -17,13 +17,19 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [isInstructor, setIsInstructor] = useState(false);
-
+  const [profileImage, setProfileImage] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!profileImage) {
+        setProfileImage(`https://lessonblock.s3.amazonaws.com/Profile_Images/profile_pic.png`)
+    }
+  }, [profileImage, setProfileImage])
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await dispatch(signup({username, email, password, isInstructor}));
+      const user = await dispatch(signup({username, email, password, isInstructor, profileImage}));
         if (!user.errors) {
           setAuthenticated(true);
           return <Redirect to="/dashboard" />

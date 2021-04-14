@@ -1,14 +1,15 @@
 import {ProtectedRoute } from './Auth';
-import {NavBar} from './CommonElements';
+import {NavBar} from './Navigation';
 import {LandingPage} from './LandingPage';
 import Dashboard from './Dashboard';
 import CourseMarket from './CourseMarket'
 import {SectionBuilder, LessonBuilder} from './CourseBuilder';
 
-export { ProtectedRoute,
-         LandingPage,
-         NavBar,
-         Dashboard,
+export {
+        ProtectedRoute,
+        LandingPage,
+        NavBar,
+        Dashboard,
         SectionBuilder,
         LessonBuilder,
         CourseMarket,
