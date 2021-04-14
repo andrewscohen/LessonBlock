@@ -70,6 +70,24 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
   dispatch(getUserCourses())
   return parsedResponse;
 }
+
+export const enrollInOneCourse = ({ courseId }) => async (dispatch) => {
+  console.log("REDUX THUNK HIT")
+  const res = await fetch(`/api/courses/${courseId}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+        body: JSON.stringify({ id: courseId}),
+    });
+  const parsedResponse = await res.json();
+  console.log("REDUX PARSED RESPONSE: ", parsedResponse)
+  dispatch(createCourse(parsedResponse));
+  console.log("REDUX AFTER CREATE COURSE")
+  dispatch(getUserCourses())
+  console.log("REDUX AFTER GET USER COURSES")
+  return parsedResponse;
+}
 // CREATE THUNKS END
 
 

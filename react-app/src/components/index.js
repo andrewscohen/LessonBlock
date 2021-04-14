@@ -2,15 +2,17 @@ import {ProtectedRoute } from './Auth';
 import {NavBar} from './Navigation';
 import {LandingPage} from './LandingPage';
 import Dashboard from './Dashboard';
-import CourseMarket from './CourseMarket'
+import CourseMarket from './CourseMarket';
+import StudentCourseViewer from './StudentCourseViewer';
 import {SectionBuilder, LessonBuilder} from './CourseBuilder';
 
 export {
         ProtectedRoute,
-        LandingPage,
         NavBar,
+        LandingPage,
         Dashboard,
-        SectionBuilder,
-        LessonBuilder,
         CourseMarket,
+        StudentCourseViewer,
+        LessonBuilder,
+        SectionBuilder,
         };

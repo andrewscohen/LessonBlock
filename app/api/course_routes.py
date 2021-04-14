@@ -37,7 +37,9 @@ def course(id):
 @course_routes.route('/<int:id>/users', methods=['POST'])
 @login_required
 def studentEnroll(id):
+    print("BACKEND HIT")
     course = Course.query.get(id)
+    print("BACKEND COURSE: ", course)
     course.users.append(current_user)
     db.session.add(course)
     db.session.commit()
