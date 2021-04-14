@@ -10,7 +10,7 @@ import {getOneUserCourse, deleteOneUserCourse} from "../../../store/course";
 // COMPONENT IMPORTS
 import SectionMenuDropDown from "./SectionMenuDropDown";
 import BookCover from "../../Dashboard/Assets/BookCover.jpg";
-import {SideNav} from "../../CommonElements";
+import {SideNav} from "../../Navigation";
 import DeleteSectionModal from "../DeleteSection";
 
 // TAILWIND STYLES

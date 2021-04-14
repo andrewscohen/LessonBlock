@@ -2,7 +2,7 @@
 import {useState, useEffect} from "react";
 
 // COMPONENT IMPORTS
-import {SideNav} from "../CommonElements";
+import {SideNav} from "../Navigation";
 import CourseCard from "../Dashboard/CourseCard";
 
 const CourseMarket = ({authenticated, setAuthenticated}) => {
