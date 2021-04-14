@@ -2,6 +2,7 @@
 import {useEffect, useState} from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import { InlineWidget } from "react-calendly";
 
 // REDUX IMPORTS FROM STORE
 import {getOneUserCourse, deleteOneUserCourse} from "../../../store/course";
@@ -120,14 +121,15 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
         </h3>
         <div className="flex flex-col items-center mt-12">
           <div className="w-full h-full"></div>
-            <img
+          <InlineWidget url="https://calendly.com/andrewcohen14" />
+            {/* <img
               src={BookCover}
               className="relative object-cover w-full h-full"
               alt=" empty schedule"
             />
             <span className="text-purple-500">
 
-            </span>
+            </span> */}
             <button className="px-4 py-2 my-4 bg-purple-800 rounded-lg">
               Update This Course
             </button>
