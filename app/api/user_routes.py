@@ -71,6 +71,7 @@ def create_course():
             name=form.data['name'],
             description=form.data['description'],
             category=form.data['category'],
+            instructor_id=current_user.id,
         )
 
     db.session.add(course)
