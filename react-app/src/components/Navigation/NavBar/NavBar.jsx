@@ -1,6 +1,6 @@
 // PACKAGE IMPORTS
-import {useSelector} from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 // COMPONENT IMPORTS
 import LoginFormModal from "../../Auth/LoginFormModal"
