@@ -1,5 +1,4 @@
 // PACKAGE IMPORTS
-import { useEffect } from "react";
 import {Link, useLocation} from "react-router-dom";
 import { useDispatch} from "react-redux";
 
@@ -14,13 +13,7 @@ const CourseCard = ({course, isInstructor}) => {
     const location = useLocation();
     const pathName = location.pathname.slice(1);
 
-
-    useEffect(() => {
-        console.log("PATHNAME: ", typeof pathName)
-    })
-
     const enrollStudent = () => {
-        console.log("ENROLLSTUDENT FUNCTION TRIGGERED")
         dispatch(enrollInOneCourse({courseId: course.id}));
     };
 

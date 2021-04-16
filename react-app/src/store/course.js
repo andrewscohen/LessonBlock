@@ -42,10 +42,8 @@ export const loadCourses = (courses) => {
   };
 
   export const getAllCourses = () => async (dispatch) => {
-    console.log("THUNK HIT");
     const res = await fetch(`api/courses`);
     const data = await res.json();
-    console.log("REDUX DATA: ", data);
     res.data = data
     dispatch(loadCourses(res.data));
 
@@ -72,7 +70,6 @@ export const createUserCourse = ({ name, description, category, userId }) => asy
 }
 
 export const enrollInOneCourse = ({ courseId }) => async (dispatch) => {
-  console.log("REDUX THUNK HIT")
   const res = await fetch(`/api/courses/${courseId}/users`, {
     method: 'POST',
     headers: {
@@ -81,11 +78,8 @@ export const enrollInOneCourse = ({ courseId }) => async (dispatch) => {
         body: JSON.stringify({ id: courseId}),
     });
   const parsedResponse = await res.json();
-  console.log("REDUX PARSED RESPONSE: ", parsedResponse)
   dispatch(createCourse(parsedResponse));
-  console.log("REDUX AFTER CREATE COURSE")
   dispatch(getUserCourses())
-  console.log("REDUX AFTER GET USER COURSES")
   return parsedResponse;
 }
 // CREATE THUNKS END
