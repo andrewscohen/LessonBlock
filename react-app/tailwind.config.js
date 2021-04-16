@@ -12,8 +12,8 @@ module.exports = {
   theme: {
     screens: {
 
-    'tablet': '640px',
-    // => @media (min-width: 640px) { ... }
+    // 'tablet': '640px',
+    // // => @media (min-width: 640px) { ... }
 
     'mobile': '768px',
       // => @media (min-width: 768px) { ... }
@@ -22,6 +22,9 @@ module.exports = {
 
     'desktop': '1280px',
     // => @media (min-width: 1280px) { ... }
+
+    'widescreen': '1536px',
+    // => @media (min-width: 1536px) { ... }
     },
     extend: {
       backgroundImage: (theme) => ({

@@ -93,7 +93,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
       </div>
     </div>
     <div className="flex flex-col items-center justify-center w-6/12 h-3/4 bg-white-space rounded-r-md">
-      <h1 className="font-serif font-bold leading-tight text-black text-7xl tablet:text-7xl">
+      <h1 className="font-serif font-bold leading-tight text-black text-7xl mobile:text-7xl">
         Join LessonBlock
       </h1>
         <form onSubmit={onSignUp} className="w-6/12">

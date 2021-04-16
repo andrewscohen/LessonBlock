@@ -65,7 +65,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
           <img src={login_img} alt='people gazing at a wall of online lesson screens'className='h-screen'/>
       </div>
     <div className='flex flex-col items-center justify-center w-6/12 h-2/3 bg-white-space rounded-r-md'>
-    <h1 className='pb-12 mt-12 font-serif text-6xl font-bold leading-tight text-black tablet:text-7xl'>
+    <h1 className='pb-12 mt-12 font-serif text-6xl font-bold leading-tight text-black mobile:text-7xl'>
                     Welcome Back!
                 </h1>
       <form onSubmit={onLogin} className='w-6/12 pb-10'>
