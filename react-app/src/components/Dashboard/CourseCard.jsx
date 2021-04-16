@@ -36,7 +36,7 @@ const CourseCard = ({course, isInstructor}) => {
                 </div>
             </Link>
             ) : (
-                <div key={course.id} className="my-8 overflow-hidden rounded shadow-lg h-96 w-96">
+                <div key={course.id} className="my-8 rounded shadow-lg h-96 w-96">
                     <img
                         className="w-full h-60"
                         src={course.course_img ? course.course_img : BookCover}
