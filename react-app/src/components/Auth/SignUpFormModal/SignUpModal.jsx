@@ -19,7 +19,7 @@ const SignUpModal = ({authenticated, setAuthenticated}) => {
   return (
     <>
       <button
-        className="block px-4 py-3 mt-8 text-lg font-bold text-gray-800 uppercase bg-white rounded-lg hover:bg-gray-100"
+        className="block font-bold text-gray-800 uppercase bg-white rounded-lg laptop:px-3 laptop:py-2 desktop:px-4 desktop:py-3 desktop:mt-4 laptop:mt-4 widescreen:mt-6 laptop:text-sm desktop:text-lg hover:bg-gray-100"
         type="button"
         style={{ transition: "all .15s ease" }}
         onClick={() => setIsOpen(true)}>
