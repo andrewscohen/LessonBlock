@@ -15,22 +15,25 @@ const NavBar = ({authenticated, setAuthenticated}) => {
   const sessionUser = useSelector((state) => (state.session.user));
 
   return (
-    <nav className="fixed z-50 grid w-full h-20 grid-cols-8 shadow-sm" id={pathName !== "" ? "navBarChangeColor" : ""}>
+    <nav
+      id={pathName !== "" ? "navBarChangeColor" : ""}
+      // className="fixed z-50 grid items-center w-full h-20 grid-cols-8 shadow-sm"
+      className="fixed z-50 flex items-center justify-between w-full shadow-sm desktop:h-16 laptop:h-14 widescreen:h-20 laptop:px-20 desktop:px-28 widescreen:px-40"
+    >
         {!authenticated ? (
-        <div className="flex items-center content-center justify-end col-span-1 col-start-2 ml-1">
+        <div>
           <NavLink to="/" exact={true} activeClassName="active" className="py-3 text-2xl font-bold font-monst text-white-space">
             Lesson Block
           </NavLink>
           </div>
         ) : (
-          <div className="flex items-center content-center justify-center col-span-2 col-start-4 ml-1">
+          <div>
           <NavLink to="/dashboard" exact={true} activeClassName="active" className="block py-3 text-4xl font-bold hover:text-indigo-500 font-monst col-start text-grey-200">
             Lesson Block
           </NavLink>
           </div>
         )}
-
-        <div className="flex items-center content-center justify-end col-start-7 col-end-8">
+        <div>
           {!authenticated && (
             <LoginFormModal authenticated={authenticated} setAuthenticated={setAuthenticated}/>
           )}
