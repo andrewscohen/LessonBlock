@@ -29,7 +29,7 @@ const SideNav = ({setAuthenticated, authenticated, isInstructor}) => {
               </li>
               <li className="px-5">
                 <div className="flex flex-row items-center h-8">
-                  <div className="font-light tracking-wide text-gray-500 md:text-2xl sm:text-base">COURSES</div>
+                  <div className="text-base font-light tracking-wide text-gray-500 mobile:text-2xl">COURSES</div>
                 </div>
               </li>
               {isInstructor ? (

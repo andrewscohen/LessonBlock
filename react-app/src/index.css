@@ -9,3 +9,37 @@
   margin: 0;
   padding: 0;
 }
+
+.text-center {
+  text-align: center;
+}
+
+/* @media (min-width: 640px) {
+  .tablet\:text-center {
+    text-align: center;
+  }
+} */
+
+@media (min-width: 768px) {
+  .mobile\:text-center {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .laptop\:text-center {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .desktop\:text-center {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1536px) {
+  .widescreen\:text-center {
+    text-align: center;
+  }
+}

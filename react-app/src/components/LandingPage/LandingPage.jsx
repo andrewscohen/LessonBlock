@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 import SignUpModal from "../Auth/SignUpFormModal/SignUpModal";
 
 // ASSET IMPORTS
-import SplashHeader from "../../assets/BackgroundImages/SplashHeader.svg";
+import "./LandingPage.css"
 
 
 
@@ -15,29 +15,22 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
     return (
         <>
             {authenticated && <Redirect to="/dashboard" /> }
-            <div className="relative h-screen overflow-hidden">
-                <img
-                    src={SplashHeader}
-                    className="fixed object-cover w-full h-full overflow-auto"
-                    alt="SplashHeader"
-                />
-            <div className="absolute inset-0 bg-black opacity-10">
-            </div>
-                <div className="container relative flex items-center py-32 pl-10 mx-auto xl:py-72">
-                    <div className="relative flex flex-col items-start lg:w-3/5 xl:w-2/5">
-                        <h1 className="mt-12 font-serif text-6xl font-bold leading-tight text-white sm:text-7xl">
-                        Powerful lessons, made simply.
+            <header className="relative h-screen overflow-hidden bg-fixed bg-center bg-no-repeat bg-cover">
+                <section className="container relative flex items-center h-full pl-10 mobile:ml-2 align-center">
+                    <article className="relative flex flex-col items-start laptop:ml-20 desktop:ml-28 widescreen:ml-40">
+                        <h1 className="font-serif font-bold leading-tight laptop:text-4xl laptop:w-7/12 desktop:text-5xl widescreen:w-7/12 widescreen:text-6xl desktop:text-blue-200 laptop:text-alt-purple mobile:text-red-800 ">
+                        Powerful lessons made simply.
                         </h1>
-                        <h2 className="pt-5 text-3xl font-bold leading-tight text-white sm:text-3xl">
-                            Empowering educators and students through easily scalable course building
+                        <h2 className="font-bold leading-tight text-white laptop:text-l widescreen:pt-4 widescreen:text-3xl desktop:text-2xl desktop:w-5/12 laptop:w-5/12 laptop:pt-2">
+                            strengthening communities through accessible education
                         </h2>
                         <SignUpModal
                             authenticated={authenticated}
                             setAuthenticated={setAuthenticated}
                         />
-                    </div>
-                </div>
-            </div>
+                    </article>
+                </section>
+            </header>
         </>
     )
 };

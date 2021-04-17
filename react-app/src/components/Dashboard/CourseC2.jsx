@@ -24,7 +24,7 @@
 
 
 
-// <div className="p-3 bg-white rounded shadow lg:w-64">
+// <div className="p-3 bg-white rounded shadow laptop:w-64">
 //                     <div>
 //                         <div className="h-32 bg-gray-300 bg-center bg-cover rounded">
 //                         <img

@@ -10,6 +10,22 @@ module.exports = {
   },
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html', "./pages/**/*.tsx", "./components/**/*.tsx"], // or 'media' or 'class'
   theme: {
+    screens: {
+
+    // 'tablet': '640px',
+    // // => @media (min-width: 640px) { ... }
+
+    'mobile': '768px',
+      // => @media (min-width: 768px) { ... }
+    'laptop': '1024px',
+    // => @media (min-width: 1024px) { ... }
+
+    'desktop': '1280px',
+    // => @media (min-width: 1280px) { ... }
+
+    'widescreen': '1536px',
+    // => @media (min-width: 1536px) { ... }
+    },
     extend: {
       backgroundImage: (theme) => ({
         // check: "url('/icons/check.svg')",
