@@ -15,6 +15,7 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
     return (
         <>
             {authenticated && <Redirect to="/dashboard" /> }
+
             <header className="relative h-screen overflow-hidden bg-fixed bg-center bg-no-repeat bg-cover">
                 <section className="container relative flex items-center h-full align-center">
                     <article className="relative flex flex-col items-start laptop:ml-20 desktop:ml-28 widescreen:ml-40">
