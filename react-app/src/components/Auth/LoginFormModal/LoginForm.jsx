@@ -45,11 +45,11 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
 
 
   return (
-    <article className='container hidden h-screen mobile:items-center mobile:flex mobile:ml-8 mobile:w-11/12'>
+    <article className='container hidden h-screen mobile:items-center mobile:flex mobile:m-auto mobile:w-11/12 laptop:w-9/12'>
       <section className='flex flex-col items-center justify-center overflow-hidden widescreen:w-full widescreen:h-2/3 mobile:h-2/5 laptop:h-4/6 rounded-l-md'>
           <img src={login_img} alt='people gazing at a wall of online lesson screens'className='h-screen'/>
       </section>
-      <section className='flex flex-col justify-center laptop:justify-start mobile:w-full mobile:h-2/5 widescreen:w-6/12 widescreen:h-2/3 laptop:pl-3 bg-white-space rounded-r-md laptop:h-4/6'>
+      <section className='flex flex-col justify-center laptop:justify-start mobile:w-full mobile:h-2/5 widescreen:w-6/12 widescreen:h-2/3 laptop:pl-3 bg-white-space rounded-r-md laptop:h-4/6 desktop:w-10/12'>
         <div className="flex justify-between mobile:w-11/12 mobile:pb-6 laptop:py-6">
           <h1 className='font-serif font-bold leading-tight text-black widescreen:text-6xl widescreen:pb-12 widescreen:mt-12 mobile:text-2xl laptop:text-5xl '>
             Welcome Back!
