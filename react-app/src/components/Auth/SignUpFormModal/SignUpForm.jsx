@@ -77,14 +77,14 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   }
 
   return (
-    <article className="container flex items-center justify-center h-screen">
+    <article className="container items-center justify-center hidden h-screen mobile:flex">
 
-      <section className="flex flex-col justify-center overflow-hidden mobile:w-5/12 mobile:h-3/5 h-3/4 rounded-l-md">
+      <section className="flex-col justify-center hidden overflow-hidden mobile:flex mobile:w-5/12 mobile:h-3/5 h-3/4 rounded-l-md">
         <div className="w-full h-full">
           <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative object-cover w-full h-full m-auto"/>
         </div>
       </section>
-      <section className="flex flex-col items-center mobile:bg-yellow-700 mobile:p-3 mobile:w-5/12 mobile:h-3/5 h-3/4 bg-white-space rounded-r-md">
+      <section className="flex-col items-center hidden  mobile:flex mobile:bg-white-space mobile:p-3 mobile:w-5/12 mobile:h-3/5 h-3/4 bg-white-space rounded-r-md">
         <div className="flex justify-between w-full">
             <h1 className="font-serif font-bold leading-tight text-black mobile:text-lg">
             Sign Up and Start Learning!
@@ -142,7 +142,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
             {password && (
             <PasswordStrengthMeter password={password} />
             )}
-            <div className="flex">
+            <div className="flex mobile:justify-around">
               <label className={formStyle.radioButtonStyle}>
                 <input
                     type="radio"
@@ -169,22 +169,24 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
               >
               Create Account
             </button>
-            <div className="flex">
-              <button
+            <button
                 type="submit"
                 className={formStyle.whiteButtonStyle}
                 onClick={demoInstructorLogin}
-                >
+            >
                 Start Demo
                 </button>
+                <div className="flex">
+                <p className="font-medium mobile:text-sm mobile:ml-1">Already have an account?</p>
                 <button
                   type="button"
-                  onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}>
-                  Already have an account?
+                  onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}
+                  className="font-bold text-blue-900 mobile:text-sm mobile:pl-1">
+                    Login
                 </button>
               </div>
             </div>
-          </div>
+            </div>
       </form>
     </section>
   </article>
