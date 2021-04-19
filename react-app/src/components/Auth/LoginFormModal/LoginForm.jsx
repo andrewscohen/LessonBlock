@@ -61,7 +61,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
           <i className='fas fa-window-close' />
         </button>
       </div>
-      <div className='flex flex-col items-center justify-center w-6/12 overflow-hidden h-2/3 bg-brand-tan rounded-l-md'>
+      <div className='flex flex-col items-center justify-center w-6/12 overflow-hidden h-2/3 rounded-l-md'>
           <img src={login_img} alt='people gazing at a wall of online lesson screens'className='h-screen'/>
       </div>
     <div className='flex flex-col items-center justify-center w-6/12 h-2/3 bg-white-space rounded-r-md'>

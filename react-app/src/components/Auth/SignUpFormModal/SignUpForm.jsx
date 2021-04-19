@@ -87,7 +87,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
           <i className="fas fa-window-close" />
         </button>
       </div>
-    <div className="flex flex-col items-center justify-center w-6/12 overflow-hidden h-3/4 bg-brand-tan rounded-l-md">
+    <div className="flex flex-col items-center justify-center w-6/12 overflow-hidden h-3/4 rounded-l-md">
       <div className="w-full h-full">
         <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative object-cover w-full h-full m-auto"/>
       </div>

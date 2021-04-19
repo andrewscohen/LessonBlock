@@ -30,7 +30,10 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
                             setAuthenticated={setAuthenticated}
                         />
                     </article>
-                    <MobileSignUpForm />
+                    <MobileSignUpForm
+                        authenticated={authenticated}
+                        setAuthenticated={setAuthenticated}
+                    />
                 </section>
             </header>
         </>
