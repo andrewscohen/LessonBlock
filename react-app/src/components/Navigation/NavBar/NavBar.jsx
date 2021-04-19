@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import {useSelector} from "react-redux";
 
 // COMPONENT IMPORTS
-import LoginFormModal from "../../Auth/LoginFormModal"
+import {LoginFormModal} from "../../Auth/"
 import UserAvatarDropDown from "../UserAvatarDropDown";
 
 // CSS STYLE IMPORT
@@ -17,7 +17,7 @@ const NavBar = ({authenticated, setAuthenticated}) => {
   return (
     <nav
       id={pathName !== "" ? "navBarChangeColor" : ""}
-      className="fixed z-50 flex items-center justify-between w-full shadow-sm desktop:h-16 laptop:h-14 widescreen:h-20 laptop:pr-14 laptop:pl-12 desktop:px-28 widescreen:px-40 mobile:h-14 mobile:px-10"
+      className="fixed z-50 items-center justify-between hidden w-full shadow-sm desktop:h-16 laptop:h-14 widescreen:h-20 laptop:pr-14 laptop:pl-12 desktop:px-28 widescreen:px-40 mobile:h-14 mobile:px-10 mobile:flex"
     >
         {!authenticated ? (
         <div>
