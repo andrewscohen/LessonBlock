@@ -1,9 +1,9 @@
 import React, { useState} from "react";
 import { Modal } from "../../../context/ModalContext";
 import SignUpForm from "./SignUpForm";
-import LoginForm from "../LoginFormModal/LoginForm"
+import {LoginForm} from "../LoginFormModal"
 
-const SignUpModal = ({authenticated, setAuthenticated}) => {
+const SignUpFormModal = ({authenticated, setAuthenticated}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(true);
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -37,4 +37,4 @@ const SignUpModal = ({authenticated, setAuthenticated}) => {
   );
 };
 
-export default SignUpModal;
+export default SignUpFormModal;

@@ -1,2 +1,3 @@
 import LoginFormModal from './LoginFormModal'
-export default LoginFormModal
+import LoginForm from './LoginForm'
+export {LoginFormModal, LoginForm}

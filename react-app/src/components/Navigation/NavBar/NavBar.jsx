@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import {useSelector} from "react-redux";
 
 // COMPONENT IMPORTS
-import LoginFormModal from "../../Auth/LoginFormModal"
+import {LoginFormModal} from "../../Auth/"
 import UserAvatarDropDown from "../UserAvatarDropDown";
 
 // CSS STYLE IMPORT
