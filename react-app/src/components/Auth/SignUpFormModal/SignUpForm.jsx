@@ -3,13 +3,8 @@ import { Redirect} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
 import sign_up_img from "./sign_up_img.jpg";
+import * as formStyle from "./FormStyle.js";
 import PasswordStrengthMeter from "../PasswordStrengthMeter";
-
-const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
-const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
-const formInputStyle = "block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
-const radioButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
-// const demoButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-indigo border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
 
 
 const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
@@ -82,116 +77,117 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   }
 
   return (
-    <div className="container flex justify-end h-screen mt-96">
-      <div className="absolute object-right-top pt-5 pr-8">
-        <button type="button" onClick={() => setIsOpen(false)}>
-          <i className="fas fa-window-close" />
-        </button>
-      </div>
-    <div className="flex flex-col items-center justify-center w-6/12 overflow-hidden h-3/4 rounded-l-md">
-      <div className="w-full h-full">
-        <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative object-cover w-full h-full m-auto"/>
-      </div>
-    </div>
-    <div className="flex flex-col items-center justify-center w-6/12 h-3/4 bg-white-space rounded-r-md">
-      <h1 className="font-serif font-bold leading-tight text-black text-7xl mobile:text-7xl">
-        Join LessonBlock
-      </h1>
-        <form onSubmit={onSignUp} className="w-6/12">
-          <div className="relative w-full mt-10 space-y-4">
-            <div className="relative">
-              <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-              </ul>
-            <label className="font-medium text-gray-900">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={updateUsername}
-              className={formInputStyle}
-              placeholder="Enter Your Username"
-              required={true} />
+    <article className="container flex items-center justify-center h-screen">
+
+      <section className="flex flex-col justify-center overflow-hidden mobile:w-5/12 mobile:h-3/5 h-3/4 rounded-l-md">
+        <div className="w-full h-full">
+          <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative object-cover w-full h-full m-auto"/>
+        </div>
+      </section>
+      <section className="flex flex-col items-center mobile:bg-yellow-700 mobile:p-3 mobile:w-5/12 mobile:h-3/5 h-3/4 bg-white-space rounded-r-md">
+        <div className="flex justify-between w-full">
+            <h1 className="font-serif font-bold leading-tight text-black mobile:text-lg">
+            Sign Up and Start Learning!
+            </h1>
+            <button type="button" className="mobile:self-start" onClick={() => setIsOpen(false)}>
+            <i className="text-sm fas fa-window-close" />
+            </button>
           </div>
-          <div className="relative">
-            <label className="font-medium text-gray-900">Email</label>
-            <input type="text"
-                  name="email"
-                value={email}
-                onChange={updateEmail}
-                className={formInputStyle}
-                placeholder="Enter Your Email Address"
-                required={true} />
-          </div>
-          <div className="relative">
-            <label className="font-medium text-gray-900">Password</label>
-            <input
-              type="password"
-              value={password}
-              name="password"
-              onChange={updatePassword}
-              className={formInputStyle}
-              placeholder="Password" />
-          </div>
-          <div className="relative">
-            <label className="font-medium text-gray-900">Confirm Password</label>
-            <input
-                type="password"
-                value={repeatPassword}
-                required={true}
-                onChange={updateRepeatPassword}
-                className={formInputStyle}
-                placeholder="Password" />
-          </div>
-          {password && (
-          <PasswordStrengthMeter password={password} />
-          )}
-          <div className="flex mt-6 mb-6">
-            <label className={radioButtonStyle}>
+          <form onSubmit={onSignUp} className="w-full">
+            <div className="relative w-full">
+              <div className="relative">
+                <ul>
+                  {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+              <label className={formStyle.label}>Username</label>
               <input
+                type="text"
+                name="username"
+                value={username}
+                onChange={updateUsername}
+                className={formStyle.formInputStyle}
+                placeholder="Username"
+                required={true} />
+            </div>
+            <div className="relative">
+              <label className={formStyle.label}>Email</label>
+              <input type="text"
+                    name="email"
+                  value={email}
+                  onChange={updateEmail}
+                  className={formStyle.formInputStyle}
+                  placeholder="Email Address"
+                  required={true} />
+            </div>
+            <div className="relative">
+              <label className={formStyle.label}>Password</label>
+              <input
+                type="password"
+                value={password}
+                name="password"
+                onChange={updatePassword}
+                className={formStyle.formInputStyle}
+                placeholder="Password" />
+            </div>
+            <div className="relative">
+              <label className={formStyle.label}>Confirm Password</label>
+              <input
+                  type="password"
+                  value={repeatPassword}
+                  required={true}
+                  onChange={updateRepeatPassword}
+                  className={formStyle.formInputStyle}
+                  placeholder="Password" />
+            </div>
+            {password && (
+            <PasswordStrengthMeter password={password} />
+            )}
+            <div className="flex">
+              <label className={formStyle.radioButtonStyle}>
+                <input
+                    type="radio"
+                    value={true}
+                    name="instructor"
+                    onChange={updateUserType}
+                  />
+                  Instructor
+              </label>
+              <label className={formStyle.radioButtonStyle}>
+                <input
                   type="radio"
-                  value={true}
+                  value={false}
                   name="instructor"
                   onChange={updateUserType}
                 />
-                Instructor
-            </label>
-            <label className={radioButtonStyle}>
-              <input
-                type="radio"
-                value={false}
-                name="instructor"
-                onChange={updateUserType}
-              />
-              Student
-              </label>
-          </div>
-          <div className="relative">
-          <button
-            type="submit"
-            className={blackButtonStyle}
-            >
-            Create Account
-          </button>
-          <div className="flex mt-6 mb-6">
+                Student
+                </label>
+            </div>
+            <div className="relative">
             <button
               type="submit"
-              className={whiteButtonStyle}
-              onClick={demoInstructorLogin}
+              className={formStyle.blackButtonStyle}
               >
-              Start Demo
-              </button>
+              Create Account
+            </button>
+            <div className="flex">
               <button
-                type="button"
-                onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}>
-                Already have an account?
-              </button>
+                type="submit"
+                className={formStyle.whiteButtonStyle}
+                onClick={demoInstructorLogin}
+                >
+                Start Demo
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}>
+                  Already have an account?
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-    </form>
-  </div>
-  </div>
+      </form>
+    </section>
+  </article>
   );
 };
 
