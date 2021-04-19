@@ -46,19 +46,19 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
 
   return (
     <article className='container hidden h-screen mobile:items-center mobile:flex mobile:ml-8 mobile:w-11/12'>
-      <section className='flex flex-col items-center justify-center overflow-hidden widescreen:w-full widescreen:h-2/3 mobile:h-2/5 rounded-l-md'>
+      <section className='flex flex-col items-center justify-center overflow-hidden widescreen:w-full widescreen:h-2/3 mobile:h-2/5 laptop:h-4/6 rounded-l-md'>
           <img src={login_img} alt='people gazing at a wall of online lesson screens'className='h-screen'/>
       </section>
-      <section className='flex flex-col items-center justify-center mobile:w-full mobile:h-2/5 widescreen:w-6/12 widescreen:h-2/3 bg-white-space rounded-r-md'>
-        <div className="flex justify-between mobile:w-11/12 mobile:pb-6">
-          <h1 className='font-serif font-bold leading-tight text-black widescreen:text-6xl widescreen:pb-12 widescreen:mt-12 mobile:text-2xl '>
+      <section className='flex flex-col justify-center laptop:justify-start mobile:w-full mobile:h-2/5 widescreen:w-6/12 widescreen:h-2/3 laptop:pl-3 bg-white-space rounded-r-md laptop:h-4/6'>
+        <div className="flex justify-between mobile:w-11/12 mobile:pb-6 laptop:py-6">
+          <h1 className='font-serif font-bold leading-tight text-black widescreen:text-6xl widescreen:pb-12 widescreen:mt-12 mobile:text-2xl laptop:text-5xl '>
             Welcome Back!
           </h1>
           <button type='button' onClick={() => setIsOpen(false)}>
-            <i className='fas fa-window-close' />
+            <i className='self-start fas fa-window-close' />
           </button>
         </div>
-        <form onSubmit={onLogin} className='widescreen:pb-10 widescreen:w-6/12'>
+        <form onSubmit={onLogin} className='pr-4 widescreen:pb-10 widescreen:w-6/12'>
           <div className='relative w-full widescreen:space-y-4'>
             <div className='relative'>
               <label htmlFor='email' className='font-medium text-gray-900'>Email</label>
@@ -94,10 +94,10 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
                 className={formStyle.whiteButtonStyle}
                 onClick={demoLogin}
                 >
-                Demo Instructor
+                Start Demo
                 </button>
             </div>
-            <div className='flex items-center justify-center mobile:flex-col'>
+            <div className='flex items-center justify-center mobile:flex-col laptop:mt-2'>
               <div className="flex">
                 <p className="font-semibold">Don't have an account?</p>
               <button
@@ -107,7 +107,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
                 >Sign Up
               </button>
               </div>
-              <Link to='/sign-up' className="font-semibold">Forgot Password?</Link>
+              {/* <Link to='/sign-up' className="font-semibold">Forgot Password?</Link> */}
             </div>
           </div>
         </form>

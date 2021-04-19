@@ -3,7 +3,7 @@ import { Redirect} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
 import sign_up_img from "./sign_up_img.jpg";
-import * as formStyle from "./FormStyle.js";
+import * as formStyle from "./SignUpFormStyle.js";
 import PasswordStrengthMeter from "../PasswordStrengthMeter";
 
 
