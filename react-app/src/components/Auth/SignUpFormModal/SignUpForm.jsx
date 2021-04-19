@@ -79,12 +79,12 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   return (
     <article className="container items-center justify-center hidden h-screen mobile:flex">
 
-      <section className="flex-col justify-center hidden overflow-hidden mobile:flex mobile:w-5/12 mobile:h-3/5 laptop:h-3/4 rounded-l-md">
+      <section className="flex-col justify-center hidden overflow-hidden mobile:flex mobile:w-5/12 widescreen:w-4/12 mobile:h-3/5 laptop:h-3/4 rounded-l-md">
         <div className="w-full h-full">
           <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative object-cover w-full h-full m-auto"/>
         </div>
       </section>
-      <section className="flex-col items-center hidden mobile:flex mobile:bg-white-space mobile:p-3 laptop:p-5 mobile:w-5/12 mobile:h-3/5 laptop:h-3/4 bg-white-space rounded-r-md ">
+      <section className="flex-col items-center hidden justify-evenly mobile:flex mobile:bg-white-space mobile:p-3 laptop:p-5 mobile:w-5/12 widescreen:w-4/12 mobile:h-3/5 laptop:h-3/4 bg-white-space rounded-r-md ">
         <div className="flex justify-between w-full">
             <h1 className="font-serif font-bold leading-tight text-black laptop:text-3xl mobile:text-lg">
             Sign Up and Start Learning!
