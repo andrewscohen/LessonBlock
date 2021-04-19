@@ -181,7 +181,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
                 <button
                   type="button"
                   onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}
-                  className="font-bold text-blue-900 laptop:text-md mobile:text-sm mobile:pl-1">
+                  className="font-bold text-blue-700 laptop:text-md mobile:text-sm mobile:pl-1">
                     Login
                 </button>
               </div>

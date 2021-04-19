@@ -5,7 +5,5 @@ header {
 @media screen and (max-width: 767px) {
   header {
     background-position: right -10px bottom 10px;
-    /* background-image: none;
-    background-color: #f5f9ff; */
   }
 }
