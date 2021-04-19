@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Redirect, Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
-import PasswordStrengthMeter from "./PasswordStrengthMeter";
+import PasswordStrengthMeter from "../PasswordStrengthMeter";
 
 const whiteButtonStyle = "inline-block w-11/12 px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-11/12 px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"

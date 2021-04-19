@@ -3,6 +3,7 @@ import { Redirect} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
 import sign_up_img from "./sign_up_img.jpg";
+import PasswordStrengthMeter from "../PasswordStrengthMeter";
 
 const whiteButtonStyle = "inline-block w-full px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
@@ -142,13 +143,15 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
                 className={formInputStyle}
                 placeholder="Password" />
           </div>
+          {password && (
+          <PasswordStrengthMeter password={password} />
+          )}
           <div className="flex mt-6 mb-6">
             <label className={radioButtonStyle}>
               <input
                   type="radio"
                   value={true}
                   name="instructor"
-                  // checked={isInstructor === true}
                   onChange={updateUserType}
                 />
                 Instructor
@@ -158,7 +161,6 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
                 type="radio"
                 value={false}
                 name="instructor"
-                // checked={isInstructor === false}
                 onChange={updateUserType}
               />
               Student
@@ -177,16 +179,8 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
               className={whiteButtonStyle}
               onClick={demoInstructorLogin}
               >
-              Demo Instructor
+              Start Demo
               </button>
-              <button
-              type="submit"
-              className={whiteButtonStyle}
-              onClick={demoStudentLogin}
-              >
-              Demo Student
-            </button>
-            <div className="flex">
               <button
                 type="button"
                 onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}>
@@ -195,7 +189,6 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
             </div>
           </div>
         </div>
-      </div>
     </form>
   </div>
   </div>

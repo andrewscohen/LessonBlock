@@ -1,4 +1,3 @@
-import "./PasswordStrengthMeter.css";
 import * as zxcvbn from "zxcvbn";
 
 const PasswordStrengthMeter = ({password}) => {
