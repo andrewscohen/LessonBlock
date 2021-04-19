@@ -79,14 +79,14 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   return (
     <article className="container items-center justify-center hidden h-screen mobile:flex">
 
-      <section className="flex-col justify-center hidden overflow-hidden mobile:flex mobile:w-5/12 mobile:h-3/5 h-3/4 rounded-l-md">
+      <section className="flex-col justify-center hidden overflow-hidden mobile:flex mobile:w-5/12 mobile:h-3/5 laptop:h-3/4 rounded-l-md">
         <div className="w-full h-full">
           <img src={sign_up_img} alt="people gazing at a wall of online lesson screens" className="relative object-cover w-full h-full m-auto"/>
         </div>
       </section>
-      <section className="flex-col items-center hidden  mobile:flex mobile:bg-white-space mobile:p-3 mobile:w-5/12 mobile:h-3/5 h-3/4 bg-white-space rounded-r-md">
+      <section className="flex-col items-center hidden mobile:flex mobile:bg-white-space mobile:p-3 laptop:p-5 mobile:w-5/12 mobile:h-3/5 laptop:h-3/4 bg-white-space rounded-r-md ">
         <div className="flex justify-between w-full">
-            <h1 className="font-serif font-bold leading-tight text-black mobile:text-lg">
+            <h1 className="font-serif font-bold leading-tight text-black laptop:text-3xl mobile:text-lg">
             Sign Up and Start Learning!
             </h1>
             <button type="button" className="mobile:self-start" onClick={() => setIsOpen(false)}>
@@ -176,12 +176,12 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
             >
                 Start Demo
                 </button>
-                <div className="flex">
-                <p className="font-medium mobile:text-sm mobile:ml-1">Already have an account?</p>
+                <div className="flex laptop:mt-2">
+                <p className="font-medium mobile:text-sm mobile:ml-1 laptop:text-md">Already have an account?</p>
                 <button
                   type="button"
                   onClick={() => setShowSignUpForm(false) || setShowLoginForm(true)}
-                  className="font-bold text-blue-900 mobile:text-sm mobile:pl-1">
+                  className="font-bold text-blue-900 laptop:text-md mobile:text-sm mobile:pl-1">
                     Login
                 </button>
               </div>
