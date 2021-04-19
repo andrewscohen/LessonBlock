@@ -10,7 +10,6 @@ import {
   LandingPage,
   Dashboard,
   CourseMarket,
-  StudentCourseViewer,
   LessonBuilder,
   SectionBuilder,
 } from "./components";
@@ -129,20 +128,6 @@ function App() {
           />
         </ProtectedRoute>
         {/* End Student Course MarketPlace */}
-
-        {/* Start Student Course Viewer */}
-        <ProtectedRoute
-          path="/courses/:courseId"
-          exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-         >
-          <StudentCourseViewer
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </ProtectedRoute>
-        {/* End Student Course Viewer */}
 
       </Switch>
     </BrowserRouter>
