@@ -141,7 +141,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
                     >
                       <option value="" disabled hidden>Join Lessonblock as a...</option>
                       {userTypes.map((userType => (
-                              <option>{userType}</option>
+                              <option key={userType}>{userType}</option>
                               ))
                           )}
                     </select>
