@@ -1,4 +1,4 @@
-import {ProtectedRoute } from './Auth';
+import {ProtectedRoute, MobileLoginForm } from './Auth';
 import {NavBar} from './Navigation';
 import {LandingPage} from './LandingPage';
 import Dashboard from './Dashboard';
@@ -13,4 +13,5 @@ export {
         CourseMarket,
         LessonBuilder,
         SectionBuilder,
+        MobileLoginForm
         };
