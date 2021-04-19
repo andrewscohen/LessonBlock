@@ -1,7 +1,7 @@
-import React, { useState} from "react";
+import { useState} from "react";
 import { Modal } from "../../../context/ModalContext";
 import SignUpForm from "./SignUpForm";
-import {LoginForm} from "../LoginFormModal"
+import {LoginForm} from "../LoginFormModal";
 
 const SignUpFormModal = ({authenticated, setAuthenticated}) => {
   const [modalIsOpen, setIsOpen] = useState(false);
