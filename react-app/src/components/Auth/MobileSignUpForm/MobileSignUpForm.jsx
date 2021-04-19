@@ -77,12 +77,12 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
 
     return (
       <>
-        <section className="flex-col w-full h-full mx-auto bg-white-space mobile:hidden">
+        <section className="flex-col w-full h-full pt-20 mx-auto bg-white-space mobile:hidden">
           <h1 className="py-3 font-semibold leading-tight text-black border-b-2 pl-7 text-m ">
             Sign Up and Start Learning!
           </h1>
           <form onSubmit={onSignUp} className="flex-col">
-                <div className="relative w-full mt-10 space-y-3 pl-7">
+                <div className="relative w-full mt-6 space-y-3 pl-7">
                 <div className="relative">
                     <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -132,7 +132,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
                       autoComplete="off"
                     />
                   </div>
-                  <div className="flex mt-6 mb-6">
+                  <div className="relative">
                     <select
                       type="text"
                       value={userType}

@@ -18,7 +18,7 @@ function LoginFormModal({authenticated, setAuthenticated}) {
   return (
     <>
       <button
-        className="block text-lg font-bold text-gray-800 uppercase bg-white rounded-lg laptop:px-3 laptop:py-2 desktop:px-4 desktop:py-3 laptop:text-sm desktop:text-lg mobile:text-sm mobile:py-2 mobile:px-3 hover:bg-gray-100"
+        className="hidden text-lg font-bold text-gray-800 uppercase bg-white rounded-lg mobile:block laptop:px-3 laptop:py-2 desktop:px-4 desktop:py-3 laptop:text-sm desktop:text-lg mobile:text-sm mobile:py-2 mobile:px-3 hover:bg-gray-100"
         type="button"
         style={{ transition: "all .15s ease" }}
         onClick={() => setIsOpen(true)}>

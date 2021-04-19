@@ -17,11 +17,11 @@ const NavBar = ({authenticated, setAuthenticated}) => {
   return (
     <nav
       id={pathName !== "" ? "navBarChangeColor" : ""}
-      className="fixed z-50 items-center justify-between hidden w-full shadow-sm desktop:h-16 laptop:h-14 widescreen:h-20 laptop:pr-14 laptop:pl-12 desktop:px-28 widescreen:px-40 mobile:h-14 mobile:px-10 mobile:flex"
+      className="fixed z-50 flex items-center justify-center w-full h-20 shadow-sm mobile:justify-between bg-brand-blue mobile:bg-transparent desktop:h-16 laptop:h-14 widescreen:h-20 laptop:pr-14 laptop:pl-12 desktop:px-28 widescreen:px-40 mobile:h-14 mobile:px-10"
     >
         {!authenticated ? (
         <div>
-          <NavLink to="/" exact={true} activeClassName="active" className="font-bold laptop:text-xl desktop:py-3 desktop:text-2xl mobile:text-lg font-monst text-white-space">
+          <NavLink to="/" exact={true} activeClassName="active" className="text-3xl font-bold laptop:text-xl desktop:py-3 desktop:text-2xl mobile:text-lg font-monst text-white-space">
             LessonBlock
           </NavLink>
           </div>
