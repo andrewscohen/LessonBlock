@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { Redirect, Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {signup, login} from "../../../store/session";
+import PasswordStrengthMeter from "./PasswordStrengthMeter";
 
 const whiteButtonStyle = "inline-block w-11/12 px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-11/12 px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
-const formInputStyle = "shadow-inner block w-11/12 px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 border-opacity-50 border-black border"
+const formInputStyle = "shadow-inner block w-11/12 px-3 py-2 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 border-opacity-50 border-black border"
 
 
 const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
@@ -76,8 +77,8 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
 
     return (
       <>
-        <section className="flex-col w-full mx-auto bg-white-space h-5/6 mobile:hidden">
-          <h1 className="py-4 font-semibold leading-tight text-black border-b-2 pl-7 text-m ">
+        <section className="flex-col w-full h-full mx-auto bg-white-space mobile:hidden">
+          <h1 className="py-3 font-semibold leading-tight text-black border-b-2 pl-7 text-m ">
             Sign Up and Start Learning!
           </h1>
           <form onSubmit={onSignUp} className="flex-col">
@@ -117,7 +118,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
                     onChange={updatePassword}
                     className={formInputStyle}
                     placeholder="Password"
-                    autoComplete="new-password"
+                    autoComplete="off"
                   />
                   </div>
                   <div className="relative">
@@ -128,7 +129,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
                       onChange={updateRepeatPassword}
                       className={formInputStyle}
                       placeholder="Confirm Password"
-                      autoComplete="new-password"
+                      autoComplete="off"
                     />
                   </div>
                   <div className="flex mt-6 mb-6">
@@ -146,6 +147,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
                           )}
                     </select>
                   </div>
+                  <PasswordStrengthMeter password={password} />
                   <div className="relative">
                     <button
                       type="submit"
