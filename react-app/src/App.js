@@ -12,6 +12,7 @@ import {
   CourseMarket,
   LessonBuilder,
   SectionBuilder,
+  MobileLoginForm
 } from "./components";
 
 
@@ -52,6 +53,17 @@ function App() {
           />
         </Route>
         {/* End Home */}
+
+        {/* Start Mobile Login Form */}
+        <Route
+          path="/login"
+          exact={true}
+        >
+         <MobileLoginForm
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
+          />
+        </Route>
 
         {/* Start All Users */}
         <ProtectedRoute
