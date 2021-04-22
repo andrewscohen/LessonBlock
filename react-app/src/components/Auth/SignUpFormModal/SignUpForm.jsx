@@ -1,13 +1,18 @@
+// PACKAGE IMPORTS
 import { useState, useEffect } from "react";
 import { Redirect} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
+// REDUX IMPORTS FROM STORE
 import {signup, login} from "../../../store/session";
+
+// COMPONENT IMPORTS
 import sign_up_img from "./sign_up_img.jpg";
-import * as formStyle from "./SignUpFormStyle.js";
+import * as formStyle from "./FormStyle.js";
 import PasswordStrengthMeter from "../PasswordStrengthMeter";
 
 
-const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
+const SignUpForm = ({setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +20,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   const [repeatPassword, setRepeatPassword] = useState("");
   const [isInstructor, setIsInstructor] = useState(false);
   const [profileImage, setProfileImage] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +34,6 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
     if (password === repeatPassword) {
       const user = await dispatch(signup({username, email, password, isInstructor, profileImage}));
         if (!user.errors) {
-          setAuthenticated(true);
           return <Redirect to="/dashboard" />
         } else {
           setErrors(user.errors);
@@ -39,14 +44,12 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
   const demoInstructorLogin = async (e) => {
     e.preventDefault();
     setTimeout(await dispatch(login("instructor@lessonblock.io", "8b4c7b0a-b365-4420-ae67-8f310c872054")), 1000);
-    setAuthenticated(true)
     return <Redirect to="/dashboard" />
   };
 
   const demoStudentLogin = async (e) => {
     e.preventDefault();
     setTimeout(await dispatch(login("student@lessonblock.io", "719cfc7c-8a95-48ef-91ec-c6425790245f")), 1000);
-    setAuthenticated(true)
     return <Redirect to="/dashboard" />
   };
 
@@ -72,7 +75,7 @@ const SignUpForm = ({authenticated, setAuthenticated, setShowSignUpForm, setShow
     console.log("isInstructor: ", isInstructor)
   }
 
-  if (authenticated) {
+  if (sessionUser) {
     return <Redirect to="/dashboard" />;
   }
 

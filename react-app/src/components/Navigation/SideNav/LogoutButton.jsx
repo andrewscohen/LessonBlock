@@ -5,12 +5,11 @@ import {useHistory} from "react-router-dom";
 // REDUX IMPORTS FROM STORE
 import { logout } from "../../../store/session";
 
-const LogoutButton = ({setAuthenticated, authenticated}) => {
+const LogoutButton = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const onLogout = async (e) => {
-    setAuthenticated(false);
     history.push("/")
     await dispatch(logout());
   };

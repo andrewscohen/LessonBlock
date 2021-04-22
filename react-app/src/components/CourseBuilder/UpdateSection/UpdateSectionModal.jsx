@@ -7,7 +7,7 @@ import { Modal } from "../../../context/ModalContext";
 // COMPONENT IMPORTS
 import UpdateSectionForm from "./UpdateSectionForm";
 
-const UpdateSectionModal = ({setAuthenticated, authenticated, course}) => {
+const UpdateSectionModal = ({course}) => {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -23,8 +23,6 @@ const UpdateSectionModal = ({setAuthenticated, authenticated, course}) => {
       {showModal ? (
         <Modal onClose={() => setShowModal(false)}>
             <UpdateSectionForm
-              authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
               showModal={showModal}
               setShowModal={setShowModal}
               course={course}

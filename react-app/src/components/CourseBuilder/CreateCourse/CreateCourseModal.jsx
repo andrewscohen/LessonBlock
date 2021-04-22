@@ -7,7 +7,7 @@ import { Modal } from "../../../context/ModalContext";
 // COMPONENT IMPORTS
 import CreateCourseForm from "./CreateCourseForm";
 
-const CreateCourseModal = ({setAuthenticated, authenticated}) => {
+const CreateCourseModal = () => {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -24,7 +24,7 @@ const CreateCourseModal = ({setAuthenticated, authenticated}) => {
       </button>
       {showModal ? (
         <Modal onClose={() => setShowModal(false)}>
-            <CreateCourseForm authenticated={authenticated} setAuthenticated={setAuthenticated} setShowModal={setShowModal} showModal={showModal}/>
+            <CreateCourseForm setShowModal={setShowModal} showModal={showModal}/>
         </Modal>
         ) : null}
     </>

@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
-import {useDispatch } from 'react-redux';
+// PACKAGE IMPORTS
+import { useState } from 'react';
+import {useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link} from 'react-router-dom';
+
+// REDUX IMPORTS FROM STORE
 import {login} from '../../../store/session';
+
+// COMPONENT IMPORTS
 import login_img from './login_img.jpg'
 
 
@@ -10,18 +15,17 @@ const blackButtonStyle = 'inline-block w-full px-5 py-4 text-lg font-medium text
 const formInputStyle = 'block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50'
 
 
-const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
+const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await dispatch(login(email, password));
     if (!user.errors) {
-      setAuthenticated(true);
       return <Redirect to='/dashboard' />
     } else {
       setErrors(user.errors);
@@ -31,14 +35,12 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
   const demoInstructorLogin = async (e) => {
     e.preventDefault();
     await dispatch(login('instructor@lessonblock.io', '8b4c7b0a-b365-4420-ae67-8f310c872054'));
-    setAuthenticated(true)
     return <Redirect to='/dashboard' />
   };
 
   const demoStudentLogin = async (e) => {
     e.preventDefault();
     await dispatch(login('student@lessonblock.io', '719cfc7c-8a95-48ef-91ec-c6425790245f'));
-    setAuthenticated(true)
     return <Redirect to='/dashboard' />
   };
 
@@ -50,7 +52,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
+  if (sessionUser) {
     return <Redirect to='/dashboard' />;
   }
 
