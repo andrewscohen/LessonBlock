@@ -34,7 +34,7 @@ const SideNav = () => {
                   <div className="text-base font-light tracking-wide text-gray-500 mobile:text-2xl">COURSES</div>
                 </div>
               </li>
-              {sessionUser.isInstructor ? (
+              {sessionUser.is_instructor ? (
               <li>
                 <CreateCourseModal />
               </li>
