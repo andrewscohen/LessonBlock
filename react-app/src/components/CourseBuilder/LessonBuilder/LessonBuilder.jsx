@@ -86,11 +86,13 @@ const LessonBuilder = () => {
                               >
                                 {lesson.title}
                               </button>
+                          {isInstructor && (sessionUser.id === course.instructor_id) ? (
                           <DeleteLessonModal
                             courseId={course.id}
                             sectionId={lesson.section_id}
                             id={lesson.id}
                             />
+                            ) : null }
                             </div>
                             ) : null}
                         </li>

@@ -78,31 +78,35 @@ const SectionBuilder = () => {
                 />) : null}
               </h3>
         <div className="mb-3">
-          {/* List */}
+          {/* Start List of Sections*/}
               <ul className="px-3 pt-1 pb-2 mt-3 mb-8">
                 {course.sections !== undefined && course.sections.map(section => (
                 <li key={section.id}>
                 <div className="flex justify-between">
-                <Link
-                  to={`/users/me/courses/${course.id}/sections/${section.id}`}
-                  className={sectionListStyle}
-                >
-                    <p>Section No. {section.order_num}</p>
-                    <p>{section.title}</p>
-                </Link>
-                <DeleteSectionModal
-                  sectionId={section.id}
-                  courseId={courseId}
-                />
+                  <Link
+                    to={`/users/me/courses/${course.id}/sections/${section.id}`}
+                    className={sectionListStyle}
+                  >
+                      <p>Section No. {section.order_num}</p>
+                      <p>{section.title}</p>
+                  </Link>
+                  {/* Conditional Rendering for Delete Section Functionality. Appears if user is both an instructor and the user that created the course */}
+                  {isInstructor && (sessionUser.id === course.instructor_id) ? (
+                  <DeleteSectionModal
+                    sectionId={section.id}
+                    courseId={courseId}
+                  />
+                  ): null }
                 </div>
                 </li>
               ))}
               </ul>
             </div>
+            {/* End List of Sections */}
         </div>
         <div className="flex flex-col flex-shrink-0 w-1/2 py-2 mt-8 mr-6 overflow-y-hidden text-white bg-scroll bg-purple-300 rounded-lg ">
         <h3 className="flex items-center px-8 pt-1 pb-1 text-lg font-bold capitalize">
-          {/* Right Card*/}
+          {/* Right Card and Video Player Component*/}
           <span>You're Doing Great!</span>
           <button className="ml-2">
             <svg className="w-5 h-5 fill-current" viewBox="0 0 256 512">

@@ -1,7 +1,7 @@
 // PACKAGE IMPORTS
 import { useState } from 'react';
 import {useDispatch, useSelector } from 'react-redux';
-import { Redirect, Link} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 
 // REDUX IMPORTS FROM STORE
 import {login} from '../../../store/session';
