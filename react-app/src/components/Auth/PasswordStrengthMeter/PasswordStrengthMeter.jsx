@@ -23,14 +23,6 @@ const PasswordStrengthMeter = ({password}) => {
 
       return (
         <div className="password-strength-meter">
-          {password && (
-            <meter
-                value={testedResult.score}
-                max="4"
-                className="w-11/12 mt-2"
-            />
-            )}
-        <br />
         <label
           className="password-strength-meter-label"
         >
