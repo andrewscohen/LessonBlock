@@ -8,7 +8,6 @@ import {signup, login} from "../../../store/session";
 
 // COMPONENT IMPORTS
 import sign_up_img from "./sign_up_img.jpg";
-import * as formStyle from "./SignUpFormStyle.js";
 import PasswordStrengthMeter from "../PasswordStrengthMeter";
 
 
@@ -79,6 +78,16 @@ const SignUpForm = ({setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
     return <Redirect to="/dashboard" />;
   }
 
+  const label = "font-medium text-gray-900 mobile:text-sm";
+
+  const whiteButtonStyle = "inline-block w-full mobile:p-1 mobile:mt-1 mobile:text-md font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease mobile:mb-1 widescreen:p-3 laptop:p-2"
+
+  const blackButtonStyle = "inline-block w-full mobile:p-1 mobile:text-md font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease  widescreen:p-3 mobile:mb-1 laptop:p-2"
+
+  const formInputStyle = "block w-full laptop:w-full mobile:px-1 mobile:py-1 mobile:mt-1 mobile:text-md placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none laptop:p-2 widescreen:p-3focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
+
+  const radioButtonStyle = "inline-block mobile:justify-between mobile:w-1/2 mobile:p-1 mobile:text-md font-medium text-center text-white transition duration-200 laptop:p-2 bg-black border bg-black-600 rounded-md hover:bg-gray-700 hover:text-white ease mobile:my-2 widescreen:p-3"
+
   return (
     <article className="container items-center justify-center hidden h-screen mobile:flex">
 
@@ -102,51 +111,51 @@ const SignUpForm = ({setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
                 <ul>
                   {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-              <label className={formStyle.label}>Username</label>
+              <label className={label}>Username</label>
               <input
                 type="text"
                 name="username"
                 value={username}
                 onChange={updateUsername}
-                className={formStyle.formInputStyle}
+                className={formInputStyle}
                 placeholder="Username"
                 required={true} />
             </div>
             <div className="relative">
-              <label className={formStyle.label}>Email</label>
+              <label className={label}>Email</label>
               <input type="text"
                     name="email"
                   value={email}
                   onChange={updateEmail}
-                  className={formStyle.formInputStyle}
+                  className={formInputStyle}
                   placeholder="Email Address"
                   required={true} />
             </div>
             <div className="relative">
-              <label className={formStyle.label}>Password</label>
+              <label className={label}>Password</label>
               <input
                 type="password"
                 value={password}
                 name="password"
                 onChange={updatePassword}
-                className={formStyle.formInputStyle}
+                className={formInputStyle}
                 placeholder="Password" />
             </div>
             <div className="relative">
-              <label className={formStyle.label}>Confirm Password</label>
+              <label className={label}>Confirm Password</label>
               <input
                   type="password"
                   value={repeatPassword}
                   required={true}
                   onChange={updateRepeatPassword}
-                  className={formStyle.formInputStyle}
+                  className={formInputStyle}
                   placeholder="Password" />
             </div>
             {password && (
             <PasswordStrengthMeter password={password} />
             )}
             <div className="flex mobile:justify-around">
-              <label className={formStyle.radioButtonStyle}>
+              <label className={radioButtonStyle}>
                 <input
                     type="radio"
                     value={true}
@@ -155,7 +164,7 @@ const SignUpForm = ({setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
                   />
                   Instructor
               </label>
-              <label className={formStyle.radioButtonStyle}>
+              <label className={radioButtonStyle}>
                 <input
                   type="radio"
                   value={false}
@@ -168,13 +177,13 @@ const SignUpForm = ({setShowSignUpForm, setShowLoginForm, setIsOpen }) => {
             <div className="relative">
             <button
               type="submit"
-              className={formStyle.blackButtonStyle}
+              className={blackButtonStyle}
               >
               Create Account
             </button>
             <button
                 type="submit"
-                className={formStyle.whiteButtonStyle}
+                className={whiteButtonStyle}
                 onClick={demoInstructorLogin}
             >
                 Start Demo

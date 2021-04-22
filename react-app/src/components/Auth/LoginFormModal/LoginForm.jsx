@@ -6,7 +6,6 @@ import { Redirect, Link} from 'react-router-dom';
 // REDUX IMPORTS FROM STORE
 import {login} from '../../../store/session';
 import login_img from './login_img.jpg';
-import * as formStyle from "./LoginFormStyle.js";
 
 
 const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
@@ -46,7 +45,13 @@ const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
     return <Redirect to='/dashboard' />;
   }
 
+  const label = "font-medium text-gray-900 mobile:text-sm";
 
+  const whiteButtonStyle = "inline-block w-full mobile:p-1 mobile:mt-1 mobile:text-md font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease mobile:mb-1 widescreen:p-3 laptop:p-2 laptop:mt-2"
+
+  const blackButtonStyle = "inline-block w-full mobile:p-1 mobile:text-md font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease  widescreen:p-3 mobile:mb-1 laptop:p-2 laptop:mt-2"
+
+  const formInputStyle = "block w-full laptop:w-full mobile:px-1 mobile:py-1 mobile:mt-1 mobile:mb-2 mobile:text-md placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none laptop:p-2 widescreen:p-3focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50"
 
   return (
     <article className='container hidden h-screen mobile:items-center mobile:flex mobile:m-auto mobile:w-11/12 laptop:w-9/12 widescreen:w-10/12'>
@@ -72,7 +77,7 @@ const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
                 placeholder='Email'
                 value={email}
                 onChange={updateEmail}
-                className={formStyle.formInputStyle}
+                className={formInputStyle}
               />
             </div>
             <div className='relative'>
@@ -83,19 +88,19 @@ const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
                 placeholder='Password'
                 value={password}
                 onChange={updatePassword}
-                className={formStyle.formInputStyle}
+                className={formInputStyle}
               />
             </div>
             <div className='relative'>
               <button
                 type='submit'
-                className={formStyle.blackButtonStyle}
+                className={blackButtonStyle}
               >
                 Log In
               </button>
                 <button
                 type='submit'
-                className={formStyle.whiteButtonStyle}
+                className={whiteButtonStyle}
                 onClick={demoLogin}
                 >
                 Start Demo
