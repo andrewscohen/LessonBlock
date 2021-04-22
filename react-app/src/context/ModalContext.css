@@ -21,3 +21,9 @@
 #modal-content {
   position: absolute;
 }
+
+@media screen and (max-width: 767px) {
+  #modal-background {
+    display: none;
+  }
+}
