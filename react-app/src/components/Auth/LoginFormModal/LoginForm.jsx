@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
-import {useDispatch } from 'react-redux';
+// PACKAGE IMPORTS
+import { useState } from 'react';
+import {useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link} from 'react-router-dom';
+
+// REDUX IMPORTS FROM STORE
 import {login} from '../../../store/session';
 import login_img from './login_img.jpg';
 import * as formStyle from "./LoginFormStyle.js";
 
-const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
+
+const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await dispatch(login(email, password));
     if (!user.errors) {
-      setAuthenticated(true);
+      setEmail('')
+      setPassword('')
       return <Redirect to='/dashboard' />
     } else {
       setErrors(user.errors);
@@ -26,7 +31,6 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
   const demoLogin = async (e) => {
     e.preventDefault();
     await dispatch(login('instructor@lessonblock.io', '8b4c7b0a-b365-4420-ae67-8f310c872054'));
-    setAuthenticated(true)
     return <Redirect to='/dashboard' />
   };
 
@@ -38,7 +42,7 @@ const LoginForm = ({ authenticated, setAuthenticated, setShowLoginForm, setShowS
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
+  if (sessionUser) {
     return <Redirect to='/dashboard' />;
   }
 

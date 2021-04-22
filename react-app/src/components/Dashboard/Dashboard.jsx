@@ -13,7 +13,7 @@ import CourseCard from "./CourseCard";
 import "./Dashboard.css";
 
 
-const Dashboard = ({setAuthenticated, authenticated}) => {
+const Dashboard = () => {
     const [isInstructor, setIsInstructor] = useState(false);
     const courses = useSelector((state) => Object.values(state.course.userCourses));
     const sessionUser = useSelector((state) => (state.session.user));
@@ -32,19 +32,14 @@ const Dashboard = ({setAuthenticated, authenticated}) => {
     return (
       <div className="dashboard-container">
         <div className="dashboard-wrapper">
-          <SideNav
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-            isInstructor={isInstructor}
-          />
+          <SideNav />
         </div>
         <div className="card-wrapper">
           {courses && courses.map(course => (
             <div key={course.id}>
               <CourseCard
                 course={course}
-                isInstructor={isInstructor}
-                />
+              />
             </div>
           ))}
         </div>

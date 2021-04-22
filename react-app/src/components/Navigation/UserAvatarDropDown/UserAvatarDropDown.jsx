@@ -11,7 +11,7 @@ const buttonStyle = "w-12 h-12 rounded-full";
 // TAILWIND STYLES
 const listItemStyle = "block px-4 py-2 text-gray-700 text-md hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600 font-semibold w-full";
 
-const UserAvatarDropDown = ({setAuthenticated, authenticated}) => {
+const UserAvatarDropDown = () => {
   const [showMenu, setShowMenu] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -24,7 +24,6 @@ const UserAvatarDropDown = ({setAuthenticated, authenticated}) => {
 
   // Logs out currentUser
   const userLogout = async (e) => {
-    setAuthenticated(false);
     history.push("/")
     await dispatch(logout());
   };

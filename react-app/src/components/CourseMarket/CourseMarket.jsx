@@ -5,7 +5,7 @@ import {useState, useEffect} from "react";
 import {SideNav} from "../Navigation";
 import CourseCard from "../Dashboard/CourseCard";
 
-const CourseMarket = ({authenticated, setAuthenticated}) => {
+const CourseMarket = () => {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
@@ -20,10 +20,7 @@ const CourseMarket = ({authenticated, setAuthenticated}) => {
     return (
         <div className="dashboard-container">
         <div className="dashboard-wrapper">
-          <SideNav
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+          <SideNav />
         </div>
         <div className="card-wrapper">
           {courses && courses.map(course => (

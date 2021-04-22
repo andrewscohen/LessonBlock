@@ -1,5 +1,6 @@
 // PACKAGE IMPORTS
 import {Redirect} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 // COMPONENT IMPORTS
 import {SignUpFormModal, MobileSignUpForm} from "../Auth";
@@ -8,13 +9,12 @@ import {SignUpFormModal, MobileSignUpForm} from "../Auth";
 import "./LandingPage.css"
 
 
-
-
-const LandingPage = ({ authenticated, setAuthenticated }) => {
+const LandingPage = () => {
+    const sessionUser = useSelector((state) => state.session.user);
 
     return (
         <>
-            {authenticated && <Redirect to="/dashboard" /> }
+            {sessionUser && <Redirect to="/dashboard" /> }
 
             <header className="relative h-screen overflow-hidden bg-fixed bg-center bg-no-repeat bg-cover">
                 <section className="container relative flex items-center h-full align-center">
@@ -25,15 +25,9 @@ const LandingPage = ({ authenticated, setAuthenticated }) => {
                         <h2 className="font-bold leading-tight text-white laptop:text-l widescreen:pt-4 widescreen:text-3xl desktop:text-2xl desktop:w-5/12 laptop:w-5/12 mobile:text-lg mobile:w-6/12 laptop:pt-2 mobile:pb-2">
                             strengthening communities through accessible education
                         </h2>
-                        <SignUpFormModal
-                            authenticated={authenticated}
-                            setAuthenticated={setAuthenticated}
-                        />
+                        <SignUpFormModal />
                     </article>
-                    <MobileSignUpForm
-                        authenticated={authenticated}
-                        setAuthenticated={setAuthenticated}
-                    />
+                    <MobileSignUpForm />
                 </section>
             </header>
         </>

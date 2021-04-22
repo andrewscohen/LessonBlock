@@ -1,24 +1,28 @@
+// PACKAGE IMPORTS
 import { useState} from "react";
 import { Redirect, Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
+// REDUX IMPORTS FROM STORE
 import {login} from "../../../store/session";
 
+// TAILWIND STYLES
 const whiteButtonStyle = "inline-block w-11/12 px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-11/12 px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
 const formInputStyle = "shadow-inner block w-11/12 px-3 py-2 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 border-opacity-50 border-black border"
 
 
-const MobileLoginForm = ({authenticated, setAuthenticated}) => {
+const MobileLoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onLogin = async (e) => {
     e.preventDefault();
     const user = await dispatch(login(email, password));
     if (!user.errors) {
-      setAuthenticated(true);
       return <Redirect to='/dashboard' />
     } else {
       setErrors(user.errors);
@@ -28,7 +32,6 @@ const MobileLoginForm = ({authenticated, setAuthenticated}) => {
   const demoLogin = async (e) => {
     e.preventDefault();
     await dispatch(login('instructor@lessonblock.io', '8b4c7b0a-b365-4420-ae67-8f310c872054'));
-    setAuthenticated(true)
     return <Redirect to='/dashboard' />
   };
 
@@ -40,7 +43,7 @@ const MobileLoginForm = ({authenticated, setAuthenticated}) => {
     setPassword(e.target.value);
   };
 
-  if (authenticated) {
+  if (sessionUser) {
     return <Redirect to='/dashboard' />;
   }
 
@@ -63,7 +66,7 @@ const MobileLoginForm = ({authenticated, setAuthenticated}) => {
                     value={email}
                     onChange={updateEmail}
                     className={formInputStyle}
-                    autoComplete="username"
+                    autoComplete="off"
                 />
                 </div>
                 <div className="relative">
@@ -74,7 +77,7 @@ const MobileLoginForm = ({authenticated, setAuthenticated}) => {
                     value={password}
                     onChange={updatePassword}
                     className={formInputStyle}
-                    autoComplete="current-password"
+                    autoComplete="off"
                   />
                   </div>
                   <div className="relative">

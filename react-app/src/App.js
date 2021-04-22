@@ -18,19 +18,13 @@ import {
 
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      const user = await dispatch(authenticate());
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
+    dispatch(authenticate()).then(() => {
       setLoaded(true);
-    })();
-  }, [dispatch]);
+    })}, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -38,19 +32,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar
-        authenticated={authenticated}
-        setAuthenticated={setAuthenticated} />
+      <NavBar />
       <Switch>
         {/* Start Home */}
         <Route
           path="/"
           exact={true}
         >
-          <LandingPage
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-          />
+          <LandingPage />
         </Route>
         {/* End Home */}
 
@@ -59,17 +48,13 @@ function App() {
           path="/login"
           exact={true}
         >
-         <MobileLoginForm
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-          />
+         <MobileLoginForm />
         </Route>
 
         {/* Start All Users */}
         <ProtectedRoute
           path="/users"
           exact={true}
-          authenticated={authenticated}
         >
           <UsersList/>
         </ProtectedRoute>
@@ -79,7 +64,6 @@ function App() {
         <ProtectedRoute
           path="/users/:userId"
           exact={true}
-          authenticated={authenticated}
         >
           <User />
         </ProtectedRoute>
@@ -89,13 +73,8 @@ function App() {
         <ProtectedRoute
           path="/dashboard"
           exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
         >
-          <Dashboard
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+          <Dashboard />
         </ProtectedRoute>
         {/* End Dashboard */}
 
@@ -103,13 +82,8 @@ function App() {
         <ProtectedRoute
           path="/users/me/courses/:courseId"
           exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
         >
-          <SectionBuilder
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+          <SectionBuilder />
         </ProtectedRoute>
         {/* End Instructor Section Builder */}
 
@@ -117,13 +91,8 @@ function App() {
         <ProtectedRoute
           path="/users/me/courses/:courseId/sections/:sectionId"
           exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
         >
-          <LessonBuilder
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+          <LessonBuilder />
         </ProtectedRoute>
         {/* End Instructor Lesson Builder */}
 
@@ -131,13 +100,8 @@ function App() {
         <ProtectedRoute
           path="/courses"
           exact={true}
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
          >
-          <CourseMarket
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+          <CourseMarket />
         </ProtectedRoute>
         {/* End Student Course MarketPlace */}
 
