@@ -1,6 +1,6 @@
 // PACKAGE IMPORTS
 import {Link, useLocation} from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 
 // REDUX IMPORTS FROM STORE
 import {enrollInOneCourse} from "../../store/course";
@@ -8,7 +8,8 @@ import {enrollInOneCourse} from "../../store/course";
 // ASSET IMPORTS
 import BookCover from "./Assets/BookCover.jpg";
 
-const CourseCard = ({course, isInstructor}) => {
+const CourseCard = ({course}) => {
+    const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const location = useLocation();
     const pathName = location.pathname.slice(1);

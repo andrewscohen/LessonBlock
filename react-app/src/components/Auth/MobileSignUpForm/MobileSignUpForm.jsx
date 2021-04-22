@@ -1,15 +1,21 @@
+// PACKAGE IMPORTS
 import { useState, useEffect } from "react";
 import { Redirect, Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+
+// REDUX IMPORTS FROM STORE
 import {signup, login} from "../../../store/session";
+
+// COMPONENT IMPORTS
 import PasswordStrengthMeter from "../PasswordStrengthMeter";
 
+// TAILWIND STYLES
 const whiteButtonStyle = "inline-block w-11/12 px-5 py-4 mt-3 text-lg font-bold text-center text-gray-900 transition duration-200 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 ease"
 const blackButtonStyle = "inline-block w-11/12 px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-black border bg-black-600 rounded-lg hover:bg-gray-700 hover:text-white ease"
 const formInputStyle = "shadow-inner block w-11/12 px-3 py-2 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-sm focus:outline-none focus:ring-4 focus:ring-gray-600 focus:ring-opacity-50 border-opacity-50 border-black border"
 
 
-const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
+const MobileSignUpForm = () => {
     const [errors, setErrors] = useState([]);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -17,6 +23,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
     const [repeatPassword, setRepeatPassword] = useState("");
     const [userType, setUserType] = useState("");
     const [profileImage, setProfileImage] = useState(false);
+    const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,7 +38,6 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
       if (password === repeatPassword) {
         const user = await dispatch(signup({username, email, password, isInstructor, profileImage}));
           if (!user.errors) {
-            setAuthenticated(true);
             return <Redirect to="/dashboard" />
           } else {
             setErrors(user.errors);
@@ -42,7 +48,6 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
     const demoLogin = async (e) => {
       e.preventDefault();
       setTimeout(await dispatch(login("instructor@lessonblock.io", "8b4c7b0a-b365-4420-ae67-8f310c872054")), 1000);
-      setAuthenticated(true)
       return <Redirect to="/dashboard" />
     };
 
@@ -71,7 +76,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
       "Student"
     ];
 
-    if (authenticated) {
+    if (sessionUser) {
       return <Redirect to="/dashboard" />;
     }
 
@@ -95,7 +100,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
                   className={formInputStyle}
                   placeholder="Username"
                   required={true}
-                  autoComplete="username"
+                  autoComplete="off"
                   />
                 </div>
                 <div className="relative">
@@ -107,7 +112,7 @@ const MobileSignUpForm = ({authenticated, setAuthenticated}) => {
                     className={formInputStyle}
                     placeholder="Email Address"
                     required={true}
-                    autoComplete="email"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="relative">

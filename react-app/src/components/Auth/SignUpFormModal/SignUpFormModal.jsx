@@ -1,9 +1,15 @@
+
+// PACKAGE IMPORTS
 import { useState} from "react";
+
+// CONTEXT IMPORTS
 import { Modal } from "../../../context/ModalContext";
+
+// COMPONENT IMPORTS
 import SignUpForm from "./SignUpForm";
 import {LoginForm} from "../LoginFormModal";
 
-const SignUpFormModal = ({authenticated, setAuthenticated}) => {
+const SignUpFormModal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [showSignUpForm, setShowSignUpForm] = useState(true);
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -28,8 +34,8 @@ const SignUpFormModal = ({authenticated, setAuthenticated}) => {
         {modalIsOpen ? (
           <Modal onClose={onClose}>
             {showSignUpForm ? (
-            <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} setIsOpen={setIsOpen} setShowLoginForm={setShowLoginForm} setShowSignUpForm={setShowSignUpForm}/>
-            ) : <LoginForm authenticated={authenticated} setAuthenticated={setAuthenticated} setShowLoginForm={setShowLoginForm} setShowSignUpForm={setShowSignUpForm} setIsOpen={setIsOpen}/>
+            <SignUpForm setIsOpen={setIsOpen} setShowLoginForm={setShowLoginForm} setShowSignUpForm={setShowSignUpForm}/>
+            ) : <LoginForm setShowLoginForm={setShowLoginForm} setShowSignUpForm={setShowSignUpForm} setIsOpen={setIsOpen}/>
             }
           </Modal>
         ) : null}

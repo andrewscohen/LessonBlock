@@ -1,12 +1,14 @@
 // PACKAGE IMPORTS
 import {Link} from "react-router-dom";
 import CourseMarketPlaceButton from "./CourseMarketPlaceButton";
+import {useSelector} from "react-redux";
 
 // COMPONENT IMPORTS
 import CreateCourseModal from "../../CourseBuilder/CreateCourse";
 import LogoutButton from "./LogoutButton";
 
-const SideNav = ({setAuthenticated, authenticated, isInstructor}) => {
+const SideNav = () => {
+  const sessionUser = useSelector((state) => state.session.user);
 
     return (
 
@@ -32,14 +34,14 @@ const SideNav = ({setAuthenticated, authenticated, isInstructor}) => {
                   <div className="text-base font-light tracking-wide text-gray-500 mobile:text-2xl">COURSES</div>
                 </div>
               </li>
-              {isInstructor ? (
+              {sessionUser.isInstructor ? (
               <li>
                 <CreateCourseModal />
               </li>
               ) : <CourseMarketPlaceButton />
               }
               <li>
-                <LogoutButton authenticated={authenticated}  setAuthenticated={setAuthenticated} />
+                <LogoutButton />
               </li>
             </ul>
           </div>

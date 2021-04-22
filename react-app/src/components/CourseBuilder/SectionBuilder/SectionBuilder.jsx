@@ -17,7 +17,7 @@ import DeleteSectionModal from "../DeleteSection";
 const pageLayout = "flex-1 px-10 pt-2 pb-2 my-1 overflow-y-auto transition duration-500 ease-in-out bg-white-space dark:bg-black";
 const sectionListStyle = "flex items-center justify-between p-5 font-semibold capitalize bg-gray-100 rounded-lg dark:text-gray-700 dark:bg-gray-200 w-10/12";
 
-const SectionBuilder = ({authenticated, setAuthenticated}) => {
+const SectionBuilder = () => {
     const [course, setCourse] = useState({});
     const [isInstructor, setIsInstructor] = useState(false);
     const [eventTrigger, setEventTrigger] = useState(false);
@@ -59,11 +59,7 @@ const SectionBuilder = ({authenticated, setAuthenticated}) => {
 
     return (
       <div className="flex w-full h-screen pt-20 overflow-hidden select-none">
-        <SideNav
-          setAuthenticated={setAuthenticated}
-          authenticated={authenticated}
-          isInstructor={isInstructor}
-        />
+        <SideNav />
         <main className={pageLayout}>
           <div className="flex flex-col text-3xl capitalize">
             <span className="font-semibold">{course.name}</span>
