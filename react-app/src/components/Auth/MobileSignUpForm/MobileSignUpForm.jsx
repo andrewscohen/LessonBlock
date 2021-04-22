@@ -100,7 +100,7 @@ const MobileSignUpForm = () => {
                   className={formInputStyle}
                   placeholder="Username"
                   required={true}
-                  autoComplete="username"
+                  autoComplete="off"
                   />
                 </div>
                 <div className="relative">
@@ -112,7 +112,7 @@ const MobileSignUpForm = () => {
                     className={formInputStyle}
                     placeholder="Email Address"
                     required={true}
-                    autoComplete="email"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="relative">

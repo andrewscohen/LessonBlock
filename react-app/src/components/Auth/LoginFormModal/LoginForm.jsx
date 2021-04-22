@@ -26,6 +26,8 @@ const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
     e.preventDefault();
     const user = await dispatch(login(email, password));
     if (!user.errors) {
+      setEmail('')
+      setPassword('')
       return <Redirect to='/dashboard' />
     } else {
       setErrors(user.errors);
@@ -73,14 +75,7 @@ const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
       <form onSubmit={onLogin} className='w-6/12 pb-10'>
         <div className='relative w-full space-y-4'>
             <div className='relative'>
-                {!errors ? (
-                  <label htmlFor='email' className='font-medium text-gray-900'>email</label>
-                  ) : errors.map((error) => (
-                      error.includes("email") ?
-                        <label htmlFor='email' className="font-medium text-red-500">{error}</label>
-                        : null
-                  ))
-                  }
+                <label htmlFor='email'className='font-medium text-gray-900'>email</label>
                 <input
                     name='email'
                     type='text'
@@ -91,15 +86,7 @@ const LoginForm = ({ setShowLoginForm, setShowSignUpForm, setIsOpen }) => {
                 />
             </div>
             <div className='relative'>
-            {!errors ? (
-                  <label htmlFor='password' className='font-medium text-gray-900'>Password</label>
-                  ) : errors.map((error) => (
-                      error.includes("Password") ?
-                        <label htmlFor='password' className="font-medium text-red-500">{error}</label>
-                        : null
-                  ))
-                  }
-
+                <label htmlFor='password' className='font-medium text-gray-900'>Password</label>
                 <input
                     name='password'
                     type='password'

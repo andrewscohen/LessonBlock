@@ -66,7 +66,7 @@ const MobileLoginForm = () => {
                     value={email}
                     onChange={updateEmail}
                     className={formInputStyle}
-                    autoComplete="username"
+                    autoComplete="off"
                 />
                 </div>
                 <div className="relative">
@@ -77,7 +77,7 @@ const MobileLoginForm = () => {
                     value={password}
                     onChange={updatePassword}
                     className={formInputStyle}
-                    autoComplete="current-password"
+                    autoComplete="off"
                   />
                   </div>
                   <div className="relative">

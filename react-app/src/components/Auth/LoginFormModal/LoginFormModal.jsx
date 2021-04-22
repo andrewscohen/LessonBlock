@@ -13,12 +13,16 @@ function LoginFormModal() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onClose = () => {
     if (showSignUpForm === true)
       setIsOpen(false)
       setShowSignUpForm(false)
       setShowLoginForm(true)
+      setEmail('');
+      setPassword('');
   }
 
   return (
